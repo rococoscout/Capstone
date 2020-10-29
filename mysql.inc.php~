@@ -1,0 +1,12 @@
+<?php
+  // mysql.inc.php - This file will be used to establish the db
+  connection
+  class myConnectDB extends mysqli{
+    public function _construct($hostname="localhost",
+      $user="m215394",
+      $password="greg1018",
+      $dbname="m215394",
+    parent::_construct($hostname, $user, $password, $dbname);
+    }
+  }
+?>

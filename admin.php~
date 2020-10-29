@@ -1,0 +1,26 @@
+<?php
+/* Author: MIDN 1/C Gregory Polmatier
+ * Purpose: Handle the functions required by the Admin side of the
+ * 	    Chadbot including adding to the database and querying.
+ */ 
+
+//MySQL Library
+require_once('mysql.inc.php');
+
+//connect to SQL Database
+$db = new myConnectDB();
+
+//if a rule is to be added
+if (!empty($_POST["rule"])) {
+   $rule = 		    $_POST["rule"];
+   $title = 		    $_POST["title"];
+   $description = 	    $_POST["description"];
+
+   addrule($db, $rule, $title, $description);
+}
+
+//display "Rule" db table
+
+
+
+
