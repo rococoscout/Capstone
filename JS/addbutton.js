@@ -1,5 +1,17 @@
-function modal(){
+function addrule(){
   console.log("hello");
-  document.getElementById('content').innerHTML = '<div class="modal" tabindex="-1" role="dialog"><div class="modal-dialog" role="document"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">Modal title</h5><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="modal-body"><p>Modal body text goes here.</p></div><div class="modal-footer"><button type="button" class="btn btn-primary">Save changes</button><button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button></div></div></div></div>';
-
+  // var xhttp = new XMLHttpRequest();
+  // xhttp.onreadystatechange = function() {
+  //   if (this.readyState == 4 && this.status == 200) {
+  //    document.getElementById("demo").innerHTML = this.responseText;
+  //   }
+  // };
+  // xhttp.open("POST", "PHP/somename.php", true);
+  // xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  // xhttp.send("rule="+document.getElementById('rule').value+"&title="+document.getElementById('title').value+"&description="+document.getElementById('description').value);
+  $('#exampleModalCenter').modal('hide')
+  document.getElementById('title').value = "";
+  document.getElementById('description').value="";
+  document.getElementById('rule').value ="";
+  console.log("bye");
 }
