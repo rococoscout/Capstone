@@ -2,7 +2,7 @@
 /* Author: MIDN 1/C Gregory Polmatier
  * Purpose: Handle the functions required by the Admin side of the
  * 	    Chadbot including adding to the database and querying.
- */ 
+ */
 
 //MySQL Library
 require_once('mysql.inc.php');
@@ -31,22 +31,24 @@ if (!empty($_POST["rule"])) {
 }
 
 
- 
+
 /********display "Rule" db table*********/
 $sql = "SELECT ruleID, title, rule, description
        	       FROM Rules";
 
-$result = $db->query($sql);
+$stmt = $db->stmt_init();
 
-//create an array and fill with table values 
+//create an array and fill with table values
+$stmt->prepare($sql);
+$success = $stmt->execute();
+$stmt->bind_result($ruleid,$title,$rule, $description);
 $arr = array();
-while( $row = $result->fetch_assoc($result) ) {
-  $arr[] = $row;
+$i=0;
+while( $stmt->fetch() ) {
+  $arr[$i] = array("ruleid"=>$ruleid,"title"=>$title,"rule"=>$rule,"description"=>$description);
+  $i++;
 }
 
 //return json encoded array of the table
 echo json_encode($arr);
-
-
-
-
+$stmt->close();
