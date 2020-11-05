@@ -1,5 +1,0 @@
-# Form to handle logging into the MySQL db
-
-import pymysql
-
-# Open database connection and return cursor and connection object
