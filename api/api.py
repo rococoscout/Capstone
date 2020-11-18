@@ -28,7 +28,18 @@ def api_rules():
     # disconnect from server
     db.close()
 
+@app.route('/api/input', methods=['POST'])
+def api_input():
+    query_parameters = request.args
 
+    inp = query_parameters.get('input')
+    
+    if not inp:
+        print("Error: no input arg giveb")
+        return
+
+    return 'modify ' + inp
+    
     
 @app.route('/api/entries/addRule', methods=['POST'])
 def api_addRule():
@@ -61,4 +72,4 @@ def api_addRule():
     
 
     
-app.run()
+app.run("0.0.0.0", "5010")
