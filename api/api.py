@@ -1,12 +1,16 @@
 import flask
+from flask_cors import CORS, cross_origin
 import pymysql.cursors
 from flask import request, jsonify
 from dbconn import connection
 
 app = flask.Flask(__name__)
+CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 app.config["DEBUG"] = True
 
 @app.route('/api/entries/rules', methods=['GET'])
+@cross_origin()
 def api_rules():   
     # connect to the database
     cursor, db = connection()
@@ -28,17 +32,23 @@ def api_rules():
     # disconnect from server
     db.close()
 
-@app.route('/api/input', methods=['POST'])
-def api_input():
-    query_parameters = request.args
+# need to look into python path folder. 
+import sys
+sys.path.insert(1, '../Python')
+# import regex functions 
+from regex import readRules, getResponse
 
-    inp = query_parameters.get('input')
+readRules('rule.txt')
+
+@app.route('/api/input', methods=['POST'])
+@cross_origin()
+def api_input():
+    inp = request.form.get("input")
     
     if not inp:
-        print("Error: no input arg giveb")
-        return
+        return "error: no input arg given"
 
-    return 'modify ' + inp
+    return getResponse(inp)
     
     
 @app.route('/api/entries/addRule', methods=['POST'])
@@ -69,7 +79,5 @@ def api_addRule():
     # disconnect from server
     db.close()
     return "INSERT SUCCESSFUL"
-    
 
-    
-app.run("0.0.0.0", "5010")
+#app.run("0.0.0.0", "5000")
