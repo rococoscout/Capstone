@@ -57,19 +57,19 @@ def api_addRule():
     title = request.form.get('title')
     description = request.form.get('description')
 
-    #if not (rule or title or description):
-    #    print ("Error: not all args given")
-    #    return "no args"
+    if not (rule or title or description):
+        print ("Error: not all args given")
+        return "no args"
     
     # connect to the database
     cursor, db = connection()
-    cursor = db.cursor(pymysql.cursors.DictCursor)
 
     # prepare SQL query to select entries from db 
-    sql = "INSERT INTO Rules ('title', 'rule', 'description') VALUES (%s, %s, %s)"
+    sql = "INSERT INTO Rules (title, rule, description) VALUES (%s, %s, %s)"
     try:
         # Execute the SQL command
-        cursor.execute(sql, (title,rule,description))
+        record_tuple = (title, rule, description)
+        cursor.execute(sql, record_tuple)
         db.commit()
     except:
         print("Error: unable to fetch data")
