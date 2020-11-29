@@ -50,28 +50,27 @@ def api_input():
 
     return getResponse(inp)
     
-    
 @app.route('/api/entries/addRule', methods=['POST'])
+@cross_origin()
 def api_addRule():
-    query_parameters = request.args
+    rule = request.form.get('rule')
+    title = request.form.get('title')
+    description = request.form.get('description')
 
-    rule = query_parameters.get('rule')
-    title = query_parameters.get('title')
-    description = query_parameters.get('description')
-
-    if not (rule or title or description):
-        print ("Error: not all args given")
-        return
+    #if not (rule or title or description):
+    #    print ("Error: not all args given")
+    #    return "no args"
     
     # connect to the database
     cursor, db = connection()
     cursor = db.cursor(pymysql.cursors.DictCursor)
 
     # prepare SQL query to select entries from db 
-    sql = "INSERT INTO Rules (title, rule, description) VALUES (%s, %s, %s)"
+    sql = "INSERT INTO Rules ('title', 'rule', 'description') VALUES (%s, %s, %s)"
     try:
         # Execute the SQL command
         cursor.execute(sql, (title,rule,description))
+        db.commit()
     except:
         print("Error: unable to fetch data")
         return "INSERT UNSUCCESSFUL"
@@ -81,3 +80,4 @@ def api_addRule():
     return "INSERT SUCCESSFUL"
 
 #app.run("0.0.0.0", "5000")
+
