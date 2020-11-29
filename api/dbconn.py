@@ -8,6 +8,6 @@ def connection():
     db = pymysql.connect(host="midn.cs.usna.edu",
                          user = "m215394",
                          passwd = "greg1018",
-                         db = "m215394")
+                         db = "capstone_chatbot")
     cursor = db.cursor()
     return cursor, db
