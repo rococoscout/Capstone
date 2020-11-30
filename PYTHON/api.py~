@@ -1,3 +1,8 @@
+# Python Flask program that provides the chatbot website with functional backend
+# for database connection and function calling.  
+#
+# MIDN 1/C Polmatier 
+
 import flask
 from flask_cors import CORS, cross_origin
 from flask import request, jsonify
@@ -25,7 +30,6 @@ def api_rules():
 # -----------------------------------------------------------------------
 
 # import regex functions 
-#from regex import readRules, getResponse
 from regex import Regex
 
 @app.route('/api/input', methods=['POST'])
