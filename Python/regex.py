@@ -16,8 +16,7 @@ def getResponse(sentence):
             # TODO: add question to db
             flag = False
             break
-        
-     if flag:
+    if flag:
         unknownQuestions[sentence]=1
         answer= "I'm not too sure, I will find out about: "+sentence
     return answer

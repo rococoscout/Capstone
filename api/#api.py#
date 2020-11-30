@@ -1,3 +1,10 @@
+# Python Flask program that provides the chatbot website with functional backend
+# for database connection and 
+
+
+
+
+
 import flask
 from flask_cors import CORS, cross_origin
 from flask import request, jsonify
