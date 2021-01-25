@@ -1,0 +1,9 @@
+.section {
+  height: 100vh;
+}
+#detail {
+  background-color: red;
+}
+#about {
+  background-color: grey;
+}

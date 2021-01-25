@@ -36,55 +36,83 @@ Index:
   <link href="https://fonts.googleapis.com/css2?family=Raleway&family=Roboto:wght@100&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="./CSS/splash.css">
+  <link rel="stylesheet" href="./CSS/body.css">
+  <link rel="stylesheet" href="./CSS/sidebar.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script src="./JS/hidnshow.js"></script>
 
+
 </head>
 
 <body>
-  <div id="splash-head">
-    <div id="welcome">Welcome <div id="welcome-under">ChadBot?</div><div id="welcome-button"><button type="button" class="btn btn-outline-secondary" onclick="start()" id="get-started"><b>Get Started!</b></button></div></div>
-    <div id="Title">ChadBot</div>
-    <div id="splash-body">
-      <div class="chat">
-        <div id="text">
-        <!-- <div class="yours messages">
-          <div class="message last">
-            Hello, how's it going?this is more like it i dont know if a regular word
+  <div id="sidebar">
+  <span style="font-size:30px;cursor:pointer" onclick="openNav()"
+  >&#9776;</span>
+  </div>
+
+  <div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()" >&times;</a>
+    <a href="#">About Chad</a>
+    <a href="#">About Us</a>
+    <a href="#">Contact Us</a>
+    <a href="http://midn.cs.usna.edu/~m213990/cap/Capstone/Admin.html">Admin</a>
+    <div class="lineup">
+    <a href="https://www.facebook.com/jess.lonetti" target="_blank" class="fa fa-facebook"></a>
+    <a href="https://github.com/rococoscout" target="_blank" class="fa fa-github" ></a>
+    <a href="https://www.instagram.com/rococoscout/?hl=e" target="_blank" class="fa fa-instagram"></a>
+    </div>
+  </div>
+
+
+
+  </div id="main">
+    <div id="splash-head">
+      <div id="welcome">Welcome <div id="welcome-under">ChadBot?</div><div id="welcome-button"><button type="button" class="btn btn-outline-secondary" onclick="start()" id="get-started"><b>Get Started!</b></button></div></div>
+      <div id="Title">ChadBot</div>
+      <div id="splash-body">
+        <div class="chat">
+          <div id="text">
+          <!-- <div class="yours messages">
+            <div class="message last">
+              Hello, how's it going?this is more like it i dont know if a regular word
+            </div>
           </div>
+          <div class="mine messages">
+            <div class="message">
+              whatever
+            </div>
+            <div class="message">
+              Great thanks!
+            </div>
+            <div class="message">
+              Great thanks!
+            </div>
+            <div class="message">
+              Great thanks!
+            </div>
+            <div class="message last">
+              How about you?
+             </div>
+          </div> -->
+          <!-- <div class="yours messages thinking">
+            <div class="message thinking">
+              <div id = "child1"></div><div id = "child2"></div><div id = "child3"></div>
+            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+            </div>
+          </div> -->
+          </div>
+          <input type="text" id="input" name="input"  placeholder="Let's chat">
         </div>
-        <div class="mine messages">
-          <div class="message">
-            whatever
-          </div>
-          <div class="message">
-            Great thanks!
-          </div>
-          <div class="message">
-            Great thanks!
-          </div>
-          <div class="message">
-            Great thanks!
-          </div>
-          <div class="message last">
-            How about you?
-           </div>
-        </div> -->
-        <!-- <div class="yours messages">
-          <div class="message thinking">
-            <div id = "child1"></div><div id = "child2"></div><div id = "child3"></div>
-          &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-          </div>
-        </div> -->
-        </div>
-        <input type="text" id="input" name="input"  placeholder="Let's chat">
       </div>
     </div>
+    <div id="detail" class="section"></div>
+    <div id="about" class="section"></div>
+    <div id="contact" class="section"></div>
   </div>
 </body>
 
 <script src="./JS/input.js"></script>
-
+<script src="./JS/sidebar.js"></script>
 </html>
