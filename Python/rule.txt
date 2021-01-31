@@ -1,7 +1,0 @@
-[wW]here.*[pP]rofessor.*room;computer.*science.*office:All Computer Science Professors' offices are inside of Hopper Hall
-[wW]hat.*classes.*semester;.*class.*take:List of offered classes are on MIDS
-[wW]hat.*[cC]hallenging.*[cC]apstone:Challenging Capstones can be found on MIDS
-[wW]hat.*[cC]apstone:List of Capstones can be found on MIDS
-hello;how are you;hi;you.*good:I am doing great!
-what are you:I am the CHADBOT!
-bye;leaving:If you want to go type "quit"
