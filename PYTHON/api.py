@@ -3,34 +3,36 @@
 #
 # MIDN 1/C Polmatier 
 
-import flask
-from flask_cors import CORS, cross_origin
-from flask import request, jsonify
-import sys
+# flask files 
+from flask import Flask, request, jsonify
+from flask_cors import CORS, cross_origin # handle Cross Origin Resource Sharing (CORS) [for AJAX]
 # Project files 
-from DBController import DBController as ctlr # Database controller
+from dbhelper import DBHelper # Database controller
 from regex import Regex # Regex functions
 
 # establish flask
-app = flask.Flask(__name__)
+app = Flask(__name__)
 CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 app.config["DEBUG"] = True
 
+# establish database
+db = DBHelper()
+
 # --------------------- Methods Begin ------------------------------------
 
+# return rules
 @app.route('/api/entries/rules', methods=['GET'])
 @cross_origin()
 def api_rules():
-    db = ctlr()
-    rules = db.getRulesDict()
-    db.closeDB()
+    sql = "SELECT * FROM Rules"
+    rules = db.fetch(sql)
     # return json array of answers
     return jsonify(rules)
 
 # -----------------------------------------------------------------------
 
-
+# return chatbot answer 
 @app.route('/api/input', methods=['POST'])
 @cross_origin()
 def api_input():
@@ -39,9 +41,8 @@ def api_input():
     if not inp:
         return "error: no input arg given"
 
-    db = ctlr()
-    merged_dict = db.getMergeDict()
-    db.closeDB()
+    sql = "SELECT * FROM Merged"
+    merged_dict = db.fetch(sql)
 
     if not (rules or responses):
         print("ERROR: db connection")
@@ -53,24 +54,51 @@ def api_input():
 
 
 # ----------------------------------------------------------------------
-    
+
+# insert rule into database
 @app.route('/api/entries/addRule', methods=['POST'])
 @cross_origin()
 def api_addRule():
     rule = request.form.get('rule')
+    title = request.form.get('title')
+    description = request.form.get('description')
 
     if not rule:
         print ("Error: not all args given")
         return "no arg"
+    
+    sql = f"INSERT INTO Rules (rule, title, description) VALUES ('{rule}','{title}', '{description}');"
+    return db.execute(sql)
 
-    db = ctlr()
-    if not db.addRule(rule):
-        print("ERROR: insert")
-        return "ERROR: INSERT UNSUCCESSFUL"
+    #return "INSERT SUCCESSFUL"
 
-    return "INSERT SUCCESSFUL"
+# -----------------------------------------------------------------------
 
+# return rules
+@app.route('/api/entries/rules/delete', methods=['POST'])
+@cross_origin()
+def api_delete():
+    ruleID = request.form.get('ruleID')
+    
+    sql = f"DELETE FROM Rules WHERE IdRules = '{ruleID}'"
+    return db.execute(sql)
 
+# -----------------------------------------------------------------------
+
+# update
+@app.route('/api/entries/rules/update', methods=['POST'])
+@cross_origin()
+def api_update():
+    #figure out how to get everything but just get what I wanted
+    ruleID = request.form.get('ruleID')
+    rule = request.form.get('rule')
+    title = request.form.get('title')
+    description = request.form.get('description')
+    
+    sql = f"UPDATE Rules SET rule='{rule}', title='{title}', description='{description}' WHERE idRules={ruleID};"
+    return db.execute(sql)
+
+    
 #####################################################################
    
 if __name__ == "__main__":
