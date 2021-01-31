@@ -21,6 +21,15 @@ class DBHelper:
         
         self.cursor = self.con.cursor()
 
+    def noDictConnect(self):
+        self.con = pymysql.connect(host=self.host,
+                             user = self.user,
+                             passwd = self.password,
+                             db = self.db,
+                             cursorclass=pymysql.cursors.Cursor)
+        
+        self.cursor = self.con.cursor()
+
     def __disconnect__(self):
         self.con.close()
 
@@ -30,6 +39,14 @@ class DBHelper:
         result = self.cursor.fetchall()
         self.__disconnect__()
         return result
+
+    def fetchNoDict(self, sql):
+        self.noDictConnect()
+        self.cursor.execute(sql)
+        result = [x[0] for x in self.cursor.fetchall()]
+        self.__disconnect__()
+        return result
+
 
     def execute(self, sql):
         self.__connect__()
