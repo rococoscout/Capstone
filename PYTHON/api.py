@@ -79,7 +79,7 @@ def api_addRule():
 def api_delete():
     ruleID = request.form.get('ruleID')
     
-    sql = f"DELETE FROM Rules WHERE IdRules = '{ruleID}'"
+    sql = f"DELETE FROM Rules WHERE IdRules = {ruleID};"
     return db.execute(sql)
 
 # -----------------------------------------------------------------------
