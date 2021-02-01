@@ -58,22 +58,21 @@ def api_input():
 @app.route('/api/entries/addRule', methods=['POST'])
 @cross_origin()
 def api_addRule():
-    rule = request.form.get('rule')
+    regexes = json.loads(request.form.get('regexes'))
     title = request.form.get('title')
     description = request.form.get('description')
+    answers = json.loads(request.form.get('answers'))
+    questions = json.loads(request.form.get('questions'))
 
-    if not rule:
-        print ("Error: not all args given")
-        return "no arg"
-    
-    sql = f"INSERT INTO Rules (rule, title, description) VALUES ('{rule}','{title}', '{description}');"
-    return db.execute(sql)
-
-    #return "INSERT SUCCESSFUL"
+    # if not rule:
+    #     print ("Error: not all args given")
+    #     return "no arg"
+    r = Rule(regexes, answers, questions, title, description)
+    return r.addRule()
 
 # -----------------------------------------------------------------------
 
-# return rules
+# delete rules
 @app.route('/api/entries/rules/delete', methods=['POST'])
 @cross_origin()
 def api_delete():
