@@ -50,7 +50,6 @@ class Rule:
         # add to rule table
         json_vec = json.dumps(self.vector)
         sql = f"INSERT INTO Rules (title, description, totalVector) VALUES ('{self.title}', '{self.description}', '{json_vec}');"
-        print(sql)
         Rule.db.execute(sql)
 
         # get ID
@@ -119,4 +118,5 @@ class Rule:
 
 
 if __name__ == "__main__":
-    
+     r = Rule(['hello'], ['answer4'], ['question4'], 'title4', 'description4')
+     r.addRule()
