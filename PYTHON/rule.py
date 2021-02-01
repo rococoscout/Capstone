@@ -5,9 +5,9 @@ import json
 
 class Rule:
     db = DBHelper()
-    def __init__(self, ID, regex, answers, questions, vector):
+    def __init__(self, ID, regexes, answers, questions, vector):
         self.id = ID                # rule ID 
-        self.regex = regex          # Regular Expression
+        self.regexes = regexes      # List of Regular Expression
         self.answers = answers      # List of answers based on the Rule
         self.questions = questions  # List of questions that have been asked that asssociate with the rule
         self.vector = vector        # The total vector representation of the list of Questions
@@ -57,7 +57,10 @@ class Rule:
             # get id, totalVector, and regex 
             ID = r['idRules']
             vec = json.loads(r['totalVector'])
-            reg = r['regex']
+
+            # based off id get list of questions
+            sql = f"SELECT regex FROM Regexes WHERE Regexes.idRules = {ID};"
+            rs = Rule.db.fetchNoDict(sql)
 
             # based off id get list of questions
             sql = f"SELECT question FROM Questions WHERE Questions.idRules = {ID};"
@@ -68,7 +71,7 @@ class Rule:
             ans = Rule.db.fetchNoDict(sql)
 
             # create Rule object and append
-            rules.append(Rule(ID, reg, ans, qs, vec))
+            rules.append(Rule(ID, rs, ans, qs, vec))
         
         # return list
         return rules
