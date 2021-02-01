@@ -3,7 +3,6 @@
 # MIDN 1/C Polmatier
 
 import pymysql #facilitate connection to MySql
-from
 
 class DBHelper:
     def __init__(self):
