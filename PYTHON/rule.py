@@ -63,6 +63,8 @@ class Rule:
         # add to regexes table
         [self.addRegex(r) for r in self.regexes]
 
+        return "SUCCESS"
+
     '''
     Function returns all the rules in the database including regex(if exists), 
     list of answers, list of questions, and the total vector

@@ -61,7 +61,6 @@ def api_input():
 def api_addRule():
     regexes = json.loads(request.form.get('regexes'))
     title = request.form.get('title')
-    print(request.form.get('answers'))
     description = request.form.get('description')
     answers = json.loads(request.form.get('answers'))
     questions = json.loads(request.form.get('questions'))
