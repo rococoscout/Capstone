@@ -56,3 +56,4 @@ class DBHelper:
         except MySQLError as e:
             return f"Error: {e}"
         self.__disconnect__()
+        return "SUCCESS"

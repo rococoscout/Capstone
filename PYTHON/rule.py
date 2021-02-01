@@ -35,8 +35,7 @@ class Rule:
 
     def addQuestion(self, q):
         sql = f"INSERT INTO Questions (question, idRules) VALUES ('{q}', {self.id});"
-        print(sql)
-        return Rule.db.execute(sql)
+       return Rule.db.execute(sql)
 
     def addAnswer(self, a):
         sql = f"INSERT INTO Answers (answer, idRules) VALUES ('{a}', {self.id});"
@@ -79,7 +78,6 @@ class Rule:
         sql = "SELECT idRules, totalVector, title, description FROM Rules;"
         ruleEntries = Rule.db.fetch(sql)
 
-        #print(ruleEntries)
         # for all rules
         for r in ruleEntries:
             # get id, totalVector, and regex 
