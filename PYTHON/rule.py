@@ -78,7 +78,7 @@ class Rule:
 
     @staticmethod
     def addUnmatchedQuestion(q):
-        sql = f"INSERT INTO Questions (question VALUES ('{q}');"
+        sql = f"INSERT INTO Questions (question) VALUES ('{q}');"
         return Rule.db.execute(sql)
 
 if __name__ == "__main__":
