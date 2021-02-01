@@ -89,13 +89,20 @@ def api_delete():
 @cross_origin()
 def api_update():
     #figure out how to get everything but just get what I wanted
-    ruleID = request.form.get('ruleID')
-    rule = request.form.get('rule')
+    regexes = json.loads(request.form.get('regexes'))
     title = request.form.get('title')
     description = request.form.get('description')
+    answers = json.loads(request.form.get('answers'))
+    questions = json.loads(request.form.get('questions'))
+    ruleID = request.form.get('id')
+
+    # delete the old rule
+    sql = f"DELETE FROM Rules WHERE IdRules = {int(ruleID)};"
+    db.execute(sql)
     
-    sql = f"UPDATE Rules SET rule='{rule}', title='{title}', description='{description}' WHERE idRules={ruleID};"
-    return db.execute(sql)
+    # add the new one. 
+    r = Rule(regexes, answers, questions, title, description)
+    return r.addRule()
 
     
 #####################################################################
