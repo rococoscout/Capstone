@@ -5,6 +5,7 @@
 
 # flask files 
 from flask import Flask, request, jsonify
+import json
 from flask_cors import CORS, cross_origin # handle Cross Origin Resource Sharing (CORS) [for AJAX]
 # Project files 
 from dbhelper import DBHelper # Database controller
