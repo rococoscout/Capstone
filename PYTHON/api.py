@@ -77,7 +77,7 @@ def api_addRule():
 @app.route('/api/entries/rules/delete', methods=['POST'])
 @cross_origin()
 def api_delete():
-    ruleID = request.form.get('ruleID')
+    ruleID = request.form.get('id')
     
     sql = f"DELETE FROM Rules WHERE IdRules = {int(ruleID)};"
     return db.execute(sql)
