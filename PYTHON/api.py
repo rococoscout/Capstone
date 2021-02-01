@@ -8,6 +8,7 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS, cross_origin # handle Cross Origin Resource Sharing (CORS) [for AJAX]
 # Project files 
 from dbhelper import DBHelper # Database controller
+from rule import Rule   # Handle rule format in db 
 from regex import Regex # Regex functions
 
 # establish flask
@@ -25,10 +26,8 @@ db = DBHelper()
 @app.route('/api/entries/rules', methods=['GET'])
 @cross_origin()
 def api_rules():
-    sql = "SELECT * FROM Rules"
-    rules = db.fetch(sql)
     # return json array of answers
-    return jsonify(rules)
+    return jsonify(Rule.getRulesDict())
 
 # -----------------------------------------------------------------------
 

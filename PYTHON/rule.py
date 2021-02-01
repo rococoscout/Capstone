@@ -5,12 +5,14 @@ import json
 
 class Rule:
     db = DBHelper()
-    def __init__(self, ID, regexes, answers, questions, vector):
+    def __init__(self, ID, regexes, answers, questions, vector, title, description):
         self.id = ID                # rule ID 
         self.regexes = regexes      # List of Regular Expression
         self.answers = answers      # List of answers based on the Rule
         self.questions = questions  # List of questions that have been asked that asssociate with the rule
         self.vector = vector        # The total vector representation of the list of Questions
+        self.title = title
+        self.description = description
 
 
     '''
@@ -48,7 +50,7 @@ class Rule:
         rules = []
 
         # get rules from sql
-        sql = "SELECT idRules, totalVector, regex FROM Rules;"
+        sql = "SELECT idRules, totalVector, title, description FROM Rules;"
         ruleEntries = Rule.db.fetch(sql)
 
         #print(ruleEntries)
@@ -57,6 +59,8 @@ class Rule:
             # get id, totalVector, and regex 
             ID = r['idRules']
             vec = json.loads(r['totalVector'])
+            title = r['title']
+            des   = r['description']
 
             # based off id get list of questions
             sql = f"SELECT regex FROM Regexes WHERE Regexes.idRules = {ID};"
@@ -71,7 +75,7 @@ class Rule:
             ans = Rule.db.fetchNoDict(sql)
 
             # create Rule object and append
-            rules.append(Rule(ID, rs, ans, qs, vec))
+            rules.append(Rule(ID, rs, ans, qs, vec, title, des))
         
         # return list
         return rules
@@ -81,6 +85,10 @@ class Rule:
         sql = f"INSERT INTO Questions (question) VALUES ('{q}');"
         return Rule.db.execute(sql)
 
+    @staticmethod
+    def getRulesDict():
+        rs = Rule.getRules()
+        return [vars(r) for r in rs]
+
 if __name__ == "__main__":
-   
-    
+    print(Rule.getRulesDict())
