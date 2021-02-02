@@ -5,9 +5,11 @@
 
 # flask files 
 from flask import Flask, request, jsonify
+import json
 from flask_cors import CORS, cross_origin # handle Cross Origin Resource Sharing (CORS) [for AJAX]
 # Project files 
 from dbhelper import DBHelper # Database controller
+from rule import Rule   # Handle rule format in db 
 from regex import Regex # Regex functions
 
 # establish flask
@@ -25,10 +27,8 @@ db = DBHelper()
 @app.route('/api/entries/rules', methods=['GET'])
 @cross_origin()
 def api_rules():
-    sql = "SELECT * FROM Rules"
-    rules = db.fetch(sql)
     # return json array of answers
-    return jsonify(rules)
+    return jsonify(Rule.getRulesDict())
 
 # -----------------------------------------------------------------------
 
@@ -59,28 +59,27 @@ def api_input():
 @app.route('/api/entries/addRule', methods=['POST'])
 @cross_origin()
 def api_addRule():
-    rule = request.form.get('rule')
+    regexes = json.loads(request.form.get('regexes'))
     title = request.form.get('title')
     description = request.form.get('description')
+    answers = json.loads(request.form.get('answers'))
+    questions = json.loads(request.form.get('questions'))
 
-    if not rule:
-        print ("Error: not all args given")
-        return "no arg"
-    
-    sql = f"INSERT INTO Rules (rule, title, description) VALUES ('{rule}','{title}', '{description}');"
-    return db.execute(sql)
-
-    #return "INSERT SUCCESSFUL"
+    # if not rule:
+    #     print ("Error: not all args given")
+    #     return "no arg"
+    r = Rule(regexes, answers, questions, title, description)
+    return r.addRule()
 
 # -----------------------------------------------------------------------
 
-# return rules
+# delete rules
 @app.route('/api/entries/rules/delete', methods=['POST'])
 @cross_origin()
 def api_delete():
-    ruleID = request.form.get('ruleID')
+    ruleID = request.form.get('id')
     
-    sql = f"DELETE FROM Rules WHERE IdRules = '{ruleID}'"
+    sql = f"DELETE FROM Rules WHERE IdRules = {int(ruleID)};"
     return db.execute(sql)
 
 # -----------------------------------------------------------------------
@@ -90,13 +89,20 @@ def api_delete():
 @cross_origin()
 def api_update():
     #figure out how to get everything but just get what I wanted
-    ruleID = request.form.get('ruleID')
-    rule = request.form.get('rule')
+    regexes = json.loads(request.form.get('regexes'))
     title = request.form.get('title')
     description = request.form.get('description')
+    answers = json.loads(request.form.get('answers'))
+    questions = json.loads(request.form.get('questions'))
+    ruleID = request.form.get('id')
+
+    # delete the old rule
+    sql = f"DELETE FROM Rules WHERE IdRules = {int(ruleID)};"
+    db.execute(sql)
     
-    sql = f"UPDATE Rules SET rule='{rule}', title='{title}', description='{description}' WHERE idRules={ruleID};"
-    return db.execute(sql)
+    # add the new one. 
+    r = Rule(regexes, answers, questions, title, description)
+    return r.addRule()
 
     
 #####################################################################
