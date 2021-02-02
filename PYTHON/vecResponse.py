@@ -1,11 +1,11 @@
-import rule
+from rule import Rule
 import numpy
 import gensim.downloader as api
 from gensim.models.word2vec import Word2Vec
 
 embeds = api.load("glove-wiki-gigaword-50")
 
-rules = getRules()
+#rules = getRules()
 
 def getVecAnswer(rules, question):
 
@@ -27,12 +27,13 @@ def getVecAnswer(rules, question):
     else:
         return None
 
-def make_total_vector(rule, embeds):
-    rule.vector = numpy.zeros(50)
-    for question in rule.questions:
-        vec = embeds[question]
-        rule.vector = rule.vector + vec
-    rule.updateVector()
+def make_total_vector(rule):
+    if rule.vector is None:
+        rule.vector = numpy.zeros(50)
+        for question in rule.questions:
+            vec = embeds[question]
+            rule.vector = rule.vector + vec
+        rule.updateVector()
     return
 
 

@@ -2,6 +2,7 @@
 # MIDN 1/C Polmatier
 from dbhelper import DBHelper
 import json
+import vecResponse
 
 class Rule:
     db = DBHelper()
@@ -114,9 +115,11 @@ class Rule:
         sql = f"INSERT INTO Questions (question) VALUES ('{q}');"
         return Rule.db.execute(sql)
 
-    
+    @staticmethod
+    def createVectors():
+        rs = Rule.getRules()
+        [make_total_vector(r) for r in rs]
 
 
 if __name__ == "__main__":
-     r = Rule(['hello'], ['answer4'], ['question4'], 'title4', 'description4')
-     r.addRule()
+     Rule.createVectors()
