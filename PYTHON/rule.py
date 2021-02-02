@@ -47,7 +47,9 @@ class Rule:
 
     def addRule(self):
         # add to rule table
-        json_vec = json.dumps(self.vector)
+        json_vec = []
+        if self.vector is not None:
+            json_vec = json.dumps(self.vector)
         sql = f"INSERT INTO Rules (title, description, totalVector) VALUES ('{self.title}', '{self.description}', '{json_vec}');"
         Rule.db.execute(sql)
 
@@ -82,7 +84,9 @@ class Rule:
         for r in ruleEntries:
             # get id, totalVector, and regex 
             ID = r['idRules']
-            vec = json.loads(r['totalVector'])
+            vec = r['totalVector']
+            if vec is not None:
+                vec = json.loads(r['totalVector'])
             title = r['title']
             des   = r['description']
 
