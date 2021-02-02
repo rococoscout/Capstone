@@ -1,18 +1,21 @@
 # Code to handle finding and returning viable rules based on their regex
 # MIDN 1/C Signorelli
-
 import re
-#import rule
+import rule
 
 # class myRule:
 #     def __init__(self, regex, answer):
 #         self.regex = regex
 #         self.answer = answer
 
+
+#Takes a list of Rules and input question
+#Returns a list of Rules if there were matches
+#Returns None if there were no matches
 def getRegexAnswer(allRules, input):
     matchedRules = []
     for rule in allRules:
-        for regex in rule.regex:
+        for regex in rule.regexes:
             check = re.search(regex, input)
             if check:
                 #print('Rule match: ',rule.regex)

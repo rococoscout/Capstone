@@ -1,23 +1,28 @@
-import rule
+from rule import Rule
 import re
 import json
-import genericResponse
-import regexResponse
-import vecResponse
+import genericResponse as gen
+import regexResponse as reg
+import vecResponse as vec
 
 
-
+#Function that gives the answer to the input Question
+#Takes a string input and returns the string answer
+#Gets rules from rule.py and calls functions from other ~Response.py's
 def getAnswer(input):
-    allRules = Rules.getRules()
+    allRules = Rule.getRules()
     matched=False
 
-    matchedRules = getRegexAnswer(allRules, input)
+    matchedRules = reg.getRegexAnswer(allRules, input)
     if(matchedRules == None):
-        answer = getVecAnswer(allRules, input)
-    else
-        answer = getVecAnswer(matchedRules, input)
+        answer = vec.getVecAnswer(allRules, input)
+    else:
+        answer = vec.getVecAnswer(matchedRules, input)
     if(answer == None):
-        answer= getGenericAnswer(input)
+        answer= gen.getGenericAnswer(input)
         Rules.addUnmatchedQuestion(input)
 
     return answer
+
+if __name__ == '__main__':
+    print(getAnswer("Hi"))
