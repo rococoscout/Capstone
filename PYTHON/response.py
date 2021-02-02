@@ -20,9 +20,16 @@ def getAnswer(input):
         answer = vec.getVecAnswer(matchedRules, input)
     if(answer == None):
         answer= gen.getGenericAnswer(input)
-        Rules.addUnmatchedQuestion(input)
+        Rule.addUnmatchedQuestion(input)
 
     return answer
 
 if __name__ == '__main__':
     print(getAnswer("Hi"))
+    print(getAnswer("What is Computer Science?"))
+    print(getAnswer("Tell me what computer science is about"))
+    print(getAnswer("computer science is what?"))
+    print(getAnswer("who made you?"))
+    print(getAnswer("How are babies made?"))
+    print(getAnswer("Are you able to double major?"))
+    print(getAnswer("Where to go for classes in computer science?"))

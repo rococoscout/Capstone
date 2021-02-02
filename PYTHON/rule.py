@@ -1,14 +1,13 @@
-# A class to store a Rule, based on the capstone Schema 
+# A class to store a Rule, based on the capstone Schema
 # MIDN 1/C Polmatier
 from dbhelper import DBHelper
 import json
-import vecResponse
-import numpy as np 
+import numpy as np
 
 class Rule:
     db = DBHelper()
-    def __init__(self, regexes, answers, questions, title, description, ID = None, vector = np.empty()):
-        self.id = ID                # rule ID 
+    def __init__(self, regexes, answers, questions, title, description, ID = None, vector = np.zeros(50)):
+        self.id = ID                # rule ID
         self.regexes = regexes      # List of Regular Expression
         self.answers = answers      # List of answers based on the Rule
         self.questions = questions  # List of questions that have been asked that asssociate with the rule
@@ -22,13 +21,12 @@ class Rule:
     '''
     def updateVector(self):
         json_v = json.dumps(self.vector.tolist())
-        print(json_v)
         sql = f"UPDATE Rules SET totalVector='{json_v}' WHERE idRules={self.id};"
         return Rule.db.execute(sql)
 
 
     '''
-    Updates regex and total vector into the database schema 
+    Updates regex and total vector into the database schema
     '''
     def updateRule(self):
         json_v = json.dumps(self.vector.tolist())
@@ -69,7 +67,7 @@ class Rule:
         return "SUCCESS"
 
     '''
-    Function returns all the rules in the database including regex(if exists), 
+    Function returns all the rules in the database including regex(if exists),
     list of answers, list of questions, and the total vector
 
     Returns a list of class Rules
@@ -84,7 +82,7 @@ class Rule:
 
         # for all rules
         for r in ruleEntries:
-            # get id, totalVector, and regex 
+            # get id, totalVector, and regex
             ID = r['idRules']
             vec = r['totalVector']
             if vec is not None:
@@ -106,7 +104,7 @@ class Rule:
 
             # create Rule object and append
             rules.append(Rule(rs, ans, qs, title, des, ID, vec))
-        
+
         # return list
         return rules
 
@@ -120,10 +118,7 @@ class Rule:
         sql = f"INSERT INTO Questions (question) VALUES ('{q}');"
         return Rule.db.execute(sql)
 
-    @staticmethod
-    def createVectors():
-        rs = Rule.getRules()
-        [make_total_vector(r) for r in rs]
+
 
 
 if __name__ == "__main__":
