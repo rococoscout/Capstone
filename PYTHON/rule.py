@@ -21,7 +21,7 @@ class Rule:
     update total vector of this Rule in the database
     '''
     def updateVector(self):
-        json_v = json.dumps(self.vector)
+        json_v = json.dumps(self.vector.tolist())
         print(json_v)
         sql = f"UPDATE Rules SET totalVector='{json_v}' WHERE idRules={self.id};"
         return Rule.db.execute(sql)
