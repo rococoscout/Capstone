@@ -28,7 +28,7 @@ db = DBHelper()
 @cross_origin()
 def api_rules():
     # return json array of answers
-    return jsonify(Rule.getRulesDict())
+    return jsonify(Rule.getRulesDict(isNumpy=False))
 
 # -----------------------------------------------------------------------
 
@@ -41,17 +41,7 @@ def api_input():
     if not inp:
         return "error: no input arg given"
 
-    sql = "SELECT * FROM Merged"
-    merged_dict = db.fetch(sql)
-
-    if not (rules or responses):
-        print("ERROR: db connection")
-        return "UNSUCCESSFUL"
-
-    # Create Regex object with rules given 
-    re = Regex(merged_dict)
-    return re.getResponses(inp)
-
+    
 
 # ----------------------------------------------------------------------
 

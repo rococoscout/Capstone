@@ -73,7 +73,7 @@ class Rule:
     Returns a list of class Rules
     '''
     @staticmethod
-    def getRules():
+    def getRules(isNumpy=True):
         rules = []
 
         # get rules from sql
@@ -86,7 +86,10 @@ class Rule:
             ID = r['idRules']
             vec = r['totalVector']
             if vec is not None:
-                vec = np.asarray(json.loads(r['totalVector']))
+                if isNumpy:
+                    vec = np.asarray(json.loads(r['totalVector']))
+                else:
+                    vec = json.loads(r['totalVector'])
             title = r['title']
             des   = r['description']
 
