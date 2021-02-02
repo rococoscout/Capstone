@@ -53,6 +53,7 @@ class DBHelper:
         try:
             self.cursor.execute(sql)
             self.con.commit()
-        except MySQLError as e:
+        except pymysql.Error as e:
             return f"Error: {e}"
         self.__disconnect__()
+        return "SUCCESS"
