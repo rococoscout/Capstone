@@ -28,7 +28,7 @@ db = DBHelper()
 @cross_origin()
 def api_rules():
     # return json array of answers
-    return jsonify(Rule.getRulesDict(isNumpy=False))
+    return jsonify(Rule.getRulesDict())
 
 # -----------------------------------------------------------------------
 
