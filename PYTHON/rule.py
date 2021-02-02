@@ -27,11 +27,12 @@ class Rule:
 
     '''
     Updates regex and total vector into the database schema
-    '''
+    
     def updateRule(self):
         json_v = json.dumps(self.vector.tolist())
         sql = f"UPDATE Rules SET regex='{self.regex}' totalVector='{json_v}' WHERE idRules={self.id};"
         return None
+    '''
 
     def addQuestion(self, q):
         sql = f"INSERT INTO Questions (question, idRules) VALUES ('{q}', {self.id});"
@@ -113,7 +114,7 @@ class Rule:
 
     @staticmethod
     def getRulesDict():
-        rs = Rule.getRules()
+        rs = Rule.getRules(isNumpy=False)
         return [vars(r) for r in rs]
 
     @staticmethod
