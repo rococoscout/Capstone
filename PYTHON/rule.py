@@ -2,10 +2,12 @@
 # MIDN 1/C Polmatier
 from dbhelper import DBHelper
 import json
+import vecResponse
+import numpy as np 
 
 class Rule:
     db = DBHelper()
-    def __init__(self, regexes, answers, questions, title, description, ID = None, vector = []):
+    def __init__(self, regexes, answers, questions, title, description, ID = None, vector = np.empty()):
         self.id = ID                # rule ID 
         self.regexes = regexes      # List of Regular Expression
         self.answers = answers      # List of answers based on the Rule
@@ -19,7 +21,7 @@ class Rule:
     update total vector of this Rule in the database
     '''
     def updateVector(self):
-        json_v = json.dumps(self.vector)
+        json_v = json.dumps(self.vector.tolist())
         print(json_v)
         sql = f"UPDATE Rules SET totalVector='{json_v}' WHERE idRules={self.id};"
         return Rule.db.execute(sql)
@@ -29,7 +31,7 @@ class Rule:
     Updates regex and total vector into the database schema 
     '''
     def updateRule(self):
-        json_v = json.dumps(self.vector)
+        json_v = json.dumps(self.vector.tolist())
         sql = f"UPDATE Rules SET regex='{self.regex}' totalVector='{json_v}' WHERE idRules={self.id};"
         return None
 
@@ -49,7 +51,7 @@ class Rule:
         # add to rule table
         json_vec = []
         if self.vector is not None:
-            json_vec = json.dumps(self.vector)
+            json_vec = json.dumps(self.vector.tolist())
         sql = f"INSERT INTO Rules (title, description, totalVector) VALUES ('{self.title}', '{self.description}', '{json_vec}');"
         Rule.db.execute(sql)
 
@@ -86,7 +88,7 @@ class Rule:
             ID = r['idRules']
             vec = r['totalVector']
             if vec is not None:
-                vec = json.loads(r['totalVector'])
+                vec = np.asarray(json.loads(r['totalVector']))
             title = r['title']
             des   = r['description']
 
@@ -118,9 +120,11 @@ class Rule:
         sql = f"INSERT INTO Questions (question) VALUES ('{q}');"
         return Rule.db.execute(sql)
 
-    
+    @staticmethod
+    def createVectors():
+        rs = Rule.getRules()
+        [make_total_vector(r) for r in rs]
 
 
 if __name__ == "__main__":
-     r = Rule(['hello'], ['answer4'], ['question4'], 'title4', 'description4')
-     r.addRule()
+     Rule.createVectors()

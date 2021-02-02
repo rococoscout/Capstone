@@ -1,4 +1,4 @@
-import rule
+from rule import Rule
 import numpy
 import gensim.downloader as api
 from gensim.models.word2vec import Word2Vec
