@@ -9,7 +9,8 @@ import json
 from flask_cors import CORS, cross_origin # handle Cross Origin Resource Sharing (CORS) [for AJAX]
 # Project files 
 from dbhelper import DBHelper # Database controller
-from rule import Rule   # Handle rule format in db 
+#from rule import Rule   # Handle rule format in db 
+from response import Rule, getAnswer
 from regex import Regex # Regex functions
 
 # establish flask
@@ -41,6 +42,7 @@ def api_input():
     if not inp:
         return "error: no input arg given"
 
+    return getAnswer(inp)
     
 
 # ----------------------------------------------------------------------

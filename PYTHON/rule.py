@@ -125,5 +125,4 @@ class Rule:
 
 
 
-if __name__ == "__main__":
-     Rule.createVectors()
+#if __name__ == "__main__":
