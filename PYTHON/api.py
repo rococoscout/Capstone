@@ -51,7 +51,7 @@ def api_input():
 def api_search():
     search = request.form.get("search")
     
-    if not inp:
+    if not search:
         return "error: no search arg given"
 
     
