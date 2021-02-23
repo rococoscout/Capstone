@@ -116,8 +116,8 @@ class Rule:
         return rules
 
     @staticmethod
-    def getRulesDict(s=None):
-        rs = Rule.getRules(isNumpy=False, s)
+    def getRulesDict(search=None):
+        rs = Rule.getRules(isNumpy=False, s=search)
         return [vars(r) for r in rs]
 
     
