@@ -43,6 +43,19 @@ def api_input():
         return "error: no input arg given"
 
     return getAnswer(inp)
+
+
+# return chat bot answer 
+@app.route('/api/rules/search', methods=['POST'])
+@cross_origin()
+def api_search():
+    search = request.form.get("search")
+    
+    if not inp:
+        return "error: no search arg given"
+
+    
+    return jsonify(Rule.getRulesDict(search))
     
 
 # ----------------------------------------------------------------------

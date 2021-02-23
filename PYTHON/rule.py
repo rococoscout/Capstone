@@ -74,11 +74,14 @@ class Rule:
     Returns a list of class Rules
     '''
     @staticmethod
-    def getRules(isNumpy=True):
+    def getRules(isNumpy=True, s=None):
         rules = []
 
         # get rules from sql
-        sql = "SELECT idRules, totalVector, title, description FROM Rules;"
+        if s is None:
+            sql = "SELECT idRules, totalVector, title, description FROM Rules;"
+        else:
+            sql = 'SELECT idRules, totalVector, title, description FROM Rules WHERE title LIKE "%{s}%";'
         ruleEntries = Rule.db.fetch(sql)
 
         # for all rules
@@ -113,9 +116,11 @@ class Rule:
         return rules
 
     @staticmethod
-    def getRulesDict():
-        rs = Rule.getRules(isNumpy=False)
+    def getRulesDict(s=None):
+        rs = Rule.getRules(isNumpy=False, s)
         return [vars(r) for r in rs]
+
+    
 
     @staticmethod
     def addUnmatchedQuestion(q):
