@@ -35,7 +35,8 @@ def getVecAnswer(rules, question):
         rule.updateVector()
         return rule.answers[0]
     else:
-        addUnmatchedQuestion(question)
+        Rule.addUnmatchedQuestion(question)
+
         return None
 
 

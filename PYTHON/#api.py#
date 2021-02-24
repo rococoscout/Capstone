@@ -9,8 +9,7 @@ import json
 from flask_cors import CORS, cross_origin # handle Cross Origin Resource Sharing (CORS) [for AJAX]
 # Project files 
 from dbhelper import DBHelper # Database controller
-#from rule import Rule   # Handle rule format in db 
-from response import Rule, getAnswer
+from rule import Rule   # Handle rule format in db 
 from regex import Regex # Regex functions
 
 # establish flask
@@ -42,21 +41,17 @@ def api_input():
     if not inp:
         return "error: no input arg given"
 
-    return getAnswer(inp)
+    sql = "SELECT * FROM Merged"
+    merged_dict = db.fetch(sql)
 
+    if not (rules or responses):
+        print("ERROR: db connection")
+        return "UNSUCCESSFUL"
 
-# return chat bot answer 
-@app.route('/api/rules/search', methods=['POST'])
-@cross_origin()
-def api_search():
-    search = request.form.get("search")
-    
-    if not search:
-        return "error: no search arg given"
+    # Create Regex object with rules given 
+    re = Regex(merged_dict)
+    return re.getResponses(inp)
 
-    
-    return jsonify(Rule.getRulesDict(search))
-    
 
 # ----------------------------------------------------------------------
 
@@ -82,9 +77,8 @@ def api_addRule():
 @app.route('/api/entries/rules/delete', methods=['POST'])
 @cross_origin()
 def api_delete():
-    ruleID = request.form.get('id')
-    
-    sql = f"DELETE FROM Rules WHERE IdRules = {int(ruleID)};"
+    ruleID = request.form.get('ruleID')
+    sql = f"DELETE FROM Rules WHERE IdRules = '{ruleID}'"
     return db.execute(sql)
 
 # -----------------------------------------------------------------------
@@ -94,20 +88,13 @@ def api_delete():
 @cross_origin()
 def api_update():
     #figure out how to get everything but just get what I wanted
-    regexes = json.loads(request.form.get('regexes'))
+    ruleID = request.form.get('ruleID')
+    rule = request.form.get('rule')
     title = request.form.get('title')
     description = request.form.get('description')
-    answers = json.loads(request.form.get('answers'))
-    questions = json.loads(request.form.get('questions'))
-    ruleID = request.form.get('id')
-
-    # delete the old rule
-    sql = f"DELETE FROM Rules WHERE IdRules = {int(ruleID)};"
-    db.execute(sql)
     
-    # add the new one. 
-    r = Rule(regexes, answers, questions, title, description)
-    return r.addRule()
+    sql = f"UPDATE Rules SET rule='{rule}', title='{title}', description='{description}' WHERE idRules={ruleID};"
+    return db.execute(sql)
 
     
 #####################################################################
