@@ -12,12 +12,15 @@ embeds = api.load("glove-wiki-gigaword-50")
 #Returns a string answer if there were matches
 #Returns None if there were no matches
 def getVecAnswer(rules, question):
-    if len(rules)==1:
-        return rules[0].answers[0]
     question=clean(question)
     uservec= numpy.zeros(50)
     for word in question:
         uservec = embeds[word] + uservec
+    if len(rules)==1:
+        rules[0].vector = rules[0].vector + uservec
+        rules[0].addQuestion(question)
+        rules[0].updateVector()
+        return rules[0].answers[0]
     allscores = list()
     for rule in rules:
         make_total_vector(rule)
@@ -32,6 +35,7 @@ def getVecAnswer(rules, question):
         rule.updateVector()
         return rule.answers[0]
     else:
+        addUnmatchedQuestion(question)
         return None
 
 
