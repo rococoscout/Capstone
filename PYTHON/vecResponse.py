@@ -17,6 +17,7 @@ def getVecAnswer(rules, question):
     for word in question:
         uservec = embeds[word] + uservec
     if len(rules)==1:
+        print("lenrules=1")
         rules[0].vector = rules[0].vector + uservec
         rules[0].addQuestion(question)
         rules[0].updateVector()
