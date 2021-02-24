@@ -82,7 +82,7 @@ class Rule:
         if s is None:
             sql = "SELECT idRules, totalVector, title, description FROM Rules;"
         else:
-            sql = 'SELECT idRules, totalVector, title, description FROM Rules WHERE title LIKE "%{s}%";'
+            sql = f'SELECT idRules, totalVector, title, description FROM Rules WHERE title LIKE "%{s}%";'
         print(sql)
         ruleEntries = Rule.db.fetch(sql)
 
