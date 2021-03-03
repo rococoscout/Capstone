@@ -56,7 +56,18 @@ document.getElementById('input').addEventListener("keyup", function(event) {
     };
     xhttp.open("POST", "http://10.1.83.57:5000/api/input", true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhttp.send("input="+text);
+    xhttp.send("input="+text.toLowerCase());
   }
 
+  });
+
+
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (event) {
+          event.preventDefault();
+
+          document.querySelector(this.getAttribute('href')).scrollIntoView({
+              behavior: 'smooth'
+          });
+      });
   });
