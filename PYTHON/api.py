@@ -185,9 +185,6 @@ def api_edit_add():
 #     return r.addRule()
 
 # update
-@app.route('/api/entries/rules/update', methods=['POST'])
-@cross_origin()
-def api_update():
 #####################################################################
    
 if __name__ == "__main__":
