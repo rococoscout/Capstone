@@ -137,7 +137,7 @@ def api_edit_add():
 # add rules
 @app.route('/api/entries/rules/edit/rule', methods=['POST'])
 @cross_origin()
-def api_edit_add():
+def api_edit_rule():
     ID = request.form.get('id') # rule id
     title = request.form.get('title')
     description = request.form.get('description')
