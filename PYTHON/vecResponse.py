@@ -15,6 +15,8 @@ def getVecAnswer(rules, userinput):
     question=clean(userinput)
     uservec= numpy.zeros(50)
     for word in question:
+        if word not in embeds:
+            continue
         uservec = embeds[word] + uservec
     if len(rules)==1:
         print("lenrules=1")
@@ -25,10 +27,14 @@ def getVecAnswer(rules, userinput):
     allscores = list()
     for rule in rules:
         make_total_vector(rule)
-        score = cosine(uservec, rule.vector)
-        if not numpy.isnan(score):
-            allscores.append((rule,score))
-            allscores.sort(reverse=True, key=lambda x:x[1])
+        #score = cosine(uservec, rule.vector)
+        for q in rule.questions:
+            qvec = make_vector(q)
+            score = cosine(uservec, qvec)
+            if not numpy.isnan(score):
+                #potentially keep track of q matched
+                allscores.append((rule,score)) 
+                allscores.sort(reverse=True, key=lambda x:x[1])
     if allscores[0][1] > .95:
         rule = allscores[0][0]
         rule.vector = rule.vector + uservec
@@ -45,8 +51,8 @@ def getVecAnswer(rules, userinput):
 def make_total_vector(rule):
     rule.vector = numpy.zeros(50)
     for question in rule.questions:
-        cleanedQ= clean(question)
-        vec= numpy.zeros(50)
+        cleanedQ = clean(question)
+        vec = numpy.zeros(50)
         for word in cleanedQ:
             if word not in embeds:
                 continue
@@ -54,6 +60,16 @@ def make_total_vector(rule):
         rule.vector = rule.vector + vec
     rule.updateVector()
     return
+
+#Makes a single vector
+def make_vector(question):
+    cleanedQ = clean(question)
+    vec = numpy.zeros(50)
+    for word in cleanedQ:
+        if word not in embeds:
+            continue
+        vec = embeds[word] + vec
+    return vec
 
 #Cleans the text of punctuaction  and turns it into list of words
 def clean(text):
