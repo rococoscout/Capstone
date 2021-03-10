@@ -1,7 +1,7 @@
 ## Python Folder README 
 
 ### Running API server
-To start server ssh into the midn.cs.usna.edu then run the command
+To start server ssh into midn.cs.usna.edu then run the command
 ```
 gunicorn --reload --bind=10.1.83.57:5000 wsgi:app
 ```
