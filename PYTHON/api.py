@@ -150,44 +150,21 @@ def api_edit_rule():
     print(sql)
     return db.execute(sql)
 
-# update
-# @app.route('/api/entries/rules/update', methods=['POST'])
-# @cross_origin()
-# def api_update():
-#     #figure out how to get everything but just get what I wanted
-#     regexes = json.loads(request.form.get('regexes'))
-#     title = request.form.get('title')
-#     description = request.form.get('description')
-#     answers = json.loads(request.form.get('answers'))
-#     # might just have jess send me a tuple of questions like i send him
-#     questions = json.loads(request.form.get('questions'))
-#     ruleID = request.form.get('id')
+# /api/entries/rules/graph
 
-#     # UPDATE title and description
-#     sql = f"UPDATE Rules SET title='{title}', Description='{description}' WHERE IdRules = {int(ruleID)};"
-#     db.execute(sql)
-
-#     # for each question that matches ruleID update
-#     # NOT DONE - waiting to see what Jess will send me
-#     # also this will get broken up into different api functions
-#     for q in questions:
-#         sql = f"UPDATE Questions SET question='{q}' WHERE IdRules = {int(ruleID)};"
-
-#     # for each regex that matches ruleID update
-#     for r in regexes:
-#         sql = f"UPDATE Regexes SET regex='{r}' WHERE IdRules = {int(ruleID)};"
-
-#     # for each answer that matches ruleID update
-#     for a in answers:
-#         sql = f"UPDATE Answers SET answer='{a}' WHERE IdRules = {int(ruleID)};"
+# returns questions of rule and associated dates
+@app.route('/api/entries/rules/graph', methods=['POST'])
+@cross_origin()
+def api_edit_rule():
+    ID = request.form.get('id') # rule id
+    title = request.form.get('title')
+    description = request.form.get('description')
 
 
+    sql = f"UPDATE Rules SET title='{title}', description='{description}' WHERE IdRules={int(ID)};"
+    print(sql)
+    return db.execute(sql)
 
-#     # add the new one. 
-#     r = Rule(regexes, answers, questions, title, description)
-#     return r.addRule()
-
-# update
 #####################################################################
    
 if __name__ == "__main__":
