@@ -1,0 +1,14 @@
+[2021-03-08 10:16:20 -0500] [34285] [INFO] Starting gunicorn 20.0.4
+[2021-03-08 10:16:20 -0500] [34285] [INFO] Listening at: http://10.1.83.57:5000 (34285)
+[2021-03-08 10:16:20 -0500] [34285] [INFO] Using worker: sync
+[2021-03-08 10:16:20 -0500] [34287] [INFO] Booting worker with pid: 34287
+[2021-03-08 10:16:54 -0500] [34285] [INFO] Handling signal: int
+[2021-03-08 10:16:54 -0500] [34287] [INFO] Worker exiting (pid: 34287)
+[2021-03-08 10:16:55 -0500] [34285] [INFO] Shutting down: Master
+[2021-03-08 10:17:56 -0500] [34634] [INFO] Starting gunicorn 20.0.4
+[2021-03-08 10:17:56 -0500] [34634] [INFO] Listening at: http://10.1.83.57:5000 (34634)
+[2021-03-08 10:17:56 -0500] [34634] [INFO] Using worker: sync
+[2021-03-08 10:17:56 -0500] [34636] [INFO] Booting worker with pid: 34636
+[2021-03-08 10:17:58 -0500] [34634] [INFO] Handling signal: int
+[2021-03-08 10:17:58 -0500] [34636] [INFO] Worker exiting (pid: 34636)
+[2021-03-08 10:17:58 -0500] [34634] [INFO] Shutting down: Master

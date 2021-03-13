@@ -18,9 +18,6 @@ def getVecAnswer(rules, userinput):
         if word not in embeds:
             continue
         uservec = embeds[word] + uservec
-    errorvec = numpy.zeros(50)
-    if uservec == errorvec:
-        return None
     if len(rules)==1:
         print("lenrules=1")
         rules[0].vector = rules[0].vector + uservec
