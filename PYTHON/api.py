@@ -111,6 +111,9 @@ def api_edit_update():
     update = request.form.get('update')
 
     field = table.lower()[:-1]
+    if (field == 'regexe'):
+        field = field[:-1]
+
     idname = 'Id' + str(table)
     print(field, idname)
 
