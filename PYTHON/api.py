@@ -162,16 +162,6 @@ def api_get_graph():
     print(sql)
     return db.fetch(sql)
 
-# returns questions and date created 
-@app.route('/api/entries/rules/graph', methods=['POST'])
-@cross_origin()
-def api_get_graph():
-    ID = request.form.get('id') # rule id
-
-    sql = f"SELECT (question, dateCreated) FROM Questions WHERE IdRules={int(ID)};"
-    print(sql)
-    return db.fetch(sql)
-
 
 
 
