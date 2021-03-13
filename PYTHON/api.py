@@ -155,7 +155,7 @@ def api_edit_rule():
 # returns questions of rule and associated dates
 @app.route('/api/entries/rules/graph', methods=['POST'])
 @cross_origin()
-def api_edit_rule():
+def api_get_graph():
     ID = request.form.get('id') # rule id
     title = request.form.get('title')
     description = request.form.get('description')
