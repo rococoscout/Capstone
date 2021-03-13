@@ -135,7 +135,10 @@ def api_edit_add():
 
     sql = f"INSERT INTO {table} (IdRules, {field}) VALUES ({int(ID)}, '{newitem}');"
     print(sql)
-    return db.execute(sql)
+    db.execute(sql)
+
+    sql = f"SELECT {idname} FROM {table} WHERE {field}='{newitem}';"
+    return db.fetch(sql)
 
 # add rules
 @app.route('/api/entries/rules/edit/rule', methods=['POST'])
@@ -145,25 +148,32 @@ def api_edit_rule():
     title = request.form.get('title')
     description = request.form.get('description')
 
-
     sql = f"UPDATE Rules SET title='{title}', description='{description}' WHERE IdRules={int(ID)};"
     print(sql)
     return db.execute(sql)
 
-# /api/entries/rules/graph
-
-# returns questions of rule and associated dates
+# returns questions and date created 
 @app.route('/api/entries/rules/graph', methods=['POST'])
 @cross_origin()
 def api_get_graph():
     ID = request.form.get('id') # rule id
-    title = request.form.get('title')
-    description = request.form.get('description')
 
-
-    sql = f"UPDATE Rules SET title='{title}', description='{description}' WHERE IdRules={int(ID)};"
+    sql = f"SELECT (question, dateCreated) FROM Questions WHERE IdRules={int(ID)};"
     print(sql)
-    return db.execute(sql)
+    return db.fetch(sql)
+
+# returns questions and date created 
+@app.route('/api/entries/rules/graph', methods=['POST'])
+@cross_origin()
+def api_get_graph():
+    ID = request.form.get('id') # rule id
+
+    sql = f"SELECT (question, dateCreated) FROM Questions WHERE IdRules={int(ID)};"
+    print(sql)
+    return db.fetch(sql)
+
+
+
 
 #####################################################################
    
