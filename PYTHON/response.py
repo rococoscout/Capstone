@@ -6,6 +6,7 @@ import regexResponse as reg
 import vecResponse as vec
 from polyglot.detect import Detector
 from polyglot.detect.base import logger
+from profanity_check import predict, predict_prob
 
 logger.disabled = True
 
@@ -21,28 +22,34 @@ def checkLanguage(input):
     else:
         return False
 
+
 #Function that gives the answer to the input Question
 #Takes a string input and returns the string answer
 #Gets rules from rule.py and calls functions from other ~Response.py's
 def getAnswer(input):
-    allRules = Rule.getRules()
-    matched=False
+    if(predict([input]) == 0):
+        allRules = Rule.getRules()
+        matched=False
 
-    matchedRules = reg.getRegexAnswer(allRules, input)
-    if(matchedRules == None):
-        if checkLanguage(input):
-            answer = vec.getVecAnswer(allRules, input)
+        matchedRules = reg.getRegexAnswer(allRules, input)
+        if(matchedRules == None):
+            if checkLanguage(input):
+                answer = vec.getVecAnswer(allRules, input)
+            else:
+                answer = "It seems that you have entered input that is not in English. \n Unfortunately I only speak English! \n Please translate your question so I can properly assist you!"
         else:
-            answer = "It seems that you have entered input that is not in English. \n Unfortunately I only speak English! \n Please translate your question so I can properly assist you!"    
-    else:
-        answer = vec.getVecAnswer(matchedRules, input)
-    if(answer == None):
-        answer= gen.getGenericAnswer(input)
-        Rule.addUnmatchedQuestion(input)
+            answer = vec.getVecAnswer(matchedRules, input)
+        if(answer == None):
+            answer= gen.getGenericAnswer(input)
+            Rule.addUnmatchedQuestion(input)
+        return answer
 
-    return answer
+    else:
+        answer = "Do you kiss your mother with that mouth?! Please filter out your foul language and try asking again please!"
+        return answer
 
 if __name__ == '__main__':
+    print(getAnswer("Fuck you"))
     print(getAnswer("Hi"))
     print(getAnswer("What is Computer Science?"))
     print(getAnswer("Tell me what computer science is about"))
