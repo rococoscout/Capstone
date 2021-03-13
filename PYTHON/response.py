@@ -6,7 +6,9 @@ import regexResponse as reg
 import vecResponse as vec
 from polyglot.detect import Detector
 from polyglot.detect.base import logger
-from profanity_check import predict, predict_prob
+#from profanity_check import predict, predict_prob
+from profanityfilter import ProfanityFilter
+
 
 logger.disabled = True
 
@@ -15,6 +17,7 @@ logger.disabled = True
 #If input is English, it returns true, allowing the getAnswer() function to follow through with its job
 #If the input is not in English, it returns False
 #A false return prompts the getAnswer() function to return a response asking the user to enter their question in English
+
 def checkLanguage(input):
     detector = Detector(input)
     if detector.language.code == 'en':
@@ -27,7 +30,10 @@ def checkLanguage(input):
 #Takes a string input and returns the string answer
 #Gets rules from rule.py and calls functions from other ~Response.py's
 def getAnswer(input):
-    if(predict([input]) == 0):
+    pf = ProfanityFilter()
+
+    #if(predict([input]) == 0):
+    if(pf.is_clean(input)):
         allRules = Rule.getRules()
         matched=False
 
