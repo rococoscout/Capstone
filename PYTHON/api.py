@@ -83,33 +83,88 @@ def api_addRule():
 @cross_origin()
 def api_delete():
     ruleID = request.form.get('id')
-    
+
     sql = f"DELETE FROM Rules WHERE IdRules = {int(ruleID)};"
     return db.execute(sql)
 
 # -----------------------------------------------------------------------
 
-# update
-@app.route('/api/entries/rules/update', methods=['POST'])
+# delete rules
+@app.route('/api/entries/rules/edit/delete', methods=['POST'])
 @cross_origin()
-def api_update():
-    #figure out how to get everything but just get what I wanted
-    regexes = json.loads(request.form.get('regexes'))
+def api_edit_delete():
+    ID = request.form.get('id') # answer, question, regex id
+    table = request.form.get('table')
+
+    idname = 'Id' + str(table)
+
+    sql = f"DELETE FROM {table} WHERE {idname} = {int(ID)};"
+    print(sql)
+    return db.execute(sql)
+
+# update rules
+@app.route('/api/entries/rules/edit/update', methods=['POST'])
+@cross_origin()
+def api_edit_update():
+    ID = request.form.get('id') # answer, question, regex id
+    table = request.form.get('table')
+    update = request.form.get('update')
+
+    field = table.lower()[:-1]
+    if (field == 'regexe'):
+        field = field[:-1]
+
+    idname = 'Id' + str(table)
+    print(field, idname)
+
+    sql = f"UPDATE {table} SET {field}='{update}' WHERE {idname} = {int(ID)};"
+    print(sql)
+    return db.execute(sql)
+
+# add rules
+@app.route('/api/entries/rules/edit/add', methods=['POST'])
+@cross_origin()
+def api_edit_add():
+    ID = request.form.get('id') # rule id
+    table = request.form.get('table')
+    newitem = request.form.get('newitem')
+
+    field = table.lower()[:-1]
+    idname = 'Id' + str(table)
+    print(field, idname)
+
+    sql = f"INSERT INTO {table} (IdRules, {field}) VALUES ({int(ID)}, '{newitem}');"
+    print(sql)
+    return db.execute(sql)
+
+# add rules
+@app.route('/api/entries/rules/edit/rule', methods=['POST'])
+@cross_origin()
+def api_edit_rule():
+    ID = request.form.get('id') # rule id
     title = request.form.get('title')
     description = request.form.get('description')
-    answers = json.loads(request.form.get('answers'))
-    questions = json.loads(request.form.get('questions'))
-    ruleID = request.form.get('id')
 
-    # delete the old rule
-    sql = f"DELETE FROM Rules WHERE IdRules = {int(ruleID)};"
-    db.execute(sql)
-    
-    # add the new one. 
-    r = Rule(regexes, answers, questions, title, description)
-    return r.addRule()
 
-    
+    sql = f"UPDATE Rules SET title='{title}', description='{description}' WHERE IdRules={int(ID)};"
+    print(sql)
+    return db.execute(sql)
+
+# /api/entries/rules/graph
+
+# returns questions of rule and associated dates
+@app.route('/api/entries/rules/graph', methods=['POST'])
+@cross_origin()
+def api_get_graph():
+    ID = request.form.get('id') # rule id
+    title = request.form.get('title')
+    description = request.form.get('description')
+
+
+    sql = f"UPDATE Rules SET title='{title}', description='{description}' WHERE IdRules={int(ID)};"
+    print(sql)
+    return db.execute(sql)
+
 #####################################################################
    
 if __name__ == "__main__":

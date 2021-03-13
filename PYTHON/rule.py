@@ -99,12 +99,12 @@ class Rule:
             title = r['title']
             des   = r['description']
 
-            # based off id get list of questions
+            # based off id get list of regexes
             sql = f"SELECT regex FROM Regexes WHERE Regexes.idRules = {ID};"
             rs = Rule.db.fetchNoDict(sql)
 
             # based off id get list of questions
-            sql = f"SELECT question FROM Questions WHERE Questions.idRules = {ID};"
+            sql = f"SELECT DISTINCT question FROM Questions WHERE Questions.idRules = {ID};"
             qs = Rule.db.fetchNoDict(sql)
 
             # based off id get list of answers
@@ -120,6 +120,24 @@ class Rule:
     @staticmethod
     def getRulesDict(search=None):
         rs = Rule.getRules(isNumpy=False, s=search)
+        
+        for r in rs:
+            ID = r.id
+
+            r.vector = [] 
+
+            # based off id get list of regexes
+            sql = f"SELECT regex, idRegexes FROM Regexes WHERE Regexes.idRules = {ID};"
+            r.regexes = Rule.db.fetch(sql)
+
+            # based off id get list of questions
+            sql = f"SELECT DISTINCT question, idQuestions FROM Questions WHERE Questions.idRules = {ID};"
+            r.questions = Rule.db.fetch(sql)
+
+            # based off id get list of answers
+            sql = f"SELECT answer, idAnswers FROM Answers WHERE Answers.idRules = {ID};"
+            r.answers = Rule.db.fetch(sql)
+
         return [vars(r) for r in rs]
 
     
@@ -132,4 +150,5 @@ class Rule:
 
 
 
-#if __name__ == "__main__":
+if __name__ == "__main__":
+    print(Rule.getRulesDict())
