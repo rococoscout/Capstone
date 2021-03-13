@@ -4,7 +4,22 @@ import json
 import genericResponse as gen
 import regexResponse as reg
 import vecResponse as vec
+from polyglot.detect import Detector
+from polyglot.detect.base import logger
 
+logger.disabled = True
+
+#Function that ensures user input is in English
+#Takes in a string of user input and uses Polyglot library to check its language of origin
+#If input is English, it returns true, allowing the getAnswer() function to follow through with its job
+#If the input is not in English, it returns False
+#A false return prompts the getAnswer() function to return a response asking the user to enter their question in English
+def checkLanguage(input):
+    detector = Detector(input)
+    if detector.language.code == 'en':
+        return True
+    else:
+        return False
 
 #Function that gives the answer to the input Question
 #Takes a string input and returns the string answer
@@ -15,7 +30,10 @@ def getAnswer(input):
 
     matchedRules = reg.getRegexAnswer(allRules, input)
     if(matchedRules == None):
-        answer = vec.getVecAnswer(allRules, input)
+        if checkLanguage(input):
+            answer = vec.getVecAnswer(allRules, input)
+        else:
+            answer = "It seems that you have entered input that is not in English. \n Unfortunately I only speak English! \n Please translate your question so I can properly assist you!"    
     else:
         answer = vec.getVecAnswer(matchedRules, input)
     if(answer == None):
