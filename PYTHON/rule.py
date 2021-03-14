@@ -54,7 +54,8 @@ class Rule:
             json_vec = json.dumps(self.vector.tolist())
         sql = f"INSERT INTO Rules (title, description, totalVector) VALUES ('{self.title}', '{self.description}', '{json_vec}');"
 
-        Rule.db.execute(sql)
+        print(sql)
+        print(Rule.db.execute(sql))
 
         # get ID
         sql = f"SELECT idRules FROM Rules WHERE title='{self.title}';"
