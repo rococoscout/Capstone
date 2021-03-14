@@ -53,10 +53,13 @@ class Rule:
         if self.vector is not None:
             json_vec = json.dumps(self.vector.tolist())
         sql = f"INSERT INTO Rules (title, description, totalVector) VALUES ('{self.title}', '{self.description}', '{json_vec}');"
+
         Rule.db.execute(sql)
 
         # get ID
         sql = f"SELECT idRules FROM Rules WHERE title='{self.title}';"
+        print(sql)
+        print(Rule.db.fetchNoDict(sql))
         self.id = Rule.db.fetchNoDict(sql)[0]
 
         # add to questions table
@@ -155,18 +158,21 @@ def myconverter(o):
 
 
 if __name__ == "__main__":
-    sql = "SELECT idRules "\
-                "FROM Questions " \
-                "GROUP BY idRules " \
-                "ORDER BY COUNT(idRules) DESC " \
-                "LIMIT 3;"
-    print(sql)
+    
+    sql = "SELECT title, count(*) AS Count, Date_FORMAT(dateCreated, '%Y-%m-%d') AS Date "\
+            "FROM Questions INNER JOIN Rules ON Questions.idRules = Rules.idRules "\
+            f"WHERE Questions.idRules = 104 "\
+            "GROUP BY Date_FORMAT(dateCreated, '%Y-%m-%d'), title;"
 
-    top3 = Rule.db.fetchNoDict(sql)
+    l = Rule.db.fetch(sql)
 
-    sql = "SELECT Questions.idRules, dateCreated, title " \
-            "FROM Questions " \
-            "INNER JOIN Rules ON Questions.idRules = Rules.idRules " \
-            f"WHERE Questions.idRules IN {tuple(top3)};"
-    print(sql)
-    print(json.dumps(Rule.db.fetch(sql), default = myconverter))
+    title = l[0]["title"]
+
+    reformat = ()
+    extract =['Date', 'Count']
+    data = []
+    for item in l:
+        data.append({key: item[key] for key in extract})
+    reformat = (title, data)
+
+    print(json.dumps(reformat))

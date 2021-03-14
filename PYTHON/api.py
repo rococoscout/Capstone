@@ -166,9 +166,23 @@ def api_edit_rule():
 def api_get_graph():
     ID = request.form.get('id') # rule id
 
-    sql = f"SELECT question, dateCreated FROM Questions WHERE IdRules={int(ID)};"
-    print(sql)
-    return jsonify(db.fetch(sql))
+    sql = "SELECT title, count(*) AS Count, Date_FORMAT(dateCreated, '%Y-%m-%d') AS Date "\
+            "FROM Questions INNER JOIN Rules ON Questions.idRules = Rules.idRules "\
+            f"WHERE Questions.idRules = {ID} "\
+            "GROUP BY Date_FORMAT(dateCreated, '%Y-%m-%d'), title;"
+    
+    l = db.fetch(sql)
+
+    title = l[0]["title"]
+
+    reformat = ()
+    extract =['Date', 'Count']
+    data = []
+    for item in l:
+        data.append({key: item[key] for key in extract})
+    reformat = (title, data)
+
+    return jsonify(reformat)
 
 
 # returns questions and date created 
@@ -184,12 +198,29 @@ def api_top3():
 
     top3 = Rule.db.fetchNoDict(sql)
 
-    sql = "SELECT Questions.idRules, dateCreated, title " \
-            "FROM Questions " \
-            "INNER JOIN Rules ON Questions.idRules = Rules.idRules " \
-            f"WHERE Questions.idRules IN {tuple(top3)};"
-    print(sql)
-    return json.dumps(db.fetch(sql), default=myconverter)
+    sql = "SELECT title, count(*) AS Count, Date_FORMAT(dateCreated, '%Y-%m-%d') AS Date "\
+            "FROM Questions INNER JOIN Rules ON Questions.idRules = Rules.idRules "\
+            f"WHERE Questions.idRules IN {top3} "\
+            "GROUP BY Date_FORMAT(dateCreated, '%Y-%m-%d'), title;"
+    
+    l = db.fetch(sql)
+
+    top3  = []
+    for item in l:
+        if item['title'] not in top3:
+            top3.append(item['title'])
+
+    newl = {}
+    for title in top3:
+        newl[title] = []
+
+    extract =['Date', 'Count']
+    for item in l:
+        newl[item['title']].append({key: item[key] for key in extract})
+
+    return jsonify(newl)
+
+
 
 
 def myconverter(o):
