@@ -6,6 +6,7 @@
 # flask files 
 from flask import Flask, request, jsonify
 import json
+import datetime
 from flask_cors import CORS, cross_origin # handle Cross Origin Resource Sharing (CORS) [for AJAX]
 # Project files 
 from dbhelper import DBHelper # Database controller
@@ -50,13 +51,12 @@ def api_input():
 @cross_origin()
 def api_search():
     search = request.form.get("search")
-    
+
     if not search:
         return "error: no search arg given"
 
-    
     return jsonify(Rule.getRulesDict(search))
-    
+
 
 # ----------------------------------------------------------------------
 
@@ -96,7 +96,7 @@ def api_edit_delete():
     ID = request.form.get('id') # answer, question, regex id
     table = request.form.get('table')
 
-    idname = 'Id' + str(table)
+    idname = 'Id' + str(table) 
 
     sql = f"DELETE FROM {table} WHERE {idname} = {int(ID)};"
     print(sql)
@@ -166,7 +166,30 @@ def api_get_graph():
     return db.fetch(sql)
 
 
+# returns questions and date created 
+@app.route('/api/entries/rules/top3', methods=['POST'])
+@cross_origin()
+def api_top3():
+    sql = "SELECT idRules "\
+                "FROM Questions " \
+                "GROUP BY idRules " \
+                "ORDER BY COUNT(idRules) DESC " \
+                "LIMIT 3;"
+    print(sql)
 
+    top3 = Rule.db.fetchNoDict(sql)
+
+    sql = "SELECT Questions.idRules, dateCreated, title " \
+            "FROM Questions " \
+            "INNER JOIN Rules ON Questions.idRules = Rules.idRules " \
+            f"WHERE Questions.idRules IN {tuple(top3)};"
+    print(sql)
+    return json.dumps(Rule.db.fetch(sql), default=myconverter)
+
+
+def myconverter(o):
+    if isinstance(o, datetime.datetime):
+        return o.__str__()
 
 #####################################################################
    

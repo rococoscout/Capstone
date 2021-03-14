@@ -147,8 +147,26 @@ class Rule:
         sql = f"INSERT INTO Questions (question) VALUES ('{q}');"
         return Rule.db.execute(sql)
 
+def myconverter(o):
+    if isinstance(o, datetime.datetime):
+        return o.__str__()
+ 
 
 
 
 if __name__ == "__main__":
-    print(Rule.getRulesDict())
+    sql = "SELECT idRules "\
+                "FROM Questions " \
+                "GROUP BY idRules " \
+                "ORDER BY COUNT(idRules) DESC " \
+                "LIMIT 3;"
+    print(sql)
+
+    top3 = Rule.db.fetchNoDict(sql)
+
+    sql = "SELECT Questions.idRules, dateCreated, title " \
+            "FROM Questions " \
+            "INNER JOIN Rules ON Questions.idRules = Rules.idRules " \
+            f"WHERE Questions.idRules IN {tuple(top3)};"
+    print(sql)
+    print(json.dumps(Rule.db.fetch(sql), default = myconverter))

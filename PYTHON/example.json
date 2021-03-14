@@ -1,0 +1,1948 @@
+[
+    {
+        "id": 64,
+        "regexes": [
+            {
+                "regex": "(where.*computer science) |(cs ).* class",
+                "idRegexes": 49
+            },
+            {
+                "regex": "[wW]here.*[iI]nformation [tT]echnology | [iI][tT].* [cC]lass",
+                "idRegexes": 50
+            },
+            {
+                "regex": "qwewe",
+                "idRegexes": 136
+            },
+            {
+                "regex": "21312qwe",
+                "idRegexes": 138
+            },
+            {
+                "regex": "",
+                "idRegexes": 139
+            }
+        ],
+        "answers": [
+            {
+                "answer": "All computer science(CS) and information technology(IT) classes can be found in Hopper Hall.",
+                "idAnswers": 56
+            }
+        ],
+        "questions": [
+            {
+                "question": "Where are computer science classes?",
+                "idQuestions": 69
+            },
+            {
+                "question": "Where are IT classes?",
+                "idQuestions": 70
+            },
+            {
+                "question": "where is computer science classes",
+                "idQuestions": 327
+            },
+            {
+                "question": "where are all of the cs classes",
+                "idQuestions": 328
+            },
+            {
+                "question": "",
+                "idQuestions": 470
+            },
+            {
+                "question": "",
+                "idQuestions": 473
+            },
+            {
+                "question": "",
+                "idQuestions": 475
+            },
+            {
+                "question": "",
+                "idQuestions": 483
+            },
+            {
+                "question": "",
+                "idQuestions": 486
+            },
+            {
+                "question": "",
+                "idQuestions": 487
+            },
+            {
+                "question": "",
+                "idQuestions": 498
+            },
+            {
+                "question": "",
+                "idQuestions": 502
+            },
+            {
+                "question": "what is your purpose",
+                "idQuestions": 503
+            }
+        ],
+        "vector": [],
+        "title": "CS/IT Class location",
+        "description": "Class room locations by building"
+    },
+    {
+        "id": 65,
+        "regexes": [
+            {
+                "regex": "[Ww]here.*[Hh]opper.*hall",
+                "idRegexes": 51
+            },
+            {
+                "regex": "4577",
+                "idRegexes": 137
+            }
+        ],
+        "answers": [
+            {
+                "answer": "Hopper Hall is next to Rickover Hall and Nimitz. Its the newest building so its hard to miss!",
+                "idAnswers": 57
+            }
+        ],
+        "questions": [
+            {
+                "question": "Where is Hopper Hall?",
+                "idQuestions": 71
+            },
+            {
+                "question": "where is hopper hall at",
+                "idQuestions": 330
+            }
+        ],
+        "vector": [],
+        "title": "Where Hopper Hall is",
+        "description": "describes the location of Hopper Hall"
+    },
+    {
+        "id": 66,
+        "regexes": [
+            {
+                "regex": "(is|can).*[dD]ouble [mM]ajor.*",
+                "idRegexes": 52
+            }
+        ],
+        "answers": [
+            {
+                "answer": "Yes! Double majoring in Computer Science and Information Technology is a popular option because of course overlap, but it is also possible to pair CS with Cyber Operations, Electrical Engineering, or Computer Engineering.",
+                "idAnswers": 58
+            }
+        ],
+        "questions": [
+            {
+                "question": "Can you double major",
+                "idQuestions": 72
+            },
+            {
+                "question": "can you double major",
+                "idQuestions": 336
+            },
+            {
+                "question": "is double major",
+                "idQuestions": 337
+            },
+            {
+                "question": "is it possible to double major with cs and it",
+                "idQuestions": 338
+            },
+            {
+                "question": "is double major possible",
+                "idQuestions": 339
+            }
+        ],
+        "vector": [],
+        "title": "Double Majoring",
+        "description": "Some double major info"
+    },
+    {
+        "id": 69,
+        "regexes": [
+            {
+                "regex": "internship",
+                "idRegexes": 55
+            }
+        ],
+        "answers": [
+            {
+                "answer": "For CS, internships with DIUx, Rebellion Defense, Draper Labs, and DoD High Perfomance Computing centers are offered. For CS/IT, internships at NSA, U.S. national labs like Los Alamos and Oak Ridge, and many more are available.",
+                "idAnswers": 65
+            },
+            {
+                "answer": " For CS/IT, internships at NSA, U",
+                "idAnswers": 66
+            },
+            {
+                "answer": "S",
+                "idAnswers": 67
+            },
+            {
+                "answer": " national labs like Los Alamos and Oak Ridge, and many more are available",
+                "idAnswers": 68
+            },
+            {
+                "answer": "",
+                "idAnswers": 69
+            }
+        ],
+        "questions": [
+            {
+                "question": "What internships does USNA offer?",
+                "idQuestions": 90
+            },
+            {
+                "question": "what internships does usna offer",
+                "idQuestions": 345
+            },
+            {
+                "question": "intern",
+                "idQuestions": 350
+            },
+            {
+                "question": "intern",
+                "idQuestions": 351
+            },
+            {
+                "question": "internship",
+                "idQuestions": 354
+            },
+            {
+                "question": "intern",
+                "idQuestions": 373
+            }
+        ],
+        "vector": [],
+        "title": "Internships",
+        "description": ""
+    },
+    {
+        "id": 70,
+        "regexes": [
+            {
+                "regex": "[wW]here.*[fF]ood",
+                "idRegexes": 56
+            },
+            {
+                "regex": "[wW]here.*midshipmen.*[Ee]at",
+                "idRegexes": 57
+            }
+        ],
+        "answers": [
+            {
+                "answer": "King Hall! But you can also find food at the 1845 Cafe, Drydock, or Steerage",
+                "idAnswers": 70
+            }
+        ],
+        "questions": [
+            {
+                "question": "Where can I get food",
+                "idQuestions": 92
+            },
+            {
+                "question": "Where do Midshipmen eat",
+                "idQuestions": 94
+            },
+            {
+                "question": "where do firsties eat?",
+                "idQuestions": 374
+            },
+            {
+                "question": "where do mids eat",
+                "idQuestions": 386
+            },
+            {
+                "question": "where is food at",
+                "idQuestions": 388
+            },
+            {
+                "question": "where do we get food",
+                "idQuestions": 430
+            }
+        ],
+        "vector": [],
+        "title": "About Food",
+        "description": "Add in a description\n"
+    },
+    {
+        "id": 83,
+        "regexes": [
+            {
+                "regex": "basic.*class",
+                "idRegexes": 73
+            },
+            {
+                "regex": "intro.*class",
+                "idRegexes": 74
+            }
+        ],
+        "answers": [
+            {
+                "answer": "The introductory class is IC210: Intro to Computer Science. Here you will learn the basics of coding and programming. Here you will learn the basics of coding and programming.",
+                "idAnswers": 88
+            },
+            {
+                "answer": " Here you will learn the basics of coding and programming",
+                "idAnswers": 89
+            }
+        ],
+        "questions": [
+            {
+                "question": "What is the first computer science class",
+                "idQuestions": 172
+            },
+            {
+                "question": "What is the first computer science class",
+                "idQuestions": 173
+            },
+            {
+                "question": "",
+                "idQuestions": 174
+            },
+            {
+                "question": "",
+                "idQuestions": 235
+            },
+            {
+                "question": "",
+                "idQuestions": 320
+            },
+            {
+                "question": "what is the introductory computer science class",
+                "idQuestions": 405
+            },
+            {
+                "question": "what is the basic programming class",
+                "idQuestions": 406
+            }
+        ],
+        "vector": [],
+        "title": "First Course in CS Major",
+        "description": "Tells user what the introductory course is."
+    },
+    {
+        "id": 84,
+        "regexes": [
+            {
+                "regex": "what is computer ",
+                "idRegexes": 75
+            }
+        ],
+        "answers": [
+            {
+                "answer": "Computer Science is the study of how computers work and what it takes to write programs",
+                "idAnswers": 90
+            }
+        ],
+        "questions": [
+            {
+                "question": "What is Computer Science",
+                "idQuestions": 175
+            },
+            {
+                "question": "What is the Computer Science Major",
+                "idQuestions": 176
+            },
+            {
+                "question": "what is computer science about",
+                "idQuestions": 177
+            },
+            {
+                "question": "",
+                "idQuestions": 297
+            },
+            {
+                "question": "what is the first computer science course",
+                "idQuestions": 298
+            },
+            {
+                "question": "what is computer science?",
+                "idQuestions": 361
+            },
+            {
+                "question": "class taken",
+                "idQuestions": 394
+            },
+            {
+                "question": "",
+                "idQuestions": 397
+            },
+            {
+                "question": "",
+                "idQuestions": 401
+            },
+            {
+                "question": "what is computer science",
+                "idQuestions": 407
+            },
+            {
+                "question": "what is computer science all about",
+                "idQuestions": 417
+            },
+            {
+                "question": "what is computer science",
+                "idQuestions": 443
+            }
+        ],
+        "vector": [],
+        "title": "General Computer Science",
+        "description": ""
+    },
+    {
+        "id": 86,
+        "regexes": [
+            {
+                "regex": "validate.*course ",
+                "idRegexes": 78
+            },
+            {
+                "regex": " validate.*class",
+                "idRegexes": 79
+            }
+        ],
+        "answers": [
+            {
+                "answer": "You can validate IC210 or IC211 if you have a good result on the AP Computer Science Test",
+                "idAnswers": 93
+            },
+            {
+                "answer": "You will also have to show proficiency in a given test",
+                "idAnswers": 94
+            }
+        ],
+        "questions": [
+            {
+                "question": "",
+                "idQuestions": 189
+            },
+            {
+                "question": " Are you able to skip a class in the major",
+                "idQuestions": 190
+            },
+            {
+                "question": " Is it possible to validate a class I have taken in high school",
+                "idQuestions": 191
+            },
+            {
+                "question": "is it possible to validate a class i have taken in high school?",
+                "idQuestions": 194
+            },
+            {
+                "question": "can you validate courses?",
+                "idQuestions": 294
+            },
+            {
+                "question": "are you able to skip classes in the major",
+                "idQuestions": 299
+            },
+            {
+                "question": "can you validate a course here",
+                "idQuestions": 419
+            }
+        ],
+        "vector": [],
+        "title": "Validate Courses",
+        "description": "Tells user about validation opportunities."
+    },
+    {
+        "id": 88,
+        "regexes": [
+            {
+                "regex": "[wW]hat can you do",
+                "idRegexes": 83
+            }
+        ],
+        "answers": [],
+        "questions": [
+            {
+                "question": "What can you do",
+                "idQuestions": 199
+            },
+            {
+                "question": "",
+                "idQuestions": 200
+            },
+            {
+                "question": "What are you able to do",
+                "idQuestions": 201
+            },
+            {
+                "question": "",
+                "idQuestions": 202
+            },
+            {
+                "question": "What can you answer",
+                "idQuestions": 203
+            },
+            {
+                "question": "what can you do for me",
+                "idQuestions": 204
+            },
+            {
+                "question": "what does a firstie do?",
+                "idQuestions": 371
+            },
+            {
+                "question": "what are you able to do",
+                "idQuestions": 420
+            },
+            {
+                "question": "what are you able to do",
+                "idQuestions": 421
+            },
+            {
+                "question": "what are you able to do",
+                "idQuestions": 423
+            },
+            {
+                "question": "what can you do",
+                "idQuestions": 426
+            },
+            {
+                "question": "what are you able to do",
+                "idQuestions": 427
+            },
+            {
+                "question": "what can you do",
+                "idQuestions": 429
+            },
+            {
+                "question": "what can you do ",
+                "idQuestions": 431
+            },
+            {
+                "question": "do you work",
+                "idQuestions": 442
+            },
+            {
+                "question": "do you work",
+                "idQuestions": 444
+            },
+            {
+                "question": "why do you exist",
+                "idQuestions": 453
+            }
+        ],
+        "vector": [],
+        "title": "Chadbot Capabilities",
+        "description": ""
+    },
+    {
+        "id": 91,
+        "regexes": [
+            {
+                "regex": "second class.*course ",
+                "idRegexes": 90
+            },
+            {
+                "regex": " second class.*classes ",
+                "idRegexes": 91
+            },
+            {
+                "regex": " junior year.*classes",
+                "idRegexes": 92
+            }
+        ],
+        "answers": [
+            {
+                "answer": "A typical course load for Second Class year include: IC312 Data Structures; IC322 Computer Networks; SI340 Theory of Computing; SI335 Computer Algorithms; and an Unrestricted Elective",
+                "idAnswers": 98
+            }
+        ],
+        "questions": [
+            {
+                "question": "What are the typical junior year classes",
+                "idQuestions": 215
+            },
+            {
+                "question": " What classes do you take in your third year",
+                "idQuestions": 216
+            },
+            {
+                "question": " What are the courses that second class take",
+                "idQuestions": 217
+            },
+            {
+                "question": "what are the second class classes",
+                "idQuestions": 439
+            },
+            {
+                "question": "what do the second class courses consist of",
+                "idQuestions": 441
+            }
+        ],
+        "vector": [],
+        "title": "2/C Classes",
+        "description": "Lists typical 2/C courses."
+    },
+    {
+        "id": 93,
+        "regexes": [
+            {
+                "regex": "youngster.*courses ",
+                "idRegexes": 96
+            },
+            {
+                "regex": " youngster.*classes ",
+                "idRegexes": 97
+            },
+            {
+                "regex": " sophomore.*year.*classes",
+                "idRegexes": 98
+            }
+        ],
+        "answers": [
+            {
+                "answer": "A typical course load for Youngsters include: IC210 Intro to Computing; IC211 Object-Oriented Programming; IC220 Computer Architecture; IC221 Systems Programming",
+                "idAnswers": 100
+            }
+        ],
+        "questions": [
+            {
+                "question": "What are the typical sophomore year classes",
+                "idQuestions": 225
+            },
+            {
+                "question": "",
+                "idQuestions": 226
+            },
+            {
+                "question": " What are the courses that youngsters take",
+                "idQuestions": 227
+            },
+            {
+                "question": "what classes do youngsters take",
+                "idQuestions": 228
+            },
+            {
+                "question": "",
+                "idQuestions": 229
+            },
+            {
+                "question": "what classes do youngsters take",
+                "idQuestions": 230
+            },
+            {
+                "question": "",
+                "idQuestions": 231
+            },
+            {
+                "question": "",
+                "idQuestions": 318
+            },
+            {
+                "question": "what classes do youngsters takes",
+                "idQuestions": 319
+            },
+            {
+                "question": "what classes do sophmores take",
+                "idQuestions": 432
+            },
+            {
+                "question": "what classes will i take in my youngster year",
+                "idQuestions": 434
+            },
+            {
+                "question": "",
+                "idQuestions": 435
+            },
+            {
+                "question": "what classes will i take in my second class year",
+                "idQuestions": 436
+            }
+        ],
+        "vector": [],
+        "title": "3/C Classes",
+        "description": "Lists typical 3/C courses."
+    },
+    {
+        "id": 94,
+        "regexes": [
+            {
+                "regex": "first class.*course ",
+                "idRegexes": 99
+            },
+            {
+                "regex": " firstie.*classes ",
+                "idRegexes": 100
+            },
+            {
+                "regex": " senior year.*classes",
+                "idRegexes": 101
+            }
+        ],
+        "answers": [
+            {
+                "answer": "A typical course load for First Class include: SI413 Programming Languages; IC470 Software Engineering; IC411 Operating Systems; IC480 Capstone; and Elective Courses",
+                "idAnswers": 101
+            }
+        ],
+        "questions": [
+            {
+                "question": "What are the typical senior year classes",
+                "idQuestions": 232
+            },
+            {
+                "question": " What classes do you take in your fourth year",
+                "idQuestions": 233
+            },
+            {
+                "question": " What are the courses that firsties take",
+                "idQuestions": 234
+            },
+            {
+                "question": "",
+                "idQuestions": 312
+            },
+            {
+                "question": "",
+                "idQuestions": 329
+            },
+            {
+                "question": "",
+                "idQuestions": 331
+            },
+            {
+                "question": "",
+                "idQuestions": 333
+            },
+            {
+                "question": "",
+                "idQuestions": 334
+            }
+        ],
+        "vector": [],
+        "title": "1/C Classes",
+        "description": "List typical 1/C courses"
+    },
+    {
+        "id": 95,
+        "regexes": [
+            {
+                "regex": "add.*class ",
+                "idRegexes": 102
+            },
+            {
+                "regex": " remove.*class ",
+                "idRegexes": 103
+            },
+            {
+                "regex": " course coordinator.*",
+                "idRegexes": 104
+            }
+        ],
+        "answers": [
+            {
+                "answer": "Your Course Coordinator will help you make changes to your courses",
+                "idAnswers": 102
+            },
+            {
+                "answer": " They will help swap, remove, or add courses",
+                "idAnswers": 103
+            }
+        ],
+        "questions": [
+            {
+                "question": "How to sign up for class",
+                "idQuestions": 237
+            },
+            {
+                "question": " Can you swap classes",
+                "idQuestions": 238
+            },
+            {
+                "question": " Remove a class",
+                "idQuestions": 239
+            },
+            {
+                "question": "how to remove a class",
+                "idQuestions": 243
+            }
+        ],
+        "vector": [],
+        "title": "Course Coordinator",
+        "description": "Informs on course coordinator capabilities."
+    },
+    {
+        "id": 99,
+        "regexes": [
+            {
+                "regex": "elective",
+                "idRegexes": 111
+            },
+            {
+                "regex": " available.*electives",
+                "idRegexes": 112
+            }
+        ],
+        "answers": [
+            {
+                "answer": "The available elective courses typically change every semester based on the interests of the Mids. Most times Artificial Intelligence, Computer Security, and Computer Graphics is available.",
+                "idAnswers": 109
+            }
+        ],
+        "questions": [
+            {
+                "question": "What are some elective classes",
+                "idQuestions": 261
+            },
+            {
+                "question": " What electives can be taken",
+                "idQuestions": 262
+            },
+            {
+                "question": "what electives are there",
+                "idQuestions": 263
+            },
+            {
+                "question": "what electives are there",
+                "idQuestions": 264
+            },
+            {
+                "question": "what electives are there",
+                "idQuestions": 265
+            },
+            {
+                "question": "",
+                "idQuestions": 433
+            },
+            {
+                "question": "",
+                "idQuestions": 437
+            },
+            {
+                "question": "",
+                "idQuestions": 438
+            },
+            {
+                "question": "",
+                "idQuestions": 440
+            }
+        ],
+        "vector": [],
+        "title": "Electives",
+        "description": "General elective questions."
+    },
+    {
+        "id": 100,
+        "regexes": [
+            {
+                "regex": "who.*made.*you",
+                "idRegexes": 113
+            }
+        ],
+        "answers": [
+            {
+                "answer": "I was made by the Chadbot Capstone Team in 2021.",
+                "idAnswers": 110
+            }
+        ],
+        "questions": [
+            {
+                "question": "Who made you",
+                "idQuestions": 266
+            },
+            {
+                "question": "",
+                "idQuestions": 267
+            },
+            {
+                "question": "Who is your creator",
+                "idQuestions": 268
+            },
+            {
+                "question": " ",
+                "idQuestions": 269
+            },
+            {
+                "question": "When were you made",
+                "idQuestions": 270
+            },
+            {
+                "question": "",
+                "idQuestions": 271
+            },
+            {
+                "question": "who made you?",
+                "idQuestions": 450
+            },
+            {
+                "question": "who is your creator",
+                "idQuestions": 451
+            },
+            {
+                "question": "when were you made",
+                "idQuestions": 452
+            },
+            {
+                "question": "who made you",
+                "idQuestions": 501
+            }
+        ],
+        "vector": [],
+        "title": "Chadbot Creators",
+        "description": "Question about who are the designers."
+    },
+    {
+        "id": 102,
+        "regexes": [
+            {
+                "regex": "[Bb]ye",
+                "idRegexes": 116
+            },
+            {
+                "regex": "[sS]ee.*[Ll]ater",
+                "idRegexes": 117
+            }
+        ],
+        "answers": [
+            {
+                "answer": "Goodbye!",
+                "idAnswers": 112
+            }
+        ],
+        "questions": [
+            {
+                "question": "Goodbye",
+                "idQuestions": 276
+            },
+            {
+                "question": "See you later",
+                "idQuestions": 277
+            },
+            {
+                "question": "bye",
+                "idQuestions": 278
+            },
+            {
+                "question": "see ya later",
+                "idQuestions": 279
+            },
+            {
+                "question": "ill look into you later",
+                "idQuestions": 303
+            }
+        ],
+        "vector": [],
+        "title": "Goodbyes",
+        "description": "A simple farewell"
+    },
+    {
+        "id": 103,
+        "regexes": [
+            {
+                "regex": "learn.*computer.*science",
+                "idRegexes": 118
+            },
+            {
+                "regex": "learn.*program",
+                "idRegexes": 119
+            }
+        ],
+        "answers": [
+            {
+                "answer": "You can learn more about Computer Science by taking an introductory course! Its available for all years so you can start anytime.",
+                "idAnswers": 113
+            }
+        ],
+        "questions": [
+            {
+                "question": "How can I learn Computer Science",
+                "idQuestions": 280
+            },
+            {
+                "question": "",
+                "idQuestions": 281
+            },
+            {
+                "question": "Where can I learn to program",
+                "idQuestions": 282
+            },
+            {
+                "question": "",
+                "idQuestions": 283
+            },
+            {
+                "question": "",
+                "idQuestions": 284
+            },
+            {
+                "question": "",
+                "idQuestions": 307
+            },
+            {
+                "question": "",
+                "idQuestions": 313
+            },
+            {
+                "question": "",
+                "idQuestions": 332
+            },
+            {
+                "question": "",
+                "idQuestions": 335
+            },
+            {
+                "question": "",
+                "idQuestions": 398
+            },
+            {
+                "question": "",
+                "idQuestions": 408
+            },
+            {
+                "question": "",
+                "idQuestions": 412
+            },
+            {
+                "question": "tell me about computer science",
+                "idQuestions": 416
+            }
+        ],
+        "vector": [],
+        "title": "Learning Computer Science",
+        "description": "Asking to learn more about the Computer Science Department."
+    },
+    {
+        "id": 104,
+        "regexes": [
+            {
+                "regex": "(hi )|(hi$)",
+                "idRegexes": 120
+            },
+            {
+                "regex": "hello",
+                "idRegexes": 121
+            }
+        ],
+        "answers": [
+            {
+                "answer": "Hello! Just sitting here and answering some questions.",
+                "idAnswers": 114
+            }
+        ],
+        "questions": [
+            {
+                "question": "",
+                "idQuestions": 285
+            },
+            {
+                "question": "How are you",
+                "idQuestions": 286
+            },
+            {
+                "question": "",
+                "idQuestions": 287
+            },
+            {
+                "question": "Hows it going",
+                "idQuestions": 288
+            },
+            {
+                "question": "",
+                "idQuestions": 289
+            },
+            {
+                "question": "hello",
+                "idQuestions": 290
+            },
+            {
+                "question": "hello there",
+                "idQuestions": 291
+            },
+            {
+                "question": "",
+                "idQuestions": 292
+            },
+            {
+                "question": "hello",
+                "idQuestions": 300
+            },
+            {
+                "question": "hello",
+                "idQuestions": 322
+            },
+            {
+                "question": "",
+                "idQuestions": 326
+            },
+            {
+                "question": "",
+                "idQuestions": 340
+            },
+            {
+                "question": "",
+                "idQuestions": 341
+            },
+            {
+                "question": "",
+                "idQuestions": 344
+            },
+            {
+                "question": "",
+                "idQuestions": 346
+            },
+            {
+                "question": "",
+                "idQuestions": 347
+            },
+            {
+                "question": "",
+                "idQuestions": 352
+            },
+            {
+                "question": "",
+                "idQuestions": 353
+            },
+            {
+                "question": "",
+                "idQuestions": 355
+            },
+            {
+                "question": "hi",
+                "idQuestions": 360
+            },
+            {
+                "question": "hi",
+                "idQuestions": 362
+            },
+            {
+                "question": "hi",
+                "idQuestions": 363
+            },
+            {
+                "question": "hi",
+                "idQuestions": 364
+            },
+            {
+                "question": "hello",
+                "idQuestions": 365
+            },
+            {
+                "question": "hello",
+                "idQuestions": 366
+            },
+            {
+                "question": "hi",
+                "idQuestions": 372
+            },
+            {
+                "question": "hi",
+                "idQuestions": 413
+            },
+            {
+                "question": "hi",
+                "idQuestions": 415
+            },
+            {
+                "question": "hi",
+                "idQuestions": 424
+            },
+            {
+                "question": "what are you doing",
+                "idQuestions": 425
+            },
+            {
+                "question": "hi",
+                "idQuestions": 428
+            },
+            {
+                "question": "hi",
+                "idQuestions": 445
+            },
+            {
+                "question": "hi",
+                "idQuestions": 469
+            },
+            {
+                "question": "hi",
+                "idQuestions": 482
+            }
+        ],
+        "vector": [],
+        "title": "Greetings",
+        "description": "An introductory "
+    },
+    {
+        "id": 106,
+        "regexes": [
+            {
+                "regex": "service assignment ",
+                "idRegexes": 123
+            },
+            {
+                "regex": " .*service.selection ",
+                "idRegexes": 124
+            },
+            {
+                "regex": " .*service.select",
+                "idRegexes": 125
+            }
+        ],
+        "answers": [
+            {
+                "answer": "Computer science majors can be selected into the highly competitive Information Professional (IP) or Information Warfare (IW) career field options.",
+                "idAnswers": 116
+            }
+        ],
+        "questions": [
+            {
+                "question": "Does majoring in computer science give me more service selection options",
+                "idQuestions": 306
+            },
+            {
+                "question": "does majoring in computer science give me more service selection options?",
+                "idQuestions": 411
+            }
+        ],
+        "vector": [],
+        "title": "Service Assignments",
+        "description": "Tells user about addition service assignments possible with CS."
+    },
+    {
+        "id": 107,
+        "regexes": [
+            {
+                "regex": "intelligent.*robotics.*class",
+                "idRegexes": 126
+            }
+        ],
+        "answers": [
+            {
+                "answer": "Intelligent Robotics (SI475) -> This course presents a survey of the concepts and theories of modern robot systems, including both manipulators and mobile robots. It covers kinematics, sensing, mapping and navigation, decision making, and learning. Concepts are applied on multiple robotic platforms.",
+                "idAnswers": 117
+            }
+        ],
+        "questions": [
+            {
+                "question": "Tell me about the intelligent robotics class",
+                "idQuestions": 316
+            },
+            {
+                "question": "intelligent robotics class",
+                "idQuestions": 402
+            },
+            {
+                "question": "tell me about the intelligent robotics class",
+                "idQuestions": 403
+            },
+            {
+                "question": "what do you know about the intelligent robotics class?",
+                "idQuestions": 404
+            }
+        ],
+        "vector": [],
+        "title": "Intelligent Robotics",
+        "description": "This rule describes the Intelligent Robotics class"
+    },
+    {
+        "id": 108,
+        "regexes": [
+            {
+                "regex": "adv.*computer.*graphics.*class",
+                "idRegexes": 127
+            }
+        ],
+        "answers": [
+            {
+                "answer": "Advanced Computer Graphics (SI462) -> A project-based course involving advanced graphics techniques such as ray-tracing, radiosity, volume rendering, virtual and augmented reality, haptics, and pixel shaders.",
+                "idAnswers": 118
+            }
+        ],
+        "questions": [
+            {
+                "question": "Tell me about the advanced computer graphics class",
+                "idQuestions": 317
+            },
+            {
+                "question": "tell me about the advanced computer graphics class",
+                "idQuestions": 393
+            }
+        ],
+        "vector": [],
+        "title": "Advanced Computer Graphics",
+        "description": "This rule describes the advanced computer graphics class"
+    },
+    {
+        "id": 109,
+        "regexes": [
+            {
+                "regex": "computer.*graphics.*class",
+                "idRegexes": 128
+            }
+        ],
+        "answers": [
+            {
+                "answer": "Computer Graphics (SI460) -> A project-based course involving basic concepts, theories and algorithms associated with producing 2D and 3D images on a raster display. Topics include graphics primitives, modeling, viewing, illumination, shading, texture, and event-driven programming using a graphics API.",
+                "idAnswers": 119
+            }
+        ],
+        "questions": [
+            {
+                "question": "Tell me about the computer graphics class",
+                "idQuestions": 321
+            },
+            {
+                "question": "computer graphics class",
+                "idQuestions": 387
+            },
+            {
+                "question": "tell me about the computer graphics class",
+                "idQuestions": 389
+            },
+            {
+                "question": "what do you know about computer graphics",
+                "idQuestions": 390
+            },
+            {
+                "question": "",
+                "idQuestions": 399
+            },
+            {
+                "question": "",
+                "idQuestions": 400
+            }
+        ],
+        "vector": [],
+        "title": "Computer Graphics ",
+        "description": "This rule describes the computer graphics class"
+    },
+    {
+        "id": 111,
+        "regexes": [
+            {
+                "regex": "adv.*computer.*networks.*class",
+                "idRegexes": 131
+            }
+        ],
+        "answers": [
+            {
+                "answer": "Advanced Computer Networks (SI455) -> This course provides an in-depth technical study of high-speed networking, client-server programming and applications, network firewall architectures and security procedures, and the ATM network.",
+                "idAnswers": 120
+            }
+        ],
+        "questions": [
+            {
+                "question": "Tell me about the advanced computer networks class",
+                "idQuestions": 324
+            },
+            {
+                "question": "adv computer networks class",
+                "idQuestions": 384
+            },
+            {
+                "question": "tell me about the advanced computer networks class",
+                "idQuestions": 385
+            }
+        ],
+        "vector": [],
+        "title": "Advanced Computer Networks",
+        "description": "This rule describes the advanced computer networks class"
+    },
+    {
+        "id": 112,
+        "regexes": [
+            {
+                "regex": "adv.*computer.*architecture.*class",
+                "idRegexes": 132
+            }
+        ],
+        "answers": [
+            {
+                "answer": "ADV Computer Architecture (SI452) -> This course provides an advanced study of the design and evaluation of high performance computer systems.",
+                "idAnswers": 121
+            }
+        ],
+        "questions": [
+            {
+                "question": "Tell me about the advanced computer architecture class",
+                "idQuestions": 325
+            },
+            {
+                "question": "tell me about the advanced computer architecture class",
+                "idQuestions": 381
+            },
+            {
+                "question": "what is the advanced computer architecture class like?",
+                "idQuestions": 382
+            },
+            {
+                "question": "adv computer architecture class",
+                "idQuestions": 383
+            }
+        ],
+        "vector": [],
+        "title": "ADV Computer Architecture",
+        "description": "This rule describes the adv computer architecture class"
+    },
+    {
+        "id": 113,
+        "regexes": [
+            {
+                "regex": "database.*systems.*class",
+                "idRegexes": 133
+            }
+        ],
+        "answers": [
+            {
+                "answer": "Database Systems (SI440) -> This course offers an introduction to modern database management systems. Concepts covered include relational model, schema design, SQL, query optimization, concurrency control, and recovery. The course focuses on the design and internals of modern database systems.",
+                "idAnswers": 122
+            }
+        ],
+        "questions": [
+            {
+                "question": "Tell me about the database systems class",
+                "idQuestions": 414
+            }
+        ],
+        "vector": [],
+        "title": "Database Systems",
+        "description": "This rule describes the database systems class"
+    },
+    {
+        "id": 114,
+        "regexes": [
+            {
+                "regex": "adv.*software.*engineering.*class",
+                "idRegexes": 134
+            }
+        ],
+        "answers": [
+            {
+                "answer": "ADV Software Engineering (SI435) -> This course presents the latest trends in modern techniques and methods for large scale software development activities, such as object oriented programming. The use of CASE tools and group design project is stressed.",
+                "idAnswers": 123
+            }
+        ],
+        "questions": [
+            {
+                "question": "Tell me about the advanced software engineering class",
+                "idQuestions": 418
+            }
+        ],
+        "vector": [],
+        "title": "Advanced Software Engineering",
+        "description": "This rule describes the advanced software engineering class"
+    },
+    {
+        "id": 116,
+        "regexes": [
+            {
+                "regex": "(high performance computing | hpc).*class",
+                "idRegexes": 141
+            }
+        ],
+        "answers": [],
+        "questions": [
+            {
+                "question": "Tell me about the high performance computing class",
+                "idQuestions": 454
+            }
+        ],
+        "vector": [],
+        "title": "High Performance Computing",
+        "description": "This rule describes the HPC class"
+    },
+    {
+        "id": 117,
+        "regexes": [
+            {
+                "regex": "(natural language processing | nlp).*class",
+                "idRegexes": 142
+            }
+        ],
+        "answers": [],
+        "questions": [
+            {
+                "question": "Tell me about the natural language processing class",
+                "idQuestions": 455
+            }
+        ],
+        "vector": [],
+        "title": "Natural Language Processing",
+        "description": "This rule describes the NLP class"
+    },
+    {
+        "id": 118,
+        "regexes": [
+            {
+                "regex": "(artificial intelligence | ai).*class",
+                "idRegexes": 143
+            }
+        ],
+        "answers": [
+            {
+                "answer": "Artificial Intelligence (SI420) -> A study of the fundamental concepts and techniques in the design and implementation of functionally intelligent machines. Topics include problem-solving using state-space search, game trees, state and plan space planning, and machine learning.",
+                "idAnswers": 124
+            }
+        ],
+        "questions": [
+            {
+                "question": "Tell me about the artificial intelligence class",
+                "idQuestions": 456
+            }
+        ],
+        "vector": [],
+        "title": "Artificial Intelligence",
+        "description": "This rule describes the AI class"
+    },
+    {
+        "id": 119,
+        "regexes": [
+            {
+                "regex": "programming.*lang.*class",
+                "idRegexes": 144
+            }
+        ],
+        "answers": [
+            {
+                "answer": "Programming Languages (SI413) -> This course examines basic concepts underlying the design of modern programming languages: types, control structures, abstraction mechanisms, inheritance, concurrency and constructs for programming. This course will include programming assignments in several languages.",
+                "idAnswers": 125
+            }
+        ],
+        "questions": [
+            {
+                "question": "Tell me about the programming languages class",
+                "idQuestions": 457
+            }
+        ],
+        "vector": [],
+        "title": "Programming Languages",
+        "description": "This rule describes the programming languages class"
+    },
+    {
+        "id": 120,
+        "regexes": [
+            {
+                "regex": "theory.*computing.*class",
+                "idRegexes": 145
+            }
+        ],
+        "answers": [
+            {
+                "answer": "Theory Of Computing (SI340) -> This course presents the theoretical foundations for computing, including the study of formal languages, finite state machines, pushdown automata, Turing machines and computability.",
+                "idAnswers": 126
+            }
+        ],
+        "questions": [
+            {
+                "question": "Tell me about the theory of computing class",
+                "idQuestions": 458
+            }
+        ],
+        "vector": [],
+        "title": "Theory Of Computing",
+        "description": "This rule describes the theory of computing class"
+    },
+    {
+        "id": 121,
+        "regexes": [
+            {
+                "regex": "computer.*algorithm.*class",
+                "idRegexes": 146
+            }
+        ],
+        "answers": [
+            {
+                "answer": "Computer Algorithms (SI335) -> Presents techniques for designing and analyzing computer algorithms including divide and conquer, dynamic programming and greedy methods. Introduces classic algorithms for problems such as searching and sorting, graph analysis, file compression and cryptology.",
+                "idAnswers": 127
+            }
+        ],
+        "questions": [
+            {
+                "question": "Tell me about the computer algorithms class",
+                "idQuestions": 459
+            }
+        ],
+        "vector": [],
+        "title": "Computer Algorithms ",
+        "description": "This rule describes the computer algorithms class"
+    },
+    {
+        "id": 122,
+        "regexes": [
+            {
+                "regex": "intro.*(computer science | cs).*class",
+                "idRegexes": 147
+            }
+        ],
+        "answers": [
+            {
+                "answer": "Intro To Computer Science (SI204) -> Introduction to algorithmic development, problem solving and software design. Principles and concepts to provide foundational knowledge and experience upon which later computer science courses will build.",
+                "idAnswers": 128
+            }
+        ],
+        "questions": [
+            {
+                "question": "Tell me about the intro to computer science class",
+                "idQuestions": 460
+            }
+        ],
+        "vector": [],
+        "title": "Intro To Computer Science",
+        "description": "This rule describes the intro to computer science class"
+    },
+    {
+        "id": 123,
+        "regexes": [
+            {
+                "regex": "info.*tech.*jo.*class",
+                "idRegexes": 148
+            }
+        ],
+        "answers": [],
+        "questions": [
+            {
+                "question": "Tell me about the information tech for the JO class",
+                "idQuestions": 461
+            }
+        ],
+        "vector": [],
+        "title": "Information Tech For The JO",
+        "description": "This rule describes the information tech for the JO class"
+    },
+    {
+        "id": 124,
+        "regexes": [
+            {
+                "regex": "mobile.*os.*dev.*class",
+                "idRegexes": 149
+            }
+        ],
+        "answers": [
+            {
+                "answer": "Mobile OS Development (IT472) -> This course introduces students to software development for mobile operating systems. Focusing primarily on the use of Java and XML, student will apply object oriented programming and design principles in the development of mobile applications for the Android operating system. Topics include application life-cycle, user interface design, event-handling, threads, network communication and mobile security.",
+                "idAnswers": 129
+            }
+        ],
+        "questions": [
+            {
+                "question": "Tell me about the mobile os and development class",
+                "idQuestions": 462
+            }
+        ],
+        "vector": [],
+        "title": "Mobile OS Development",
+        "description": "This rule describes the mobile os development class"
+    },
+    {
+        "id": 125,
+        "regexes": [
+            {
+                "regex": "enterprise.*computing.*class",
+                "idRegexes": 150
+            }
+        ],
+        "answers": [],
+        "questions": [
+            {
+                "question": "Tell me about the enterprise computing class",
+                "idQuestions": 463
+            }
+        ],
+        "vector": [],
+        "title": "Enterprise Computing",
+        "description": "This rule describes the enterprise computing class"
+    },
+    {
+        "id": 126,
+        "regexes": [
+            {
+                "regex": "adv.*database.*systems.*class",
+                "idRegexes": 151
+            }
+        ],
+        "answers": [
+            {
+                "answer": "ADV Database Systems (IT462) -> This course will discuss advanced issues in database systems, including parallel, distributed and peer-to-peer databases, data warehousing and data mining, XML and service-oriented architectures. The course incorporates hands-on exercises using commercial database systems and products, as well as a web-database project.",
+                "idAnswers": 130
+            }
+        ],
+        "questions": [
+            {
+                "question": "Tell me about the advanced database systems class",
+                "idQuestions": 464
+            }
+        ],
+        "vector": [],
+        "title": "ADV Database Systems",
+        "description": "This rule describes the adv database systems class"
+    },
+    {
+        "id": 127,
+        "regexes": [
+            {
+                "regex": "human.*computer.*interaction.*class",
+                "idRegexes": 152
+            }
+        ],
+        "answers": [
+            {
+                "answer": "Human Computer Interaction (IT460) -> An introductory course emphasizing interactive software design, development and evaluation using a human-centered approach. Topics include aspects of human sensation, perception and cognitive psychology.",
+                "idAnswers": 131
+            }
+        ],
+        "questions": [
+            {
+                "question": "Tell me about the human computer interaction class",
+                "idQuestions": 465
+            }
+        ],
+        "vector": [],
+        "title": "Human Computer Interaction",
+        "description": "This rule describes the human computer interaction class"
+    },
+    {
+        "id": 128,
+        "regexes": [
+            {
+                "regex": "adv.*web.*internet.*systems.*class",
+                "idRegexes": 153
+            }
+        ],
+        "answers": [
+            {
+                "answer": "ADV Web and Internet Systems (IT452) -> Web server design and configuration, search engine design and usage, web security and authentication, servlet implementations, web collaboration mechanisms, web services, and knowledge representation on the web.",
+                "idAnswers": 132
+            }
+        ],
+        "questions": [
+            {
+                "question": "Tell me about the advanced web and internet systems class",
+                "idQuestions": 466
+            }
+        ],
+        "vector": [],
+        "title": "ADV Web and Internet Systems",
+        "description": "This rule describes the adv web and internet systems class"
+    },
+    {
+        "id": 129,
+        "regexes": [
+            {
+                "regex": "who.*department.*chair",
+                "idRegexes": 154
+            },
+            {
+                "regex": "who.*department.*head",
+                "idRegexes": 155
+            }
+        ],
+        "answers": [
+            {
+                "answer": "CAPT Mike Bilzor, USN is the current Computer Science Department Chair.",
+                "idAnswers": 133
+            }
+        ],
+        "questions": [
+            {
+                "question": "who is the department chair for the computer science department",
+                "idQuestions": 467
+            },
+            {
+                "question": "who is the department head",
+                "idQuestions": 472
+            },
+            {
+                "question": "who is the department head",
+                "idQuestions": 499
+            },
+            {
+                "question": "who is department head",
+                "idQuestions": 500
+            }
+        ],
+        "vector": [],
+        "title": "CS Department Chair",
+        "description": ""
+    },
+    {
+        "id": 130,
+        "regexes": [
+            {
+                "regex": "adv.*computer.*network.*security.*class",
+                "idRegexes": 156
+            }
+        ],
+        "answers": [
+            {
+                "answer": "Advanced Computer and Network Security (IT432) ->This course provides an introduction to topics in secure system design, including: cryptography, operating system security, and language based security. Where the IT430 course focuses primarily on securing an existing system, this course studies how to design a system to meet security goals. Students will design and implement components of a secure system.",
+                "idAnswers": 134
+            }
+        ],
+        "questions": [
+            {
+                "question": "Tell me about the advanced computer and network security class",
+                "idQuestions": 468
+            }
+        ],
+        "vector": [],
+        "title": "Advanced Computer and Network Security ",
+        "description": "This rule describes the adv computer and network security class"
+    },
+    {
+        "id": 131,
+        "regexes": [
+            {
+                "regex": "computer.*network.*security.*class",
+                "idRegexes": 157
+            }
+        ],
+        "answers": [],
+        "questions": [
+            {
+                "question": "Tell me about the computer and network security class",
+                "idQuestions": 471
+            }
+        ],
+        "vector": [],
+        "title": "Computer and Network Security",
+        "description": "This rule describes the computer and network security class"
+    },
+    {
+        "id": 132,
+        "regexes": [
+            {
+                "regex": "applied.*database.*systems.*class",
+                "idRegexes": 158
+            }
+        ],
+        "answers": [
+            {
+                "answer": "Applied Database Systems (IT360) -> This course introduces the principles underlying Database Management Systems (DBMS) with a special emphasis on database management system structure and function when integrated with web-based database applications.",
+                "idAnswers": 135
+            }
+        ],
+        "questions": [
+            {
+                "question": "Tell me about the applied database systems class",
+                "idQuestions": 474
+            }
+        ],
+        "vector": [],
+        "title": "Applied Database Systems",
+        "description": "This rule describes the applied database systems class"
+    },
+    {
+        "id": 133,
+        "regexes": [
+            {
+                "regex": "web.*internet.*programming.*class",
+                "idRegexes": 159
+            }
+        ],
+        "answers": [
+            {
+                "answer": "Web and Internet Programming (IT350) -> Web site design and management, clients and servers, client and server side scripting languages, web transmission protocols.",
+                "idAnswers": 136
+            }
+        ],
+        "questions": [
+            {
+                "question": "Tell me about the web and internet programming class",
+                "idQuestions": 476
+            }
+        ],
+        "vector": [],
+        "title": "Web and Internet Programming",
+        "description": "This rule describes the web and internet programming class"
+    },
+    {
+        "id": 134,
+        "regexes": [
+            {
+                "regex": "research.*(seminar | capstone).*class",
+                "idRegexes": 160
+            }
+        ],
+        "answers": [
+            {
+                "answer": "Research Seminar/Capstone (IC480) -> This is a capstone course that ties together concepts from the information technology and computer science curriculums to solve a practical problem. These team-oriented project solutions will include the requirements gathering, analysis, design and development of a computing system involving a large, multi-layer organization using appropriate information management and computing technologies.",
+                "idAnswers": 137
+            }
+        ],
+        "questions": [
+            {
+                "question": "Tell me about the research seminar/capstone class",
+                "idQuestions": 477
+            }
+        ],
+        "vector": [],
+        "title": "Research Seminar/Capstone",
+        "description": "This rule describes the research/seminar capstone class"
+    },
+    {
+        "id": 135,
+        "regexes": [
+            {
+                "regex": "software.*engineering.*class",
+                "idRegexes": 161
+            }
+        ],
+        "answers": [
+            {
+                "answer": "Software Engineering (IC470) -> An introduction to the basic principles of software engineering",
+                "idAnswers": 138
+            }
+        ],
+        "questions": [
+            {
+                "question": "Tell me about the software engineering class",
+                "idQuestions": 478
+            }
+        ],
+        "vector": [],
+        "title": "Software Engineering",
+        "description": "This rule describes the software engineering class"
+    },
+    {
+        "id": 136,
+        "regexes": [
+            {
+                "regex": "operating.*systems.*class",
+                "idRegexes": 162
+            }
+        ],
+        "answers": [
+            {
+                "answer": "Operating Systems (IC411) -> The study of the operating system as a resource manager. Topics include process management, interrupt processing, memory management, deadlock handling, file systems, multiprogramming, multiprocessing, data security and protection.",
+                "idAnswers": 139
+            }
+        ],
+        "questions": [
+            {
+                "question": "Tell me about the operating systems class",
+                "idQuestions": 479
+            }
+        ],
+        "vector": [],
+        "title": "Operating Systems",
+        "description": "This rule describes the OS class"
+    },
+    {
+        "id": 137,
+        "regexes": [
+            {
+                "regex": "computer.*networks.*class",
+                "idRegexes": 163
+            }
+        ],
+        "answers": [
+            {
+                "answer": "Computer Networks (IC322) -> The course presents the fundamental theoretical concepts, characteristics and principles of computer communications and computer networks, and analyzes and assesses these foundational concepts with respect to network performance and network design.",
+                "idAnswers": 140
+            }
+        ],
+        "questions": [
+            {
+                "question": "Tell me about the computer networks class",
+                "idQuestions": 480
+            }
+        ],
+        "vector": [],
+        "title": "Computer Networks",
+        "description": "This rule describes the computer networks class"
+    }
+]
