@@ -163,7 +163,7 @@ def api_get_graph():
 
     sql = f"SELECT question, dateCreated FROM Questions WHERE IdRules={int(ID)};"
     print(sql)
-    return db.fetch(sql)
+    return jsonify(db.fetch(sql))
 
 
 # returns questions and date created 
