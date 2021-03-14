@@ -43,7 +43,12 @@ def api_input():
     if not inp:
         return "error: no input arg given"
 
-    return getAnswer(inp)
+    ans = getAnswer(inp)
+
+    sql = f"SELECT idRules, answer FROM Answers WHERE answer='{ans}';"
+    response = db.fetch(sql)
+
+    return jsonify(response)
 
 
 # return chat bot answer 
