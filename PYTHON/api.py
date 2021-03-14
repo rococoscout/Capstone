@@ -130,6 +130,9 @@ def api_edit_add():
     newitem = request.form.get('newitem')
 
     field = table.lower()[:-1]
+    if (field == 'regexe'):
+        field = field[:-1]
+
     idname = 'Id' + str(table)
     print(field, idname)
 
