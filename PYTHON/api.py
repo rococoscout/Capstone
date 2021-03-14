@@ -141,7 +141,7 @@ def api_edit_add():
     db.execute(sql)
 
     sql = f"SELECT {idname} FROM {table} WHERE {field}='{newitem}';"
-    return db.fetch(sql)
+    return jsonify(db.fetch(sql))
 
 # add rules
 @app.route('/api/entries/rules/edit/rule', methods=['POST'])
