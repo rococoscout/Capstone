@@ -161,7 +161,7 @@ def api_edit_rule():
 def api_get_graph():
     ID = request.form.get('id') # rule id
 
-    sql = f"SELECT (question, dateCreated) FROM Questions WHERE IdRules={int(ID)};"
+    sql = f"SELECT question, dateCreated FROM Questions WHERE IdRules={int(ID)};"
     print(sql)
     return db.fetch(sql)
 
@@ -184,7 +184,7 @@ def api_top3():
             "INNER JOIN Rules ON Questions.idRules = Rules.idRules " \
             f"WHERE Questions.idRules IN {tuple(top3)};"
     print(sql)
-    return json.dumps(Rule.db.fetch(sql), default=myconverter)
+    return json.dumps(db.fetch(sql), default=myconverter)
 
 
 def myconverter(o):
