@@ -45,7 +45,7 @@ def api_input():
 
     ans = getAnswer(inp)
 
-    sql = f"SELECT idRules, answer FROM Answers WHERE answer='{ans}';"
+    sql = f'SELECT idRules, answer FROM Answers WHERE answer="{ans}";'
     response = db.fetch(sql)
 
     return jsonify(response)
@@ -122,7 +122,7 @@ def api_edit_update():
     idname = 'Id' + str(table)
     print(field, idname)
 
-    sql = f"UPDATE {table} SET {field}='{update}' WHERE {idname} = {int(ID)};"
+    sql = f'UPDATE {table} SET {field}="{update}" WHERE {idname} = {int(ID)};'
     print(sql)
     return db.execute(sql)
 
@@ -141,11 +141,11 @@ def api_edit_add():
     idname = 'Id' + str(table)
     print(field, idname)
 
-    sql = f"INSERT INTO {table} (IdRules, {field}) VALUES ({int(ID)}, '{newitem}');"
+    sql = f'INSERT INTO {table} (IdRules, {field}) VALUES ({int(ID)}, "{newitem}");'
     print(sql)
     db.execute(sql)
 
-    sql = f"SELECT {idname} FROM {table} WHERE {field}='{newitem}';"
+    sql = f'SELECT {idname} FROM {table} WHERE {field}="{newitem}";'
     return jsonify(db.fetch(sql))
 
 # add rules
@@ -156,7 +156,7 @@ def api_edit_rule():
     title = request.form.get('title')
     description = request.form.get('description')
 
-    sql = f"UPDATE Rules SET title='{title}', description='{description}' WHERE IdRules={int(ID)};"
+    sql = f'UPDATE Rules SET title="{title}", description="{description}" WHERE IdRules={int(ID)};'
     print(sql)
     return db.execute(sql)
 
@@ -166,10 +166,10 @@ def api_edit_rule():
 def api_get_graph():
     ID = request.form.get('id') # rule id
 
-    sql = "SELECT title, count(*) AS Count, Date_FORMAT(dateCreated, '%Y-%m-%d') AS Date "\
-            "FROM Questions INNER JOIN Rules ON Questions.idRules = Rules.idRules "\
-            f"WHERE Questions.idRules = {ID} "\
-            "GROUP BY Date_FORMAT(dateCreated, '%Y-%m-%d'), title;"
+    sql = 'SELECT title, count(*) AS Count, Date_FORMAT(dateCreated, "%Y-%m-%d") AS Date '\
+            'FROM Questions INNER JOIN Rules ON Questions.idRules = Rules.idRules '\
+            f'WHERE Questions.idRules = {ID} '\
+            'GROUP BY Date_FORMAT(dateCreated, "%Y-%m-%d"), title;'
     
     l = db.fetch(sql)
 
