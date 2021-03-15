@@ -19,8 +19,10 @@ def getAnswer(input):
     else:
         answer = vec.getVecAnswer(matchedRules, input)
     if(answer == None):
+        print("ingeneric answers")
         answer= gen.getGenericAnswer(input)
         Rule.addUnmatchedQuestion(input)
+    print(answer)
 
     return answer
 
