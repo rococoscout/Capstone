@@ -45,12 +45,13 @@ def api_input():
 
     ans = getAnswer(inp)
     generic = "I'm not too sure about"
+    print(generic in ans)
     if generic in ans:
         return jsonify(ans)
 
     sql = f'SELECT idAnswers, answer FROM Answers WHERE answer="{ans}";'
     response = db.fetch(sql)
-        
+    print(jsonify(response))
     return jsonify(response)
 
 
