@@ -230,7 +230,7 @@ def api_top3():
 @cross_origin()
 def api_flag():
     ID = request.form.get('id') # rule id
-
+    print(ID)
     sql = f'CALL sp_addFlag({ID});'
     print(sql)
     return db.execute(sql)
