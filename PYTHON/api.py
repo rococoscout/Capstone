@@ -220,7 +220,15 @@ def api_top3():
 
     return jsonify(newl)
 
+# Flag
+@app.route('/api/flag', methods=['POST'])
+@cross_origin()
+def api_flag():
+    ID = request.form.get('id') # rule id
 
+    sql = f'CALL sp_addFlag({ID});'
+    print(sql)
+    return db.execute(sql)
 
 
 def myconverter(o):
