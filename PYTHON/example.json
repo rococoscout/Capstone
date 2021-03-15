@@ -1,0 +1,52 @@
+{
+    "Chadbot Capabilities": [
+        {
+            "Date": "2021-03-03",
+            "Count": 4
+        },
+        {
+            "Date": "2021-03-13",
+            "Count": 7
+        },
+        {
+            "Date": "2021-03-14",
+            "Count": 3
+        }
+    ],
+    "Greetings": [
+        {
+            "Date": "2021-03-08",
+            "Count": 8
+        },
+        {
+            "Date": "2021-03-10",
+            "Count": 1
+        },
+        {
+            "Date": "2021-03-13",
+            "Count": 22
+        },
+        {
+            "Date": "2021-03-14",
+            "Count": 4
+        }
+    ],
+    "Learning Computer Science": [
+        {
+            "Date": "2021-03-08",
+            "Count": 5
+        },
+        {
+            "Date": "2021-03-11",
+            "Count": 1
+        },
+        {
+            "Date": "2021-03-12",
+            "Count": 1
+        },
+        {
+            "Date": "2021-03-13",
+            "Count": 6
+        }
+    ]
+}

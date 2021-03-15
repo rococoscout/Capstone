@@ -4,6 +4,7 @@ import json
 import genericResponse as gen
 import regexResponse as reg
 import vecResponse as vec
+
 from polyglot.detect import Detector
 from polyglot.detect.base import logger
 #from profanity_check import predict, predict_prob
@@ -24,6 +25,7 @@ def checkLanguage(input):
         return True
     else:
         return False
+
 
 
 #Function that gives the answer to the input Question

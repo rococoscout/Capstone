@@ -6,6 +6,7 @@
 # flask files 
 from flask import Flask, request, jsonify
 import json
+import datetime
 from flask_cors import CORS, cross_origin # handle Cross Origin Resource Sharing (CORS) [for AJAX]
 # Project files 
 from dbhelper import DBHelper # Database controller
@@ -42,7 +43,16 @@ def api_input():
     if not inp:
         return "error: no input arg given"
 
-    return getAnswer(inp)
+    ans = getAnswer(inp)
+    generic = "I'm not too sure about"
+    print(generic in ans)
+    if generic in ans:
+        return jsonify([{'idAnswers':-1, 'answer': ans}])
+
+    sql = f'SELECT idAnswers, answer FROM Answers WHERE answer="{ans}";'
+    response = db.fetch(sql)
+    print(response)
+    return jsonify(response)
 
 
 # return chat bot answer 
@@ -50,13 +60,12 @@ def api_input():
 @cross_origin()
 def api_search():
     search = request.form.get("search")
-    
+
     if not search:
         return "error: no search arg given"
 
-    
     return jsonify(Rule.getRulesDict(search))
-    
+
 
 # ----------------------------------------------------------------------
 
@@ -83,33 +92,153 @@ def api_addRule():
 @cross_origin()
 def api_delete():
     ruleID = request.form.get('id')
-    
+
     sql = f"DELETE FROM Rules WHERE IdRules = {int(ruleID)};"
     return db.execute(sql)
 
 # -----------------------------------------------------------------------
 
-# update
-@app.route('/api/entries/rules/update', methods=['POST'])
+# delete rules
+@app.route('/api/entries/rules/edit/delete', methods=['POST'])
 @cross_origin()
-def api_update():
-    #figure out how to get everything but just get what I wanted
-    regexes = json.loads(request.form.get('regexes'))
+def api_edit_delete():
+    ID = request.form.get('id') # answer, question, regex id
+    table = request.form.get('table')
+
+    idname = 'Id' + str(table) 
+
+    sql = f"DELETE FROM {table} WHERE {idname} = {int(ID)};"
+    print(sql)
+    return db.execute(sql)
+
+# update rules
+@app.route('/api/entries/rules/edit/update', methods=['POST'])
+@cross_origin()
+def api_edit_update():
+    ID = request.form.get('id') # answer, question, regex id
+    table = request.form.get('table')
+    update = request.form.get('update')
+
+    field = table.lower()[:-1]
+    if (field == 'regexe'):
+        field = field[:-1]
+
+    idname = 'Id' + str(table)
+    print(field, idname)
+
+    sql = f'UPDATE {table} SET {field}="{update}" WHERE {idname} = {int(ID)};'
+    print(sql)
+    return db.execute(sql)
+
+# add rules
+@app.route('/api/entries/rules/edit/add', methods=['POST'])
+@cross_origin()
+def api_edit_add():
+    ID = request.form.get('id') # rule id
+    table = request.form.get('table')
+    newitem = request.form.get('newitem')
+
+    field = table.lower()[:-1]
+    if (field == 'regexe'):
+        field = field[:-1]
+
+    idname = 'Id' + str(table)
+    print(field, idname)
+
+    sql = f'INSERT INTO {table} (IdRules, {field}) VALUES ({int(ID)}, "{newitem}");'
+    print(sql)
+    db.execute(sql)
+
+    sql = f'SELECT {idname} FROM {table} WHERE {field}="{newitem}";'
+    return jsonify(db.fetch(sql))
+
+# add rules
+@app.route('/api/entries/rules/edit/rule', methods=['POST'])
+@cross_origin()
+def api_edit_rule():
+    ID = request.form.get('id') # rule id
     title = request.form.get('title')
     description = request.form.get('description')
-    answers = json.loads(request.form.get('answers'))
-    questions = json.loads(request.form.get('questions'))
-    ruleID = request.form.get('id')
 
-    # delete the old rule
-    sql = f"DELETE FROM Rules WHERE IdRules = {int(ruleID)};"
-    db.execute(sql)
-    
-    # add the new one. 
-    r = Rule(regexes, answers, questions, title, description)
-    return r.addRule()
+    sql = f'UPDATE Rules SET title="{title}", description="{description}" WHERE IdRules={int(ID)};'
+    print(sql)
+    return db.execute(sql)
 
+# returns questions and date created 
+@app.route('/api/entries/rules/graph', methods=['POST'])
+@cross_origin()
+def api_get_graph():
+    ID = request.form.get('id') # rule id
+
+    sql = 'SELECT title, count(*) AS Count, Date_FORMAT(dateCreated, "%Y-%m-%d") AS Date '\
+            'FROM Questions INNER JOIN Rules ON Questions.idRules = Rules.idRules '\
+            f'WHERE Questions.idRules = {ID} '\
+            'GROUP BY Date_FORMAT(dateCreated, "%Y-%m-%d"), title;'
     
+    l = db.fetch(sql)
+
+    title = l[0]["title"]
+
+    reformat = ()
+    extract =['Date', 'Count']
+    data = []
+    for item in l:
+        data.append({key: item[key] for key in extract})
+    reformat = (title, data)
+
+    return jsonify(reformat)
+
+
+# returns questions and date created 
+@app.route('/api/entries/rules/top3', methods=['POST'])
+@cross_origin()
+def api_top3():
+    sql = "SELECT idRules "\
+                "FROM Questions " \
+                "GROUP BY idRules " \
+                "ORDER BY COUNT(idRules) DESC " \
+                "LIMIT 3;"
+    print(sql)
+
+    top3 = Rule.db.fetchNoDict(sql)
+
+    sql = "SELECT title, count(*) AS Count, Date_FORMAT(dateCreated, '%Y-%m-%d') AS Date "\
+            "FROM Questions INNER JOIN Rules ON Questions.idRules = Rules.idRules "\
+            f"WHERE Questions.idRules IN {tuple(top3)} "\
+            "GROUP BY Date_FORMAT(dateCreated, '%Y-%m-%d'), title;"
+    
+    l = db.fetch(sql)
+
+    top3  = []
+    for item in l:
+        if item['title'] not in top3:
+            top3.append(item['title'])
+
+    newl = {}
+    for title in top3:
+        newl[title] = []
+
+    extract =['Date', 'Count']
+    for item in l:
+        newl[item['title']].append({key: item[key] for key in extract})
+
+    return jsonify(newl)
+
+# Flag
+@app.route('/api/flag', methods=['POST'])
+@cross_origin()
+def api_flag():
+    ID = request.form.get('id') # rule id
+
+    sql = f'CALL sp_addFlag({ID});'
+    print(sql)
+    return db.execute(sql)
+
+
+def myconverter(o):
+    if isinstance(o, datetime.datetime):
+        return o.__str__()
+
 #####################################################################
    
 if __name__ == "__main__":
