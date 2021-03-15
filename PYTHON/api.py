@@ -47,7 +47,9 @@ def api_input():
 
     sql = f'SELECT idRules, answer FROM Answers WHERE answer="{ans}";'
     response = db.fetch(sql)
-
+    print(response)
+    if response == None:
+        response = (ans, -1)
     return jsonify(response)
 
 
