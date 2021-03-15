@@ -235,6 +235,13 @@ def api_flag():
     print(sql)
     return db.execute(sql)
 
+# Get unmatched questions
+@app.route('/api/unmatched/list', methods=['POST'])
+@cross_origin()
+def api_flag():
+    sql = f'CALL sp_getUnmatched();'
+    return db.fetch(sql)
+
 
 def myconverter(o):
     if isinstance(o, datetime.datetime):
