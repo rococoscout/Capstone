@@ -200,7 +200,7 @@ def api_top3():
 
     sql = "SELECT title, count(*) AS Count, Date_FORMAT(dateCreated, '%Y-%m-%d') AS Date "\
             "FROM Questions INNER JOIN Rules ON Questions.idRules = Rules.idRules "\
-            f"WHERE Questions.idRules IN {top3} "\
+            f"WHERE Questions.idRules IN {tuple(top3)} "\
             "GROUP BY Date_FORMAT(dateCreated, '%Y-%m-%d'), title;"
     
     l = db.fetch(sql)

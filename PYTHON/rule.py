@@ -52,7 +52,7 @@ class Rule:
         json_vec = []
         if self.vector is not None:
             json_vec = json.dumps(self.vector.tolist())
-        sql = f"INSERT INTO Rules (title, description, totalVector) VALUES ('{self.title}', '{self.description}', '{json_vec}');"
+        sql = f"INSERT INTO Rules (title, description, totalVector) VALUES ('{self.title.replace("'", "\'")}', '{self.description}', '{json_vec}');"
 
         print(sql)
         print(Rule.db.execute(sql))
