@@ -45,8 +45,9 @@ def api_input():
 
     ans = getAnswer(inp)
     generic = "I'm not too sure about"
+    language = "It seems that you have entered input that is not in English"
     print(generic in ans)
-    if generic in ans:
+    if generic in ans or generic in language:
         return jsonify([{'idAnswers':-1, 'answer': ans}])
 
     sql = f'SELECT idAnswers, answer FROM Answers WHERE answer="{ans}";'
