@@ -139,7 +139,7 @@ class Rule:
             r.questions = Rule.db.fetch(sql)
 
             # based off id get list of answers
-            sql = f"SELECT answer, idAnswers FROM Answers WHERE Answers.idRules = {ID};"
+            sql = f"SELECT answer, idAnswers, flagCount FROM Answers WHERE Answers.idRules = {ID};"
             r.answers = Rule.db.fetch(sql)
 
         return [vars(r) for r in rs]
