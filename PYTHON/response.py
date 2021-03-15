@@ -32,7 +32,7 @@ def checkLanguage(input):
 #Takes a string input and returns the string answer
 #Gets rules from rule.py and calls functions from other ~Response.py's
 def getAnswer(input):
-    pf = ProfanityFilter()
+    # pf = ProfanityFilter()
 
     #if(predict([input]) == 0):
 #    if(pf.is_clean(input)):
