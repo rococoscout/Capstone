@@ -19,7 +19,7 @@ def getVecAnswer(rules, userinput):
             continue
         uservec = embeds[word] + uservec
     errorvec = numpy.zeros(50)
-    if uservec == errorvec:
+    if uservec.all() == errorvec.all():
         return None
     if len(rules)==1:
         print("lenrules=1")
