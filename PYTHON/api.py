@@ -238,7 +238,7 @@ def api_flag():
 # Get unmatched questions
 @app.route('/api/unmatched/list', methods=['POST'])
 @cross_origin()
-def api_flag():
+def api_unmatched():
     sql = f'CALL sp_getUnmatched();'
     return db.fetch(sql)
 
