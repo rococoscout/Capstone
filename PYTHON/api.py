@@ -44,12 +44,13 @@ def api_input():
         return "error: no input arg given"
 
     ans = getAnswer(inp)
+    generic = "I'm not too sure about"
+    if generic in ans:
+        return jsonify(ans)
 
     sql = f'SELECT idAnswers, answer FROM Answers WHERE answer="{ans}";'
     response = db.fetch(sql)
-    print(response)
-    if response == ():
-        response = (ans, -1)
+        
     return jsonify(response)
 
 
