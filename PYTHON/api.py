@@ -51,7 +51,7 @@ def api_input():
 
     sql = f'SELECT idAnswers, answer FROM Answers WHERE answer="{ans}";'
     response = db.fetch(sql)
-    print(jsonify(response))
+    print(response)
     return jsonify(response)
 
 
