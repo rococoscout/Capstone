@@ -47,7 +47,7 @@ def api_input():
     generic = "I'm not too sure about"
     print(generic in ans)
     if generic in ans:
-        return jsonify(ans)
+        return jsonify([{'idAnswers':-1, 'answer': ans}])
 
     sql = f'SELECT idAnswers, answer FROM Answers WHERE answer="{ans}";'
     response = db.fetch(sql)
