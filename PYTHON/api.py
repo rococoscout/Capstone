@@ -240,7 +240,7 @@ def api_flag():
 @cross_origin()
 def api_unmatched():
     sql = f'CALL sp_getUnmatched();'
-    return db.fetch(sql)
+    return jsonify(db.fetch(sql))
 
 
 def myconverter(o):
