@@ -135,7 +135,7 @@ class Rule:
             r.regexes = Rule.db.fetch(sql)
 
             # based off id get list of questions
-            sql = f"SELECT DISTINCT question, idQuestions FROM Questions WHERE Questions.idRules = {ID} and isExample = TRUE;"
+            sql = f"SELECT DISTINCT question, idQuestions FROM Questions WHERE Questions.idRules = {ID} and isExample = TRUE GROUP BY question;"
             if x:
                 print(sql)
                 x = False
