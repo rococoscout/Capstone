@@ -108,7 +108,7 @@ class Rule:
             rs = Rule.db.fetchNoDict(sql)
 
             # based off id get list of questions
-            sql = f"SELECT DISTINCT question FROM Questions WHERE Questions.idRules = {ID};"
+            sql = f"SELECT DISTINCT question, isExample FROM Questions WHERE idRules = {ID} AND isExample = TRUE;"
             qs = Rule.db.fetchNoDict(sql)
 
             # based off id get list of answers
