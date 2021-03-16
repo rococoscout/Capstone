@@ -136,6 +136,11 @@ class Rule:
 
             # based off id get list of questions
             sql = f"SELECT DISTINCT question, idQuestions FROM Questions WHERE Questions.idRules = {ID} and isExample = TRUE;"
+            x = True
+            if x:
+                print(sql)
+                x = False
+
             r.questions = Rule.db.fetch(sql)
 
             # based off id get list of answers
