@@ -124,7 +124,7 @@ class Rule:
     @staticmethod
     def getRulesDict(search=None):
         rs = Rule.getRules(isNumpy=False, s=search)
-        
+        x=True
         for r in rs:
             ID = r.id
 
@@ -136,7 +136,6 @@ class Rule:
 
             # based off id get list of questions
             sql = f"SELECT DISTINCT question, idQuestions FROM Questions WHERE Questions.idRules = {ID} and isExample = TRUE;"
-            x = True
             if x:
                 print(sql)
                 x = False
