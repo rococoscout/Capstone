@@ -6,17 +6,29 @@ function resolveAfter1Seconds(){
   });
 }
 
-async function thinking(response){
+async function thinking(response,id){
   console.log('calling');
   document.getElementById('text').innerHTML +='<div class="yours messages thinking"><div class="message thinking"><div id = "child1"></div><div id = "child2"></div><div id = "child3"></div>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</div></div>'
   const result = await resolveAfter1Seconds();
   $('.thinking').remove();
-  document.getElementById('text').innerHTML += '<div class="yours messages"><div class="message last">'+ response+'</div></div>';
+  document.getElementById('text').innerHTML += '<div class="yours messages"><div class="message last" id="'+id+'"onclick="flag('+id+')">'+ response+'</div></div>';
   console.log('result');
 
 }
 
+function flag(id){
+  document.getElementById(id).style.color ="red";
 
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+
+    }
+  };
+  xhttp.open("POST", "http://10.1.83.57:5000/api/flag", true);
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhttp.send("id="+id);
+}
 
 document.getElementById('input').addEventListener("keyup", function(event) {
 
@@ -47,7 +59,10 @@ document.getElementById('input').addEventListener("keyup", function(event) {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
-       thinking(this.response);
+       details=JSON.parse(this.response);
+       console.log(details);
+       console.log(details[0]['idAnswers']);
+       thinking(details[0]['answer'],details[0]['idAnswers']);
 
        current[0].classList.remove("current");
 

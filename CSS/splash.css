@@ -13,6 +13,9 @@ html, body {
   --main-Roboto: 'Roboto', sans-serif;
   --main-Raleway:'Raleway', sans-serif;
   --main-padding: 15px;
+  --main-blue: #00203FFF;
+  --main-teal: #ADEFD1FF;
+  --main-tan: #EAD4A6;
 }
 
 #splash-head {
@@ -75,6 +78,8 @@ html, body {
 #Title:hover{
   cursor: default;
 }
+
+
 #splash-body{
   user-select: none;
   font-family: helvetica;

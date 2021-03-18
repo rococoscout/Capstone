@@ -10,6 +10,7 @@ Cited Sources:
 ********************************************************************************
 -->
 
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -29,9 +30,10 @@ Cited Sources:
     <link rel="icon" type="image/png" sizes="16x16" href="favicon_package_v0.16/favicon-16x16.png">
     <link rel="manifest" href="favicon_package_v0.16/site.webmanifest">
     <link rel="icon" href="favicon_package_v0.16/safari-pinned-tab.svg" color="#5bbad5">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <meta name="msapplication-TileColor" content="#00a300">
     <meta name="theme-color" content="#ffffff">
-    <?php include 'PHP/Auth.php';?>
+    <?php //include 'PHP/Auth.php';?>
   </head>
 
 <body>
@@ -39,11 +41,14 @@ Cited Sources:
   <!-- Credit from: Bootstrap 4.0.0 website -->
   <div class="row">
     <div class="col">
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addRule">
-        Add Rule
-      </button>
+      <a type="button" class="btn btn-secondary" href="http://midn.cs.usna.edu/~m213990/cap/Capstone/">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-return-left" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M14.5 1.5a.5.5 0 0 1 .5.5v4.8a2.5 2.5 0 0 1-2.5 2.5H2.707l3.347 3.346a.5.5 0 0 1-.708.708l-4.2-4.2a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 8.3H12.5A1.5 1.5 0 0 0 14 6.8V2a.5.5 0 0 1 .5-.5z"></path>
+        </svg>
+      </a>
     </div>
     <div class="col">
+      <div id="graph"><div id="curve_chart" style="width: 900px; height: 500px"></div></div>
     </div>
     <div class="col"></div>
   </div>
@@ -54,10 +59,25 @@ Cited Sources:
     <div class="col">
       <input id="search" class="form-control" type="text" placeholder="Search...">
       <br>
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addRule" style="float:right;">
+        Add Rule
+      </button>
+      <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" id="Rule-tab" data-toggle="tab" href="#Rule" role="tab" aria-controls="Rule" aria-selected="true">Rule</a>
+      </li>
+      <li class="nav-item">
+         <a class="nav-link" id="Unmatched-tab" data-toggle="tab" href="#Unmatched" role="tab" aria-controls="Unmatched" aria-selected="false">Unmatched</a>
+      </li>
+      </ul>
       <br>
-      <div id = "demo"></div>
+      <br>
+      <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="Rule" role="tabpanel" aria-labelledby="Rule-tab"></div>
+        <div class="tab-pane fade" id="Unmatched" role="tabpanel" aria-labelledby="Unmatched-tab"></div>
+      </div>
     </div>
-    <div class="col">
+    <div class="col" id="dlttable">
     </div>
   </div>
 
@@ -81,15 +101,15 @@ Cited Sources:
             </div>
             <div class="form-group">
               <label for="rule_add">Regular Expression</label>
-              <input  class="form-control" id="regex_add" placeholder="[wW]here.*[pP]rofessor.*room">
+              <textarea  class="form-control" id="regex_add" rows="3" placeholder="Use Newline as a delimiter;[wW]here.*[pP]rofessor.*room"></textarea>
             </div>
             <div class="form-group">
               <label for="question_add">Example Questions</label>
-              <textarea class="form-control" id="questions_add" rows="3" placeholder='Use "?" as a delimiter; example: Where is Proffessor Taylors room? Where is the location of Professor Taylors room?'></textarea>
+              <textarea class="form-control" id="questions_add" rows="3" placeholder='Use Newline as a delimiter; example: Where is Proffessor Taylors room? Where is the location of Professor Taylors room?'></textarea>
             </div>
             <div class="form-group">
               <label for="rule">Answer</label>
-              <input  class="form-control" id="answers_add" placeholder="Proffessor Taylor does not teach here anymore.">
+              <textarea  class="form-control" id="answers_add" rows="3" placeholder="Use Newline as a delimiter;Proffessor Taylor does not teach here anymore."></textarea>
             </div>
             <div class="form-group">
               <label for="description">Description</label>
@@ -125,8 +145,26 @@ Cited Sources:
     </div>
   </div>
 
-  <div class="modal fade" id="editRule" tabindex="-1" role="dialog" aria-labelledby="editRuleTitle" aria-hidden="true">
+  <div class="modal fade" id="addmdl" tabindex="-2" role="dialog" aria-labelledby="addmdl" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Add Entry</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+        <textarea  class="form-control editval" rows="2" id="addEntryText" placeholder="type here..."></textarea>
+        </div>
+        <div class="modal-footer" id="add-footer">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="editRule" tabindex="-1" role="dialog" aria-labelledby="editRuleTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLongTitle">Edit Rule Form</h5>
@@ -140,31 +178,23 @@ Cited Sources:
                 <label for="title_edit">Title of Rule</label>
                 <input class="form-control" id="title_edit" placeholder="Proffessor Room Number">
               </div>
-              <div class="form-group">
-                <label for="regex_edit">Regular Expression</label>
-                <input  class="form-control" id="regex_edit" placeholder="[wW]here.*[pP]rofessor.*room">
-              </div>
-              <div class="form-group">
-                <label for="question_edit">Example Questions</label>
-                <textarea class="form-control" id="questions_edit" rows="3" placeholder='Use "?" as a delimiter; example: Where is Proffessor Taylors room? Where is the location of Professor Taylors room?'></textarea>
-              </div>
-              <div class="form-group">
-                <label for="answers_edit">Answer</label>
-                <input  class="form-control" id="answers_edit" placeholder="Proffessor Taylor does not teach here anymore.">
-              </div>
+                <div id="regex_edit"></div>
+                <div  id="questions_edit" ></div>
+                <div  id="answers_edit" ></div>
               <div class="form-group">
                 <label for="description_edit">Description</label>
                 <textarea class="form-control" id="description_edit" rows="3" placeholder="A rule that tells the user where a proffessor room is located"></textarea>
               </div>
             </form>
         </div>
-        <div class="modal-footer">
+        <div class="modal-footer"id="edit_footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-          <button type="button" class="btn btn-primary" onclick="editrule()">Edit Rule</button>
+          <button type="button" class="btn btn-primary" onclick="editrule()">Done</button>
         </div>
       </div>
     </div>
   </div>
 
   <script src="JS/addbutton.js"></script>
+  <script src="JS/graph.js"></script>
 </html>

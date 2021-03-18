@@ -1,10 +1,80 @@
+:root {
+  --main-Roboto: 'Roboto', sans-serif;
+  --main-Raleway:'Raleway', sans-serif;
+  --main-padding: 15px;
+  --main-blue: #1D1D43;
+  --main-purple: #1F1127;
+  --main-tan: #F46A23;
+}
 
 .section {
   height: 100vh;
 }
 #detail {
-  background-color: red;
+  background-color: var(--main-purple);
+  color: var(--main-tan);
+  Position:relative;
 }
 #about {
-  background-color: grey;
+  background-color: var(--main-blue);
+  color:  var(--main-purple);
+  Position:relative;
+}
+
+#contact {
+  background-color: var(--main-tan);
+  color:  var(--main-blue);
+  Position:relative;
+}
+
+.professor{
+  height: 565px;
+  width: 456px;
+  position:absolute;
+  right: 30px;
+  top: 30px;
+}
+article {
+  float:right;
+  color: white;
+}
+.profile{
+  height: 300px;
+  width: 300px;
+  background-color: black;
+  border-radius:50%;
+  transition: .5s;
+  position:absolute;
+  z-index: 1;
+}
+
+.profile:hover{
+  border-radius:0%;
+  z-index: 2;
+}
+.profile1{
+  top: 20px;
+  left: 20px;
+}
+
+.profile2 {
+  top: 20px;
+  left: 340px;
+}
+
+.profile3{
+  margin: 0px;
+  top: 290px;
+  left: 180px;
+}
+
+.profile4{
+  margin: 0px;
+  top:560px;
+  left: 20px;
+}
+.profile5{
+  margin: 0px;
+  top: 560px;
+  left: 340px;
 }

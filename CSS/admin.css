@@ -1,4 +1,10 @@
-#demo {
+#Rule {
+  background-color: #333333;
+  color:white;
+  padding: 30px;
+}
+
+#Unmatched {
   background-color: #333333;
   color:white;
   padding: 30px;
@@ -12,9 +18,28 @@
 .col .table{
   background-color: black;
   padding: 5px;
-  margin: 2px;
+  margin: 0px;
   font-size: 17px;
   color: grey;
+}
+.row{
+  margin: 4px;
+}
+
+#dlttable{
+  width:30%;
+}
+
+.row .dltRow:hover{
+  background-color:grey;
+  cursor: pointer;
+}
+
+input {
+  width: 100%;
+}
+button{
+  margin: 2px;
 }
 
 img{
