@@ -24,16 +24,6 @@ class Rule:
         sql = f'UPDATE Rules SET totalVector="{json_v}" WHERE idRules={self.id};'
         return Rule.db.execute(sql)
 
-
-    '''
-    Updates regex and total vector into the database schema
-    
-    def updateRule(self):
-        json_v = json.dumps(self.vector.tolist())
-        sql = f"UPDATE Rules SET regex='{self.regex}' totalVector='{json_v}' WHERE idRules={self.id};"
-        return None
-    '''
-
     def addQuestion(self, q):
         sql = f'INSERT INTO Questions (question, idRules) VALUES ("{q}", {self.id});'
         print(sql)
@@ -72,6 +62,7 @@ class Rule:
 
         return "SUCCESS"
 
+
     '''
     Function returns all the rules in the database including regex(if exists),
     list of answers, list of questions, and the total vector
@@ -79,14 +70,10 @@ class Rule:
     Returns a list of class Rules
     '''
     @staticmethod
-    def getRules(isNumpy=True, s=None):
+    def getRules(isNumpy=True, s=""):
         rules = []
 
-        # get rules from sql
-        if s is None:
-            sql = "SELECT idRules, totalVector, title, description FROM Rules;"
-        else:
-            sql = f'SELECT idRules, totalVector, title, description FROM Rules WHERE title LIKE "%{s}%";'
+        sql = f'SELECT idRules, totalVector, title, description FROM Rules WHERE title LIKE "%{s}%";'
         print(sql)
         ruleEntries = Rule.db.fetch(sql)
 
@@ -122,31 +109,35 @@ class Rule:
         return rules
 
     @staticmethod
-    def getRulesDict(search=None):
-        rs = Rule.getRules(isNumpy=False, s=search)
-        x=True
+    def get_rule_entries(s="", page_size=50, page_num=0):
+        offset = page_size*page_num
+        sql = f'CALL sp_getRulesPage("{s}", {page_size}, {offset})' 
+        print(sql)
+        return Rule.db.fetch(sql)
+
+    @staticmethod
+    def getRulesDict(search=""):
+        rs = Rule.get_rule_entries(s=search)
+        
         for r in rs:
-            ID = r.id
-
-            r.vector = [] 
-
+            ID = r["idRules"]
             # based off id get list of regexes
-            sql = f"SELECT regex, idRegexes FROM Regexes WHERE Regexes.idRules = {ID};"
-            r.regexes = Rule.db.fetch(sql)
+            sql = f'SELECT regex, idRegexes FROM Regexes WHERE Regexes.idRules = {ID};'
+            r['regexes'] = Rule.db.fetch(sql)
 
             # based off id get list of questions
-            sql = f"SELECT DISTINCT question, idQuestions FROM Questions WHERE Questions.idRules = {ID} and isExample = TRUE GROUP BY question;"
-            if x:
-                print(sql)
-                x = False
-
-            r.questions = Rule.db.fetch(sql)
+            sql = f"SELECT DISTINCT question, idQuestions FROM Questions WHERE Questions.idRules = {ID};"
+            r['questions'] = Rule.db.fetch(sql)
+            
+            # get non example questions
+            sql = f"CALL sp_getNonExample({ID});"
+            r['x_questions'] = Rule.db.fetch(sql)
 
             # based off id get list of answers
             sql = f"SELECT answer, idAnswers, flagCount FROM Answers WHERE Answers.idRules = {ID};"
-            r.answers = Rule.db.fetch(sql)
+            r['answers'] = Rule.db.fetch(sql)
 
-        return [vars(r) for r in rs]
+        return rs
 
     
 
@@ -161,23 +152,7 @@ def myconverter(o):
  
 
 
-
+import pprint
 if __name__ == "__main__":
-    
-    sql = "SELECT title, count(*) AS Count, Date_FORMAT(dateCreated, '%Y-%m-%d') AS Date "\
-            "FROM Questions INNER JOIN Rules ON Questions.idRules = Rules.idRules "\
-            f"WHERE Questions.idRules = 104 "\
-            "GROUP BY Date_FORMAT(dateCreated, '%Y-%m-%d'), title;"
-
-    l = Rule.db.fetch(sql)
-
-    title = l[0]["title"]
-
-    reformat = ()
-    extract =['Date', 'Count']
-    data = []
-    for item in l:
-        data.append({key: item[key] for key in extract})
-    reformat = (title, data)
-
-    print(json.dumps(reformat))
+    pp = pprint.PrettyPrinter()
+    pp.pprint(Rule.getRulesDict('gre'))
