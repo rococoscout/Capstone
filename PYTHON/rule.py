@@ -109,7 +109,7 @@ class Rule:
         return rules
 
     @staticmethod
-    def get_rule_entries(s="", page_size=20, page_num=0):
+    def get_rule_entries(s="", page_size=50, page_num=0):
         offset = page_size*page_num
         sql = f'CALL sp_getRulesPage("{s}", {page_size}, {offset})' 
         print(sql)
@@ -128,6 +128,10 @@ class Rule:
             # based off id get list of questions
             sql = f"SELECT DISTINCT question, idQuestions FROM Questions WHERE Questions.idRules = {ID};"
             r['questions'] = Rule.db.fetch(sql)
+            
+            # get non example questions
+            sql = f"CALL sp_getNonExample({ID});"
+            r['x_questions'] = Rule.db.fetch(sql)
 
             # based off id get list of answers
             sql = f"SELECT answer, idAnswers, flagCount FROM Answers WHERE Answers.idRules = {ID};"
@@ -148,23 +152,7 @@ def myconverter(o):
  
 
 
-
+import pprint
 if __name__ == "__main__":
-    
-    sql = "SELECT title, count(*) AS Count, Date_FORMAT(dateCreated, '%Y-%m-%d') AS Date "\
-            "FROM Questions INNER JOIN Rules ON Questions.idRules = Rules.idRules "\
-            f"WHERE Questions.idRules = 104 "\
-            "GROUP BY Date_FORMAT(dateCreated, '%Y-%m-%d'), title;"
-
-    l = Rule.db.fetch(sql)
-
-    title = l[0]["title"]
-
-    reformat = ()
-    extract =['Date', 'Count']
-    data = []
-    for item in l:
-        data.append({key: item[key] for key in extract})
-    reformat = (title, data)
-
-    print(json.dumps(reformat))
+    pp = pprint.PrettyPrinter()
+    pp.pprint(Rule.getRulesDict('gre'))
