@@ -21,9 +21,9 @@ function ltor(header,importlist){
     message += list[i]["description"];
     message+= '</div>';
     message+= '<div class="col table">';
-    message+= '<img src="./PIC/delete.png" class="delete" data-toggle="modal" data-target="#dltRule" onclick="storeid('+list[i]["id"]+')">';
-    message+= '<img src="./PIC/edit.png" class="edit" data-toggle="modal" data-target="#editRule" onclick="storeid('+list[i]["id"]+','+i+')">';
-    message+= '<img src="./PIC/graph.png" class="graph" onclick="graphrule('+list[i]["id"]+')">';
+    message+= '<img src="./PIC/delete.png" class="delete" data-toggle="modal" data-target="#dltRule" onclick="storeid('+list[i]["idRules"]+')">';
+    message+= '<img src="./PIC/edit.png" class="edit" data-toggle="modal" data-target="#editRule" onclick="storeid('+list[i]["idRules"]+','+i+')">';
+    message+= '<img src="./PIC/graph.png" class="graph" onclick="graphrule('+list[i]["idRules"]+')">';
     for (ii in list[i]["answers"]){
       if(list[i]["answers"][ii]["flagCount"])
         flagger=true;
@@ -197,9 +197,9 @@ var id;
 
 
 
-
 function storeid(newid, loc){
-  id = newid;
+    console.log(newid);
+    id = newid;
     // console.log(list);
     // console.log(newid);
     // console.log(loc);
@@ -211,6 +211,7 @@ function storeid(newid, loc){
    document.getElementById('answers_edit').innerHTML+= '<button type="button" class="btn btn-primary"  data-toggle="modal" data-target="#addmdl" id="Answers" onclick=\'addEntry('+id+',"Answers"'+')\'>Add Answer</button>';
    document.getElementById('questions_edit').innerHTML=Btmkr(['idQuestions','question'],list[loc]['questions']);
    document.getElementById('questions_edit').innerHTML+= '<button type="button" class="btn btn-primary"  data-toggle="modal" data-target="#addmdl" id="Questions" onclick=\'addEntry('+id+',"Questions"'+')\'>Add Question</button>';
+   document.getElementById('questions_edit').innerHTML+= '<button type="button" class="btn btn-dark" onclick=\'showUQ("'+newid+'","'+loc+'")\'>View Unresolved Questions</button>';
    document.getElementById("edit_footer").innerHTML='<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" data-dismiss="modal" onclick="editrule('+id+')">Done</button>';
    $(".editval").keyup(function(event){
 
@@ -352,3 +353,21 @@ document.getElementById('search').addEventListener("keyup", function(event) {
     xhttp.send("search="+text.toLowerCase());
 
 });
+
+function showUQ(id,loc){
+  table = '<div class="row header-row" >';
+  table += '<div class="col">Question</div><div class="col">Count</div>';
+  table += '</div>';
+  console.log(list[loc]);
+  console.log(id);
+  x_questions = list[loc]['x_questions'];
+  for(i in x_questions){
+    table += '<div class="row">';
+    table += '<div class = "col">'+x_questions[i]['question']+'</div>';
+    table += '<div class = "col">'+x_questions[i]['count']+'</div>';
+    table += '</div>';
+  }
+  document.getElementById('tableofQuestions').innerHTML = table;
+  $('#listQ').modal('show');
+  $('#editRule').modal('hide');
+}

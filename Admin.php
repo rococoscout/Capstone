@@ -162,6 +162,26 @@ Cited Sources:
       </div>
     </div>
   </div>
+  <div class="modal fade" id="listQ" tabindex="-2" role="dialog" aria-labelledby="listQ" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">List of Unresolved Questions</h5>
+
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="modal-body" id="tableofQuestions">
+
+          </div>
+        </div>
+        <div class="modal-footer" id="add-footer">
+        </div>
+      </div>
+    </div>
+  </div>
 
   <div class="modal fade" id="editRule" tabindex="-1" role="dialog" aria-labelledby="editRuleTitle" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">

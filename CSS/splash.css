@@ -19,7 +19,8 @@ html, body {
 }
 
 #splash-head {
-    min-height: 100%;
+    width: 100%;
+    height:100%;
     background-color: black;
     position:relative;
     color: white;
@@ -34,7 +35,7 @@ html, body {
   animation: fadein 1s;
   text-align:center;
   position:absolute;
-  top: 20%;
+  top: 200px;
   left: 25%;
   font-size: max(12vw,40px);
   transition: 5s;
