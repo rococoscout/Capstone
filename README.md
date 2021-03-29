@@ -15,7 +15,7 @@ The following outlines the prerequisites and steps in order to deploy Chadbot yo
 The package manager [pip](https://pip.pypa.io/en/stable/) will be required to install all the dependent python packages required to run Chadbot. 
 
 ## Database
----
+
 Files:
 - [PYTHON/dbhelper.py][dbhelper]
 
@@ -42,7 +42,7 @@ Accessing and editing the database itself can be done either using a bash shell 
 [dbhelper]: PYTHON/dbhelper.py
 
 ## API Setup and Deployment
----
+
 Files:
 - [PYTHON/api.py][api]
 - [PYTHON/wsgi.py][wsgi]
@@ -74,7 +74,7 @@ To better facilitate managing and controlling rules the helper class **Rule** in
 [rule]: PYTHON.rule.py
 
 ## Responses and Language Filtering 
----
+
 Files:
 - [PYTHON/response.py][response]
 - [PYTHON/vecResponse.py][vec]
@@ -97,6 +97,6 @@ pip install --upgrade gensim
 [vec]: PYTHON/vecResponse.py
 
 ## Webpages 
----
+
 Files:
 - 
