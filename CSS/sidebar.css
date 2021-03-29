@@ -1,0 +1,103 @@
+/*Credit W3schools for format of design*/
+/* SIDEBAR STUFF*/
+:root {
+    --color-one: #CC940C;
+    --color-two: #262626;
+    --color-three: #c0c0c0;
+    --color-four:#dfdfdf;
+    --color-five:#f8f8f8;
+    --black: #000000;
+    --white: #ffffff;
+}
+#sidebar{
+  z-index: 3;
+}
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: var(--color-two);
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+  z-index: 3;
+}
+
+.sidenav a{
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: var(--color-four);
+  display: block;
+  transition: 0.3s;
+}
+.lineup a {
+    padding: 8px 8px 8px 8px;
+    display: inline-block;
+}
+
+.sidenav a:hover {
+  color: var(--white);
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+#sidebar {
+    position: fixed;
+    top: 1%;
+    left: 1%;
+    color: var(--white);
+}
+
+#main {
+    transition: margin-left .5s;
+    height:100%;
+    width: 100%;
+}
+
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+.fa {
+    font-size: 30px;
+    width: 50px;
+    text-align: center;
+    text-decoration: none;
+    margin: 5px 2px;
+}
+
+.fa:hover {
+    color: var(--white);
+}
+
+.fa-facebook {
+    background: var(--color-two);
+    color: var(--color-four);
+}
+.fa-google {
+    background: var(--color-two);
+    color: var(--color-four);
+}
+.fa-google:hover {
+
+}
+
+.fa-instagram {
+  background: var(--color-two);
+  color: var(--color-four);
+}
+
+
+
+/* SIDEBAR STUFF*/
