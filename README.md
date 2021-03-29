@@ -98,6 +98,53 @@ pip install --upgrade gensim
 
 ## Webpages 
 
-Files:
-- 
+Files: HTML 
+- [index.html](index.html)
+- [Admin.php](Admin.php)
 
+Contains the main website structure and elements. 
+
+Files: Javascript
+- [JS/input.js](JS/input.js)
+- [JS/sidebar.js](JS/sidebar.js)
+- [JS/hidnshow.js](JS/hidnshow.js)
+- [JS/graph.js](JS/graph.js)
+- [JS/addbutton.js](JS/addbutton.js)
+
+These files allow the webpages to change dynamically. 
+
+Files: CSS
+- [CSS/sidebar.css](CSS/sidebar.css)
+- [CSS/splash.css](CSS/splash.css)
+- [CSS/body.css](CSS/body.css)
+- [CSS/modal.css](CSS/modal.css)
+- [CSS/admin.css](CSS/admin.css)
+
+The CSS files alter the appearance of the webpages. 
+
+Files: PHP
+- [PHP/Auth.php](PHP/Auth.php)
+
+This server side script handles authentication for the Admin site. Authentication is handled via the USNA webpage. However, only certain USNA members are given access to the admin website. This second check happens after the official USNA authentication. The list is located in [Auth.php](PHP/Auth.php). 
+
+```PHP
+$listofUsers = array('m213990',"m215394","m216750","m213198","m213462","nchamber");
+```
+
+Simply edit the list to adjust the USNA accounts that have access to the admin site. 
+
+### Deployment
+
+The webpages are currently held in the **public_html** folder of the midn.cs.usna.edu server on the alpha m213990. To host the website on a different account on the midn server simply upload all the above files. 
+
+### API Connection
+
+To receive information from the API, the front end webpage must make requests to the API application. An example is shown below.
+
+```js
+xhttp.open("POST", "http://10.1.83.57:5000/api/entries/rules/delete", true);
+xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+xhttp.send("id="+id);
+```
+
+The server and port number must match what was used in the API deployment via gunicorn. Next lies the path to the specific API function that needs to be called. These are written in [api.py](api). Finally a value is sent to the API function via POST. 
