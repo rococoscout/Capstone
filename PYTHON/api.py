@@ -225,13 +225,23 @@ def api_top3():
 
     return jsonify(newl)
 
-# Flag
+# add Flag
 @app.route('/api/flag', methods=['POST'])
 @cross_origin()
 def api_flag():
     ID = request.form.get('id') # rule id
     # print(int(ID))
     sql = f'CALL sp_addFlag({int(ID)});'
+    print(sql)
+    return db.execute(sql)
+
+# Sub Flag
+@app.route('/api/removeFlag', methods=['POST'])
+@cross_origin()
+def api_remove_flag():
+    ID = request.form.get('id') # rule id
+    # print(int(ID))
+    sql = f'CALL sp_subFlag({int(ID)});'
     print(sql)
     return db.execute(sql)
 
