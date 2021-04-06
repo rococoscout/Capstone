@@ -258,6 +258,11 @@ def api_clear_unmatched():
     sql = f'CALL sp_clearUnmatched();'
     return db.execute(sql)
 
+@app.route('/api/rule/pairs', methods=['POST'])
+@cross_origin()
+def api_get_pairs():
+    sql = f'CALL sp_getPairs();'
+    return jsonify(db.fetch(sql))
 
 def myconverter(o):
     if isinstance(o, datetime.datetime):
