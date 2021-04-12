@@ -177,7 +177,7 @@ def api_get_graph():
             'GROUP BY Date_FORMAT(dateCreated, "%Y-%m-%d"), title;'
     
     l = db.fetch(sql)
-
+    print(l)
     title = l[0]["title"]
 
     reformat = ()
@@ -187,6 +187,8 @@ def api_get_graph():
         data.append({key: item[key] for key in extract})
     reformat = (title, data)
 
+
+    print(reformat)
     return jsonify(reformat)
 
 
