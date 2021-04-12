@@ -117,7 +117,7 @@ class Rule:
 
     @staticmethod
     def getRulesDict(search=""):
-        rs = Rule.get_rule_entries(s=search)
+        rs = Rule.get_rule_entries(s=search, page_size=1000)
         
         for r in rs:
             ID = r["idRules"]
