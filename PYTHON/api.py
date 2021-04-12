@@ -225,6 +225,8 @@ def api_top3():
     for item in l:
         newl[item['title']].append({key: item[key] for key in extract})
 
+    print(newl)
+
     return jsonify(newl)
 
 # add Flag
