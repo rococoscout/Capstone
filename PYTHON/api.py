@@ -146,7 +146,10 @@ def api_edit_add():
     idname = 'Id' + str(table)
     print(field, idname)
 
-    sql = f'INSERT INTO {table} (IdRules, {field}) VALUES ({int(ID)}, "{newitem}");'
+    if table == 'Questions':
+        sql = f'INSERT INTO Questions (IdRules, question, isExample) VALUES ({int(ID)}, "{newitem}", 1);'
+    else:
+        sql = f'INSERT INTO {table} (IdRules, {field}) VALUES ({int(ID)}, "{newitem}");'
     print(sql)
     db.execute(sql)
 
