@@ -41,7 +41,7 @@ def getVecAnswer(rules, userinput):
     if allscores[0][1] > .95:
         rule = allscores[0][0]
         rule.vector = rule.vector + uservec
-        # rule.addQuestion(userinput)
+        rule.addQuestion(userinput)
         rule.updateVector()
         return rule.answers[0]
     else:
