@@ -25,7 +25,7 @@ class Rule:
         return Rule.db.execute(sql)
 
     def addQuestion(self, q):
-        sql = f'INSERT INTO Questions (question, idRules) VALUES ("{q}", {self.id});'
+        sql = f'INSERT INTO Questions (question, idRules, isExample) VALUES ("{q}", {self.id}, 1);'
         print(sql)
         return Rule.db.execute(sql)
 
