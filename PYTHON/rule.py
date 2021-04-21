@@ -6,7 +6,7 @@ import numpy as np
 
 class Rule:
     db = DBHelper()
-    def __init__(self, regexes, answers, questions, title, description, ID = None, vector = np.zeros(50)):
+    def __init__(self, regexes, answers, questions, title, description, ID = None, vector = np.zeros(50), priority=5):
         self.id = ID                # rule ID
         self.regexes = regexes      # List of Regular Expression
         self.answers = answers      # List of answers based on the Rule
@@ -14,6 +14,7 @@ class Rule:
         self.vector = vector        # The total vector representation of the list of Questions
         self.title = title
         self.description = description
+        self.priority = priority
 
 
     '''
@@ -70,15 +71,17 @@ class Rule:
     Returns a list of class Rules
     '''
     @staticmethod
-    def getRules(isNumpy=True, s=""):
+    def getRules(priority=1, isNumpy=True, s=""):
         rules = []
 
-        sql = f'SELECT idRules, totalVector, title, description FROM Rules WHERE title LIKE "%{s}%";'
+        sql = f'SELECT idRules, totalVector, title, description, priority FROM Rules WHERE title LIKE "%{s}%" AND priority = {priority};'
         print(sql)
         ruleEntries = Rule.db.fetch(sql)
 
         # for all rules
         for r in ruleEntries:
+            pri = r['priority']
+
             # get id, totalVector, and regex
             ID = r['idRules']
             vec = r['totalVector']
@@ -103,7 +106,7 @@ class Rule:
             ans = Rule.db.fetchNoDict(sql)
 
             # create Rule object and append
-            rules.append(Rule(rs, ans, qs, title, des, ID, vec))
+            rules.append(Rule(rs, ans, qs, title, des, ID, vec, priority=pri))
 
         # return list
         return rules
@@ -152,7 +155,6 @@ def myconverter(o):
  
 
 
-import pprint
+from pprint import pprint
 if __name__ == "__main__":
-    pp = pprint.PrettyPrinter()
-    pp.pprint(Rule.getRulesDict('gre'))
+    pprint(Rule.getRulesDict('gre'))
