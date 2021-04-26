@@ -271,6 +271,16 @@ def api_get_pairs():
     sql = f'CALL sp_getPairs();'
     return jsonify(db.fetch(sql))
 
+@app.route('/api/priority/update', methods=['POST'])
+@cross_origin()
+def api_update_priority():
+    id_ = request.form.get('id') # rule id
+    priority = request.form.get('priority') # pri 
+
+    sql = f'CALL sp_updatePriority({id_}, {priority});'
+    return db.execute(sql)
+
+
 def myconverter(o):
     if isinstance(o, datetime.datetime):
         return o.__str__()
