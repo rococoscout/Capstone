@@ -43,11 +43,11 @@ def getAnswer(input):
         matchedRules = reg.getRegexAnswer(allRules, input)
         if(matchedRules == None):
             if checkLanguage(input):
-                answer = vec.getVecAnswer(allRules, input)
+                answer = vec.getVecAnswer(allRules, input, False)
             else:
                 answer = "It seems that you have entered input that is not in English. \n Unfortunately I only speak English! \n Please translate your question so I can properly assist you!"
         else:
-            answer = vec.getVecAnswer(matchedRules, input)
+            answer = vec.getVecAnswer(matchedRules, input, True)
         if(answer != None):
             break
             
