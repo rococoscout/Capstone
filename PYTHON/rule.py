@@ -26,7 +26,7 @@ class Rule:
         return Rule.db.execute(sql)
 
     def addQuestion(self, q):
-        sql = f'INSERT INTO Questions (question, idRules, isExample) VALUES ("{q}", {self.id}, 1);'
+        sql = f'INSERT INTO Questions (question, idRules, isExample) VALUES ("{q}", {self.id}, 0);'
         print(sql)
         return Rule.db.execute(sql)
 
@@ -71,7 +71,7 @@ class Rule:
     Returns a list of class Rules
     '''
     @staticmethod
-    def getRules(priority=1, isNumpy=True, s=""):
+    def getRules(priority=5, isNumpy=True, s=""):
         rules = []
 
         sql = f'SELECT idRules, totalVector, title, description, priority FROM Rules WHERE title LIKE "%{s}%" AND priority = {priority};'
