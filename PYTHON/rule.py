@@ -100,7 +100,8 @@ class Rule:
             # based off id get list of questions
             sql = f"SELECT DISTINCT question FROM Questions WHERE idRules = {ID} AND isExample = TRUE;"
             qs = Rule.db.fetchNoDict(sql)
-
+            if ID == 192:
+                print(qs)
             # based off id get list of answers
             sql = f"SELECT answer FROM Answers WHERE Answers.idRules = {ID};"
             ans = Rule.db.fetchNoDict(sql)
@@ -157,4 +158,4 @@ def myconverter(o):
 
 from pprint import pprint
 if __name__ == "__main__":
-    pprint(Rule.getRulesDict('gre'))
+    pprint(Rule.getRulesDict('how'))
