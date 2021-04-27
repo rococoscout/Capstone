@@ -24,10 +24,9 @@ def getVecAnswer(rules, userinput):
     if uservec.all() == errorvec.all():
         return None
 
-    if len(rules)==1:
-        print("lenrules=1")
-        rules[0].addQuestion(userinput)
-        return rules[0].answers[0]
+    #if len(rules)==1:
+        #rules[0].addQuestion(userinput)
+        #return rules[0].answers[0]
 
     allscores = list()
     for rule in rules:

@@ -36,10 +36,10 @@ def getAnswer(input):
 
     #if(predict([input]) == 0):
 #    if(pf.is_clean(input)):
-    for i in range(1,5):
+    for i in range(1,6):
         allRules = Rule.getRules(priority=i)
         matched=False
-
+        
         matchedRules = reg.getRegexAnswer(allRules, input)
         if(matchedRules == None):
             if checkLanguage(input):
