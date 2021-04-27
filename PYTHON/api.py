@@ -46,13 +46,13 @@ def api_input():
     ans = getAnswer(inp)
     generic = "I'm not too sure about"
     language = "It seems that you have entered input that is not in English"
-    print(generic in ans)
+    # print(generic in ans)
     if generic in ans or language in ans:
         return jsonify([{'idAnswers':-1, 'answer': ans}])
 
     sql = f'SELECT idAnswers, answer FROM Answers WHERE answer="{ans}";'
     response = db.fetch(sql)
-    print(response)
+    # print(response)
     return jsonify(response)
 
 
@@ -180,7 +180,7 @@ def api_get_graph():
             'GROUP BY Date_FORMAT(dateCreated, "%Y-%m-%d"), title;'
     
     l = db.fetch(sql)
-    print(l)
+    # print(l)
     title = l[0]["title"]
 
     reformat = ()
@@ -228,7 +228,7 @@ def api_top3():
     for item in l:
         newl[item['title']].append({key: item[key] for key in extract})
 
-    print(newl)
+    # print(newl)
 
     return jsonify(newl)
 

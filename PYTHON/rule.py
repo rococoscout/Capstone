@@ -27,7 +27,7 @@ class Rule:
 
     def addQuestion(self, q):
         sql = f'INSERT INTO Questions (question, idRules, isExample) VALUES ("{q}", {self.id}, 0);'
-        print(sql)
+        # print(sql)
         return Rule.db.execute(sql)
 
     def addAnswer(self, a):
@@ -45,12 +45,12 @@ class Rule:
             json_vec = json.dumps(self.vector.tolist())
         sql = f'INSERT INTO Rules (title, description, totalVector) VALUES ("{self.title}", "{self.description}", "{json_vec}");'
 
-        print(sql)
+        # print(sql)
         print(Rule.db.execute(sql))
 
         # get ID
         sql = f'SELECT idRules FROM Rules WHERE title="{self.title}";'
-        print(sql)
+        # print(sql)
         print(Rule.db.fetchNoDict(sql))
         self.id = Rule.db.fetchNoDict(sql)[0]
 
@@ -75,7 +75,7 @@ class Rule:
         rules = []
 
         sql = f'SELECT idRules, totalVector, title, description, priority FROM Rules WHERE title LIKE "%{s}%" AND priority = {priority};'
-        print(sql)
+        # print(sql)
         ruleEntries = Rule.db.fetch(sql)
 
         # for all rules
@@ -115,7 +115,7 @@ class Rule:
     def get_rule_entries(s="", page_size=50, page_num=0):
         offset = page_size*page_num
         sql = f'CALL sp_getRulesPage("{s}", {page_size}, {offset})' 
-        print(sql)
+        # print(sql)
         return Rule.db.fetch(sql)
 
     @staticmethod
