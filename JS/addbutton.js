@@ -1,26 +1,30 @@
 
 
-var mainHeader = ["Title","Description","Options"];
+var mainHeader = ["Title","Description","Priority","Options"];
 
 
 function ltor(header,importlist){
   window.list  = JSON.parse(importlist);
   message = '<div class="row header-row">';
+  size =  [2,6,2,2];
   for(a in header){
-    message += '<div class="col-sm">'+ header[a] + '</div>';
+    message += '<div class="col-'+size[a]+'">'+ header[a] + '</div>';
   }
   message += '</div><hr>';
   console.log(list);
   for(i in list){
     flagger = false;
-    message += '<div class="row">';
-    message += '<div class="col table">';
+    message += '<div class="row" id="'+list[i]["idRules"]+'">';
+    message += '<div class="col-2 table">';
     message += list[i]["title"];
     message+= '</div>';
-    message += '<div class="col table">';
+    message += '<div class="col-6 table">';
     message += list[i]["description"];
     message+= '</div>';
-    message+= '<div class="col table">';
+    message += '<div class="col-2 table">';
+    message += '<div class="dropdown"><button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">'+list[i]["priority"]+'</button><div class="dropdown-menu" aria-labelledby="Priority"><a class="dropdown-item" >1</a><a class="dropdown-item" >2</a><a class="dropdown-item" >3</a><a class="dropdown-item" >4</a><a class="dropdown-item" >5</a></div></div>';
+    message+= '</div>';
+    message+= '<div class="col-2 table">';
     message+= '<img src="./PIC/delete.png" class="delete" data-toggle="modal" data-target="#dltRule" onclick="storeid('+list[i]["idRules"]+')">';
     message+= '<img src="./PIC/edit.png" class="edit" data-toggle="modal" data-target="#editRule" onclick="storeid('+list[i]["idRules"]+','+i+')">';
     message+= '<img src="./PIC/graph.png" class="graph" onclick="graphrule('+list[i]["idRules"]+')">';
@@ -88,6 +92,19 @@ function Btmkr(header,Entrylist){
 
 }
 
+function ClearUnmatched(){
+  var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+       document.getElementById('Unmatched').innerHTML = Umkr(JSON.parse(this.response));
+      }
+    };
+    xhttp.open("POST", "http://10.1.83.57:5000/api/unmatched/clear", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send();
+  displayunmatched();
+}
+
 function Umkr(body){
   message = '<div class="row header-row" >';
   message += '<div class="col">Unmatched Question</div>';
@@ -103,25 +120,61 @@ function Umkr(body){
   return message;
 }
 
+function Hmkr(body){
+  message = "";
+
+  for(i in body){
+    message += '<b>'+body[i]["dateCreated"]+'</b>';
+    message += '<div class="row" >';
+    message += '<div class="col-xlg">User: '+body[i]["question"]+'</div>';
+    message += '</div>';
+    message += '<div class="row" >';
+    message += '<div class="col-xlg">Chadbot: '+body[i]["answer"]+'</div>';
+    message += '</div>';
+  }
+  return message;
+
+}
+
 displayrules();
 displayunmatched();
+displayhistory();
 
 function displayunmatched(){
+  button = '<button type="button" class="btn btn-light" onclick="ClearUnmatched()">Clear Unmatched Rules</button>';
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
-     document.getElementById('Unmatched').innerHTML = Umkr(JSON.parse(this.response));
+     document.getElementById('Unmatched').innerHTML = button+ Umkr(JSON.parse(this.response));
     }
   };
   xhttp.open("POST", "http://10.1.83.57:5000/api/unmatched/list", true);
   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   xhttp.send();
 }
+
+function displayhistory(){
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      console.log(JSON.parse(this.response));
+     document.getElementById('History').innerHTML = Hmkr(JSON.parse(this.response));
+    }
+  };
+  xhttp.open("POST", "http://10.1.83.57:5000/api/rule/pairs", true);
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhttp.send();
+}
+
 function displayrules(){
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
        document.getElementById("Rule").innerHTML = ltor(mainHeader,this.responseText);
+       document.getElementById("Rule").style.color = "white";
+       console.log("new");
+       $(".dropdown-item").on("click",function(event){this.parentNode.parentNode.childNodes[0].innerHTML=this.innerHTML;editPriority(this.parentNode.parentNode.parentNode.parentNode.id,this.innerHTML);});
+
       }
     };
     xhttp.open("GET", "http://10.1.83.57:5000/api/entries/rules", true);
@@ -148,15 +201,7 @@ function addrule(){
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
     //  console.log(this.responseText);
-     var xhttp1 = new XMLHttpRequest();
-     xhttp1.onreadystatechange = function() {
-       if (this.readyState == 4 && this.status == 200) {
-        document.getElementById("Rule").innerHTML = ltor(mainHeader,this.responseText);
-       }
-     };
-     xhttp1.open("GET", "http://10.1.83.57:5000/api/entries/rules", true);
-     xhttp1.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-     xhttp1.send();
+    displayrules();
     }
   };
   var questions = document.getElementById('questions_add').value.trim();
@@ -211,7 +256,7 @@ function storeid(newid, loc){
    document.getElementById('answers_edit').innerHTML+= '<button type="button" class="btn btn-primary"  data-toggle="modal" data-target="#addmdl" id="Answers" onclick=\'addEntry('+id+',"Answers"'+')\'>Add Answer</button>';
    document.getElementById('questions_edit').innerHTML=Btmkr(['idQuestions','question'],list[loc]['questions']);
    document.getElementById('questions_edit').innerHTML+= '<button type="button" class="btn btn-primary"  data-toggle="modal" data-target="#addmdl" id="Questions" onclick=\'addEntry('+id+',"Questions"'+')\'>Add Question</button>';
-   document.getElementById('questions_edit').innerHTML+= '<button type="button" class="btn btn-dark" onclick=\'showUQ("'+newid+'","'+loc+'")\'>View Unresolved Questions</button>';
+   document.getElementById('questions_edit').innerHTML+= '<button type="button" class="btn btn-dark" onclick=\'showUQ("'+newid+'","'+loc+'")\'>View Unapproved Questions</button>';
    document.getElementById("edit_footer").innerHTML='<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" data-dismiss="modal" onclick="editrule('+id+')">Done</button>';
    $(".editval").keyup(function(event){
 
@@ -233,15 +278,7 @@ function deleterule(){
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
     //  console.log(this.responseText);
-     var xhttp1 = new XMLHttpRequest();
-     xhttp1.onreadystatechange = function() {
-       if (this.readyState == 4 && this.status == 200) {
-        document.getElementById("Rule").innerHTML = ltor(mainHeader,this.responseText);
-       }
-     };
-     xhttp1.open("GET", "http://10.1.83.57:5000/api/entries/rules", true);
-     xhttp1.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-     xhttp1.send();
+    displayrules();
     }
   };
 
@@ -291,7 +328,7 @@ function addEntry(newid,tablename){
 
   document.getElementById('add-footer').innerHTML = '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editRule" data-dismiss="modal" onclick=\'addfinalize('+newid+',"'+tablename+'")\' >Add</button>';
   $('#editRule').modal('hide');
-}
+  }
 
 function addfinalize(id,tablename){
   transferback = {"Questions":"question","Answers":"answer","Regexes":"regex"};
@@ -370,4 +407,16 @@ function showUQ(id,loc){
   document.getElementById('tableofQuestions').innerHTML = table;
   $('#listQ').modal('show');
   $('#editRule').modal('hide');
+}
+
+function editPriority(id,priority){
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+
+    }
+  };
+  xhttp.open("POST", "http://10.1.83.57:5000/api/priority/update", true);
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhttp.send("id="+id+"&priority="+priority);
 }

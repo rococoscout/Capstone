@@ -40,23 +40,23 @@ Cited Sources:
   <!-- Button trigger modal -->
   <!-- Credit from: Bootstrap 4.0.0 website -->
   <div class="row">
-    <div class="col">
+    <div class="col-2">
       <a type="button" class="btn btn-secondary" href="http://midn.cs.usna.edu/~m213990/cap/Capstone/">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-return-left" viewBox="0 0 16 16">
             <path fill-rule="evenodd" d="M14.5 1.5a.5.5 0 0 1 .5.5v4.8a2.5 2.5 0 0 1-2.5 2.5H2.707l3.347 3.346a.5.5 0 0 1-.708.708l-4.2-4.2a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 8.3H12.5A1.5 1.5 0 0 0 14 6.8V2a.5.5 0 0 1 .5-.5z"></path>
         </svg>
       </a>
     </div>
-    <div class="col">
-      <div id="graph"><div id="curve_chart" style="width: 900px; height: 500px"></div></div>
+    <div class="col-8">
+      <div id="graph"><div id="curve_chart" style="width: auto; height: 500px"></div></div>
     </div>
-    <div class="col"></div>
+    <div class="col-2"></div>
   </div>
 
   <div class="row">
     <div class="col">
     </div>
-    <div class="col">
+    <div class="col-8">
       <input id="search" class="form-control" type="text" placeholder="Search...">
       <br>
       <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addRule" style="float:right;">
@@ -69,12 +69,16 @@ Cited Sources:
       <li class="nav-item">
          <a class="nav-link" id="Unmatched-tab" data-toggle="tab" href="#Unmatched" role="tab" aria-controls="Unmatched" aria-selected="false">Unmatched</a>
       </li>
+      <li class="nav-item">
+         <a class="nav-link" id="Unmatched-tab" data-toggle="tab" href="#History" role="tab" aria-controls="Unmatched" aria-selected="false">History</a>
+      </li>
       </ul>
       <br>
       <br>
       <div class="tab-content" id="myTabContent">
-        <div class="tab-pane fade show active" id="Rule" role="tabpanel" aria-labelledby="Rule-tab"></div>
+        <div class="tab-pane fade show active" id="Rule" role="tabpanel" aria-labelledby="Rule-tab"><div id="filler"></div></div>
         <div class="tab-pane fade" id="Unmatched" role="tabpanel" aria-labelledby="Unmatched-tab"></div>
+        <div class="tab-pane fade" id="History" role="tabpanel" aria-labelledby="History-tab"></div>
       </div>
     </div>
     <div class="col" id="dlttable">
@@ -166,7 +170,7 @@ Cited Sources:
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">List of Unresolved Questions</h5>
+          <h5 class="modal-title" id="exampleModalLongTitle">List of Unapproved Questions</h5>
 
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
@@ -217,4 +221,5 @@ Cited Sources:
 
   <script src="JS/addbutton.js"></script>
   <script src="JS/graph.js"></script>
+  <script src="JS/priority.js"></script>
 </html>

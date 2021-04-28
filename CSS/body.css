@@ -1,105 +1,168 @@
 :root {
   --main-Roboto: 'Roboto', sans-serif;
   --main-Raleway:'Raleway', sans-serif;
+  --main-Prada:'Prata',sans-serif;
   --main-padding: 15px;
-  --main-blue: #1D1D43;
+  --main-blue: #223343;
   --main-purple: #1F1127;
-  --main-tan: #F46A23;
+  --main-offwhite: #FAFBF3;
+  --background: black;
 }
 body{
-  top: 0px;
-  left: 0px;
+  scroll-snap-type: proximity;
+  scroll-snap-points-y: repeat(100%);
+  scroll-snap-type: y proximity;
+}
+#chad{
+  position: fixed;
+  background-color: var(--main-blue);
+  border-radius: 50%;
+  color: white;
+  top: 10px;
+  right: 10px;
+  z-index: 6;
 }
 
+#chadtxt{
+  position: fixed;
+  top: 10px;
+  right: 100px;
+  color: white;
+  background:#464646;
+  z-index: 6;
+  border-radius: 20px;
+  padding: 8px 15px;
+  margin-top: 1px;
+  margin-bottom: 1px;
+  display: inline-block;
+}
+#chadtxt:before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  bottom: 3px;
+  right: -20px;
+  height: 19px;
+  width: 20px;
+  background-color: transparent;
+  border-radius: 0% 50% 50% 50%;
+  box-shadow: -8px 4px 0px 0px #464646;
+
+}
+
+
+.chad_icon{
+  height: 8vh;
+  width: 8vh;
+}
 .section {
   height: 100vh;
+  scroll-snap-align: center;
 }
 #detail {
-  background-color: var(--main-purple);
-  color: var(--main-tan);
+  /*background-image: linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.2),rgba(0, 0, 0, .5),rgba(0, 0, 0, .7), rgba(0, 0, 0, 1)), url(../PIC/Top.jpg);*/
+  background-color: #223343;
+  /*background-size:cover;*/
+  /*background-attachment: fixed;*/
+  /*background-position:bottom;*/
+  /*background-color: var(--main-purple);*/
   Position:relative;
 }
+
 #about {
-  background-color: var(--main-blue);
-  color:  var(--main-purple);
+  background-color: black;
   Position:relative;
+}
+
+.name{
+  margin-top:1vh;
+  font-size: 2.5vh;
+  font-style: var(--main-Prata) !important;
+}
+.description{
+  margin:1vh;
+  font-size: 1.7vh;
+  text-align: justify;
+  font-style: var(--main-Prata) !important;
+  hyphens: auto;
 }
 
 #contact {
-  background-color: var(--main-tan);
-  color:  var(--main-blue);
+  /*background-image:linear-gradient(to bottom, rgba(245, 246, 252, 0.52), rgba(0, 0, 0, 0.73)), url(../PIC/Bottom.jpg);*/
+  background-color: #223343;
+  /*background-position: top;*/
+
+  background-attachment: fixed;
+  background-size: cover;
+  /*background-color: var(--main-tan);*/
+  color:  black;
   Position:relative;
 }
 
-.professor{
-  height: 565px;
-  width: 456px;
-  position:absolute;
-  right: 50px;
-  top: 100px;
-  background-color: #1E1E1E;
-  padding: 20px;
-  border: 5px solid #0c0d0d;
+#map {
+  height: 400px;
+  width: 100%;
 }
-article {
-  font: var(--main-Raleway);
+
+label{
+  font-style: var(--main-Prata) !important;
+  font-size: 3vh;
+  color: var(--main-offwhite);
+}
+
+.Title{
+  font-family: var(--main-Roboto);
+  font-size: 20vh;
+  text-align: center;
+  color: white;
+}
+
+
+h2 {
+  font: var(--main-Prata);
   float:left;
-  color: grey;
+  color:var(--main-offwhite);
 }
-#art_block{
-  height: 900px;
-  width: 550px;
-  margin-top: 75px;
-  margin-left: -10px;
-  background-color: #1E1E1E;
+#about_us_body{
+  margin-top:-5vh;
+  /*opacity: 0;*/
 }
 
-.professor_header{
-  font-size: 50px;
-
+.outro{
+  padding: 1vh;
+  font-size: 2vh;
 }
-.professor_text{
-  font-size: 24px;
-
+.outro_title{
+  padding: 1vh;
+  margin: 1vh;
+  font-size: 5vh;
 }
 .profile{
-  height: 300px;
-  width: 300px;
-  background-color: black;
+  height: 20vh;
+  width: 20vh;
+  background-color: grey;
   border-radius:50%;
-  transition: .5s;
-  position:absolute;
   z-index: 1;
+  margin-top: 1vh;
 }
 
-.profile:hover{
-  border-radius:0%;
-  z-index: 2;
-  box-shadow: 400px 0px #1E1E1E;
+#moon{
+  position: absolute;
+  height: 40vh;
+  width: 40vh;
+  top: 140vh;
+  right: 4vw;
+  z-index: 7;
 }
-.profile1{
-  top: 20px;
-  left: 20px;
+#cloud_top{
+  width:100%;
+  position: absolute;
+  top: 130.5vh;
+  z-index: 8;
 }
-
-.profile2 {
-  top: 20px;
-  left: 340px;
-}
-
-.profile3{
-  margin: 0px;
-  top: 290px;
-  left: 180px;
-}
-
-.profile4{
-  margin: 0px;
-  top:560px;
-  left: 20px;
-}
-.profile5{
-  margin: 0px;
-  top: 560px;
-  left: 340px;
+#cloud_back{
+  width:100%;
+  position: absolute;
+  top: 136vh;
+  z-index: 6;
 }

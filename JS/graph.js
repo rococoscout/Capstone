@@ -29,10 +29,11 @@ function top3(){
       google.charts.setOnLoadCallback(drawChart);
 
       function drawChart() {
-
+        console.log(Object.values(header));
         var body = new Array(Object.values(header));
         addRowLabels(body,top3input);
-        // console.log(body);
+        // body[1] = ["13-MAR-21",1,5,1];
+        console.log(body);
         window.data = google.visualization.arrayToDataTable(body);
         window.options = {
           title: 'Rules Matched',
@@ -75,22 +76,29 @@ function addRowLabels(body,full){
   today = new Date();
   yesterday = new Date(today);
   var dateOffset = (24*60*60*1000)
-  for(i=0;i<30;i++){
-    yesterday.setTime(today.getTime()-(dateOffset*(30-i)));
+  for(i=1;i<33;i++){
+    yesterday.setTime(today.getTime()-(dateOffset*(31-i)));
     body.push([months[yesterday.getMonth()]+"-"+yesterday.getDate(),0,0,0]);
     rowTracker[months[yesterday.getMonth()]+"-"+yesterday.getDate()]=i;
   }
+  // console.log("THIS IS Body of 1 3");
+  // console.log(body);
+  // console.log("THIS IS FULL");
+  // console.log(full);
   counter = 1;
   for(i in full){
+
     for(ii in full[i]){
       // console.log(full[i][ii]["Date"]);
       // console.log(full[i][ii]["Count"]);
       compareDate = new Date(full[i][ii]["Date"]);
-      if(today.getTime()-(dateOffset*30)<compareDate.getTime()){
-        // console.log(months[compareDate.getMonth()]+"-"+compareDate.getDate());
-        // console.log(body);
+      if(today.getTime()-(dateOffset*30)<=compareDate.getTime()){
+        // console.log("TIME "+ months[compareDate.getMonth()]+"-"+compareDate.getDate());
+        // console.log(rowTracker[months[compareDate.getMonth()]+"-"+compareDate.getDate()]);
         // console.log(counter);
         // console.log(full[i][ii]["Count"]);
+        // console.log(rowTracker[months[compareDate.getMonth()]+"-"+compareDate.getDate()]);
+        // console.log(full[i][ii]);
         body[rowTracker[months[compareDate.getMonth()]+"-"+compareDate.getDate()]][counter] =  full[i][ii]["Count"];
       }
     }
