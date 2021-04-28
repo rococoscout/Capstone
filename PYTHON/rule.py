@@ -6,7 +6,7 @@ import numpy as np
 
 class Rule:
     db = DBHelper()
-    def __init__(self, regexes, answers, questions, title, description, ID = None, vector = np.zeros(50)):
+    def __init__(self, regexes, answers, questions, title, description, ID = None, vector = np.zeros(50), priority=5):
         self.id = ID                # rule ID
         self.regexes = regexes      # List of Regular Expression
         self.answers = answers      # List of answers based on the Rule
@@ -14,6 +14,7 @@ class Rule:
         self.vector = vector        # The total vector representation of the list of Questions
         self.title = title
         self.description = description
+        self.priority = priority
 
 
     '''
@@ -25,8 +26,8 @@ class Rule:
         return Rule.db.execute(sql)
 
     def addQuestion(self, q):
-        sql = f'INSERT INTO Questions (question, idRules) VALUES ("{q}", {self.id});'
-        print(sql)
+        sql = f'INSERT INTO Questions (question, idRules, isExample) VALUES ("{q}", {self.id}, 0);'
+        # print(sql)
         return Rule.db.execute(sql)
 
     def addAnswer(self, a):
@@ -44,12 +45,12 @@ class Rule:
             json_vec = json.dumps(self.vector.tolist())
         sql = f'INSERT INTO Rules (title, description, totalVector) VALUES ("{self.title}", "{self.description}", "{json_vec}");'
 
-        print(sql)
+        # print(sql)
         print(Rule.db.execute(sql))
 
         # get ID
         sql = f'SELECT idRules FROM Rules WHERE title="{self.title}";'
-        print(sql)
+        # print(sql)
         print(Rule.db.fetchNoDict(sql))
         self.id = Rule.db.fetchNoDict(sql)[0]
 
@@ -70,15 +71,17 @@ class Rule:
     Returns a list of class Rules
     '''
     @staticmethod
-    def getRules(isNumpy=True, s=""):
+    def getRules(priority=5, isNumpy=True, s=""):
         rules = []
 
-        sql = f'SELECT idRules, totalVector, title, description FROM Rules WHERE title LIKE "%{s}%";'
-        print(sql)
+        sql = f'SELECT idRules, totalVector, title, description, priority FROM Rules WHERE title LIKE "%{s}%" AND priority = {priority};'
+        # print(sql)
         ruleEntries = Rule.db.fetch(sql)
 
         # for all rules
         for r in ruleEntries:
+            pri = r['priority']
+
             # get id, totalVector, and regex
             ID = r['idRules']
             vec = r['totalVector']
@@ -97,13 +100,14 @@ class Rule:
             # based off id get list of questions
             sql = f"SELECT DISTINCT question FROM Questions WHERE idRules = {ID} AND isExample = TRUE;"
             qs = Rule.db.fetchNoDict(sql)
-
+            if ID == 192:
+                print(qs)
             # based off id get list of answers
             sql = f"SELECT answer FROM Answers WHERE Answers.idRules = {ID};"
             ans = Rule.db.fetchNoDict(sql)
 
             # create Rule object and append
-            rules.append(Rule(rs, ans, qs, title, des, ID, vec))
+            rules.append(Rule(rs, ans, qs, title, des, ID, vec, priority=pri))
 
         # return list
         return rules
@@ -112,12 +116,12 @@ class Rule:
     def get_rule_entries(s="", page_size=50, page_num=0):
         offset = page_size*page_num
         sql = f'CALL sp_getRulesPage("{s}", {page_size}, {offset})' 
-        print(sql)
+        # print(sql)
         return Rule.db.fetch(sql)
 
     @staticmethod
     def getRulesDict(search=""):
-        rs = Rule.get_rule_entries(s=search)
+        rs = Rule.get_rule_entries(s=search, page_size=1000)
         
         for r in rs:
             ID = r["idRules"]
@@ -126,7 +130,7 @@ class Rule:
             r['regexes'] = Rule.db.fetch(sql)
 
             # based off id get list of questions
-            sql = f"SELECT DISTINCT question, idQuestions FROM Questions WHERE Questions.idRules = {ID};"
+            sql = f"SELECT DISTINCT question, idQuestions FROM Questions WHERE Questions.idRules = {ID} AND isExample = TRUE;"
             r['questions'] = Rule.db.fetch(sql)
             
             # get non example questions
@@ -152,7 +156,6 @@ def myconverter(o):
  
 
 
-import pprint
+from pprint import pprint
 if __name__ == "__main__":
-    pp = pprint.PrettyPrinter()
-    pp.pprint(Rule.getRulesDict('gre'))
+    pprint(Rule.getRulesDict('how'))

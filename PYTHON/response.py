@@ -36,34 +36,36 @@ def getAnswer(input):
 
     #if(predict([input]) == 0):
 #    if(pf.is_clean(input)):
-    allRules = Rule.getRules()
-    matched=False
-
-    matchedRules = reg.getRegexAnswer(allRules, input)
-    if(matchedRules == None):
-        if checkLanguage(input):
-            answer = vec.getVecAnswer(allRules, input)
+    for i in range(1,6):
+        allRules = Rule.getRules(priority=i)
+        matched=False
+        
+        matchedRules = reg.getRegexAnswer(allRules, input)
+        if(matchedRules == None):
+            if checkLanguage(input):
+                answer = vec.getVecAnswer(allRules, input, False)
+            else:
+                answer = "It seems that you have entered input that is not in English. \n Unfortunately I only speak English! \n Please translate your question so I can properly assist you!"
         else:
-            answer = "It seems that you have entered input that is not in English. \n Unfortunately I only speak English! \n Please translate your question so I can properly assist you!"
-    else:
-        answer = vec.getVecAnswer(matchedRules, input)
+            answer = vec.getVecAnswer(matchedRules, input, True)
+        if(answer != None):
+            break
+            
     if(answer == None):
         answer= gen.getGenericAnswer(input)
         Rule.addUnmatchedQuestion(input)
     return answer
 """
     else:
-        answer = "Do you kiss your mother with that mouth?! Please filter out your foul language and try asking again please!"
+        answer = "[EXPLICIT LANGUAGE DETECTED]"
         return answer
 """
 
 if __name__ == '__main__':
-    #print(getAnswer("Fuck you"))
     print(getAnswer("Hi"))
     print(getAnswer("What is Computer Science?"))
     print(getAnswer("Tell me what computer science is about"))
     print(getAnswer("computer science is what?"))
     print(getAnswer("who made you?"))
-    print(getAnswer("How are babies made?"))
     print(getAnswer("Are you able to double major?"))
     print(getAnswer("Where to go for classes in computer science?"))

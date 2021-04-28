@@ -46,13 +46,13 @@ def api_input():
     ans = getAnswer(inp)
     generic = "I'm not too sure about"
     language = "It seems that you have entered input that is not in English"
-    print(generic in ans)
+    # print(generic in ans)
     if generic in ans or language in ans:
         return jsonify([{'idAnswers':-1, 'answer': ans}])
 
     sql = f'SELECT idAnswers, answer FROM Answers WHERE answer="{ans}";'
     response = db.fetch(sql)
-    print(response)
+    # print(response)
     return jsonify(response)
 
 
@@ -146,7 +146,10 @@ def api_edit_add():
     idname = 'Id' + str(table)
     print(field, idname)
 
-    sql = f'INSERT INTO {table} (IdRules, {field}) VALUES ({int(ID)}, "{newitem}");'
+    if table == 'Questions':
+        sql = f'INSERT INTO Questions (IdRules, question, isExample) VALUES ({int(ID)}, "{newitem}", 1);'
+    else:
+        sql = f'INSERT INTO {table} (IdRules, {field}) VALUES ({int(ID)}, "{newitem}");'
     print(sql)
     db.execute(sql)
 
@@ -177,7 +180,7 @@ def api_get_graph():
             'GROUP BY Date_FORMAT(dateCreated, "%Y-%m-%d"), title;'
     
     l = db.fetch(sql)
-
+    # print(l)
     title = l[0]["title"]
 
     reformat = ()
@@ -187,6 +190,8 @@ def api_get_graph():
         data.append({key: item[key] for key in extract})
     reformat = (title, data)
 
+
+    print(reformat)
     return jsonify(reformat)
 
 
@@ -223,9 +228,11 @@ def api_top3():
     for item in l:
         newl[item['title']].append({key: item[key] for key in extract})
 
+    # print(newl)
+
     return jsonify(newl)
 
-# Flag
+# add Flag
 @app.route('/api/flag', methods=['POST'])
 @cross_origin()
 def api_flag():
@@ -235,12 +242,43 @@ def api_flag():
     print(sql)
     return db.execute(sql)
 
+# Sub Flag
+@app.route('/api/removeFlag', methods=['POST'])
+@cross_origin()
+def api_remove_flag():
+    ID = request.form.get('id') # rule id
+    # print(int(ID))
+    sql = f'CALL sp_subFlag({int(ID)});'
+    print(sql)
+    return db.execute(sql)
+
 # Get unmatched questions
 @app.route('/api/unmatched/list', methods=['POST'])
 @cross_origin()
 def api_unmatched():
     sql = f'CALL sp_getUnmatched();'
     return jsonify(db.fetch(sql))
+
+@app.route('/api/unmatched/clear', methods=['POST'])
+@cross_origin()
+def api_clear_unmatched():
+    sql = f'CALL sp_clearUnmatched();'
+    return db.execute(sql)
+
+@app.route('/api/rule/pairs', methods=['POST'])
+@cross_origin()
+def api_get_pairs():
+    sql = f'CALL sp_getPairs();'
+    return jsonify(db.fetch(sql))
+
+@app.route('/api/priority/update', methods=['POST'])
+@cross_origin()
+def api_update_priority():
+    id_ = request.form.get('id') # rule id
+    priority = request.form.get('priority') # pri 
+
+    sql = f'CALL sp_updatePriority({id_}, {priority});'
+    return db.execute(sql)
 
 
 def myconverter(o):

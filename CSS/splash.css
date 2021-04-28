@@ -2,7 +2,7 @@ html, body {
     height: 100%;
     margin: 0;
     overflow:scroll;
-   overflow-x: hidden; /* Hide horizontal scrollbar */
+    overflow-x: hidden; /* Hide horizontal scrollbar */
 }
 ::-webkit-scrollbar {
     width: 0px;
@@ -13,10 +13,14 @@ html, body {
   --main-Roboto: 'Roboto', sans-serif;
   --main-Raleway:'Raleway', sans-serif;
   --main-padding: 15px;
+  --main-blue: #00203FFF;
+  --main-teal: #ADEFD1FF;
+  --main-tan: #EAD4A6;
 }
 
 #splash-head {
-    min-height: 100%;
+    width: 100%;
+    height:100%;
     background-color: black;
     position:relative;
     color: white;
@@ -31,10 +35,11 @@ html, body {
   animation: fadein 1s;
   text-align:center;
   position:absolute;
-  top: 20%;
+  top: 200px;
   left: 25%;
   font-size: max(12vw,40px);
   transition: 5s;
+  z-index: 2;
 }
 
 @keyframes fadein {
@@ -61,16 +66,21 @@ html, body {
 #Title{
   user-select: none;
   position:absolute;
+  background-color: inherit;
   left:-999px;
-  top: 1%;
+  padding: 1%;
+  width: 100%;
   font-family: var(--main-Roboto);
   font-size: max(12vw,40px);
   transition: 5s ease;
   opacity: 0;
+  z-index: 1;
 }
 #Title:hover{
   cursor: default;
 }
+
+
 #splash-body{
   user-select: none;
   font-family: helvetica;
@@ -85,20 +95,39 @@ html, body {
   align-items: center;
   transition: 4s;
   opacity: 0;
+  padding-bottom: 10px;
 }
 #splash-body:hover{
   cursor: default;
 }
 
 .chat {
+  /*max-height: 600px;*/
+  z-index:0;
+  bottom: 10px;
   width: 60%;
-   min-width: 375px;
+  min-width: 375px;
   display: flex;
   flex-direction: column;
-  padding: 10px;
+  overflow: scroll;
 }
 
 
+#input {
+  outline: none;
+  border-radius: 20px;
+  width: 70%;
+  text-align: left;
+  left: 30%;
+  bottom: 0px;
+  position: relative;
+  height: 37px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+#text{
+
+}
 
 
 .messages {
@@ -174,30 +203,30 @@ html, body {
 }
 
 #child1{
-  height: 16px;
-  width: 16px;
+  height: 10px;
+  width: 10px;
   border-radius: 70%;
   background: grey;
   position: absolute;
-  top: 12px;
+  top: 14px;
 }
 #child2{
-  height: 16px;
-  width: 16px;
+  height: 10px;
+  width: 10px;
   border-radius: 70%;
   background: grey;
   position: absolute;
   left: 35px;
-  top: 12px;
+  top: 14px;
 }
 #child3{
-  height: 16px;
-  width: 16px;
+  height: 10px;
+  width: 10px;
   border-radius: 70%;
   background: grey;
   position: absolute;
   left: 55px;
-  top: 12px;
+  top: 14px;
 }
 
 .mine {
@@ -237,16 +266,4 @@ html, body {
 
 .message.last{
   margin-bottom: 20px;
-}
-
-#input {
-  outline: none;
-  border-radius: 20px;
-  width: 70%;
-  text-align: left;
-  left: 30%;
-  position: relative;
-  height: 37px;
-  padding-left: 10px;
-  padding-right: 10px;
 }

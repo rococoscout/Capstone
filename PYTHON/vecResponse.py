@@ -4,65 +4,45 @@ import gensim.downloader as api
 from gensim.models.word2vec import Word2Vec
 
 embeds = api.load("glove-wiki-gigaword-50")
-#
-# rules = getRules()
-
 
 #Takes a list of Rules and input question
 #Returns a string answer if there were matches
 #Returns None if there were no matches
-def getVecAnswer(rules, userinput):
+def getVecAnswer(rules, userinput, isReg):
+
+    if len(rules) == 0:
+        return None
+
     question=clean(userinput)
     uservec= numpy.zeros(50)
     for word in question:
         if word not in embeds:
             continue
         uservec = embeds[word] + uservec
+
     errorvec = numpy.zeros(50)
     if uservec.all() == errorvec.all():
         return None
-    if len(rules)==1:
-        print("lenrules=1")
-        rules[0].vector = rules[0].vector + uservec
-        rules[0].addQuestion(userinput)
-        rules[0].updateVector()
-        return rules[0].answers[0]
+
+    #if len(rules)==1:
+        #rules[0].addQuestion(userinput)
+        #return rules[0].answers[0]
+
     allscores = list()
     for rule in rules:
-        make_total_vector(rule)
-        #score = cosine(uservec, rule.vector)
         for q in rule.questions:
             qvec = make_vector(q)
             score = cosine(uservec, qvec)
             if not numpy.isnan(score):
-                #potentially keep track of q matched
                 allscores.append((rule,score)) 
                 allscores.sort(reverse=True, key=lambda x:x[1])
-    if allscores[0][1] > .95:
+
+    if allscores[0][1] > .95 or isReg:
         rule = allscores[0][0]
-        rule.vector = rule.vector + uservec
         rule.addQuestion(userinput)
-        rule.updateVector()
         return rule.answers[0]
-    else:
-        Rule.addUnmatchedQuestion(userinput)
+    else: 
         return None
-
-
-#Takes a Rule and the embed to create a total vector based on the
-#rule's list of questions
-def make_total_vector(rule):
-    rule.vector = numpy.zeros(50)
-    for question in rule.questions:
-        cleanedQ = clean(question)
-        vec = numpy.zeros(50)
-        for word in cleanedQ:
-            if word not in embeds:
-                continue
-            vec = embeds[word] + vec
-        rule.vector = rule.vector + vec
-    rule.updateVector()
-    return
 
 #Makes a single vector
 def make_vector(question):
@@ -88,6 +68,15 @@ def cosine(vA, vB):
 
 if __name__ == "__main__":
 
-    testrule = Rule(1,None,["a"],["where is Hopper Hall"],None)
+    temp = ""
+    mainInput= input("Main input: ")
+    tempInput= input("Test input: ")
 
-    print(testrule.vector)
+    testvm = numpy.zeros(50)
+    testvm = make_vector(mainInput)
+    testvt = numpy.zeros(50)
+    while(tempInput != "q"):
+        testvt = make_vector(tempInput)
+        print(cosine(testvm,testvt))
+        tempInput= input("Test input: ")
+    
