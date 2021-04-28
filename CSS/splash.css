@@ -5,13 +5,13 @@ html, body {
     overflow-x: hidden; /* Hide horizontal scrollbar */
 }
 ::-webkit-scrollbar {
-    width: 0px;
-    background: transparent; /* make scrollbar transparent */
+    display: none;
 }
 
 :root {
   --main-Roboto: 'Roboto', sans-serif;
   --main-Raleway:'Raleway', sans-serif;
+  --main-Prada:'Prata',sans-serif;
   --main-padding: 15px;
   --main-blue: #00203FFF;
   --main-teal: #ADEFD1FF;
@@ -109,7 +109,6 @@ html, body {
   min-width: 375px;
   display: flex;
   flex-direction: column;
-  overflow: scroll;
 }
 
 
@@ -119,14 +118,15 @@ html, body {
   width: 70%;
   text-align: left;
   left: 30%;
-  bottom: 0px;
+  top: 0px;
   position: relative;
   height: 37px;
   padding-left: 10px;
   padding-right: 10px;
 }
 #text{
-
+  height: 40vh;
+  overflow: scroll !important;
 }
 
 
