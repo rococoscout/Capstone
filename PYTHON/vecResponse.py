@@ -8,7 +8,7 @@ embeds = api.load("glove-wiki-gigaword-50")
 #Takes a list of Rules and input question
 #Returns a string answer if there were matches
 #Returns None if there were no matches
-def getVecAnswer(rules, userinput):
+def getVecAnswer(rules, userinput, isReg):
 
     if len(rules) == 0:
         return None
@@ -37,11 +37,11 @@ def getVecAnswer(rules, userinput):
                 allscores.append((rule,score)) 
                 allscores.sort(reverse=True, key=lambda x:x[1])
 
-    if allscores[0][1] > .95:
+    if allscores[0][1] > .95 or isReg:
         rule = allscores[0][0]
         rule.addQuestion(userinput)
         return rule.answers[0]
-    else:
+    else: 
         return None
 
 #Makes a single vector
