@@ -33,7 +33,7 @@ Cited Sources:
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <meta name="msapplication-TileColor" content="#00a300">
     <meta name="theme-color" content="#ffffff">
-    <?php //include 'PHP/Auth.php';?>
+    <?php include 'PHP/Auth.php';?>
   </head>
 
 <body>

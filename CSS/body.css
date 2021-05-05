@@ -72,6 +72,7 @@ body{
 #about {
   background-color: black;
   Position:relative;
+  z-index: 20;
 }
 
 .name{
@@ -94,6 +95,7 @@ body{
 
   background-attachment: fixed;
   background-size: cover;
+    z-index: 21;
   /*background-color: var(--main-tan);*/
   color:  black;
   Position:relative;
@@ -130,12 +132,21 @@ h2 {
 
 .outro{
   padding: 1vh;
-  font-size: 2vh;
+  font-size: 2.7vh;
 }
 .outro_title{
   padding: 1vh;
   margin: 1vh;
-  font-size: 5vh;
+  font-size: 7vh;
+}
+.how{
+  padding: 1vh;
+  font-size: 2vh;
+}
+.how_title{
+  padding: 1vh;
+  margin: 1vh;
+  font-size: 3vh;
 }
 .profile{
   height: 20vh;
@@ -150,19 +161,21 @@ h2 {
   position: absolute;
   height: 40vh;
   width: 40vh;
-  top: 140vh;
+  top: 33%;
   right: 4vw;
   z-index: 7;
 }
 #cloud_top{
   width:100%;
+  height: auto;
   position: absolute;
-  top: 130.5vh;
+  top: 27.5%;
   z-index: 8;
 }
 #cloud_back{
   width:100%;
+  height: auto;
   position: absolute;
-  top: 136vh;
+  top: 33%;
   z-index: 6;
 }
