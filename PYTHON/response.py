@@ -38,7 +38,8 @@ def getAnswer(input):
 #    if(pf.is_clean(input)):
     for i in range(1,6):
         allRules = Rule.getRules(priority=i)
-        matched=False
+        if allRules == None:
+            continue
         
         matchedRules = reg.getRegexAnswer(allRules, input)
         if(matchedRules == None):
