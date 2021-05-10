@@ -383,6 +383,8 @@ document.getElementById('search').addEventListener("keyup", function(event) {
       if (this.readyState == 4 && this.status == 200) {
         list = ltor(mainHeader,this.responseText);
         document.getElementById("Rule").innerHTML = ltor(mainHeader,this.responseText);
+        $(".dropdown-item").on("click",function(event){this.parentNode.parentNode.childNodes[0].innerHTML=this.innerHTML;editPriority(this.parentNode.parentNode.parentNode.parentNode.id,this.innerHTML);});
+        
       }
     };
     xhttp.open("POST", "http://10.1.83.57:5000/api/rules/search", true);

@@ -2,7 +2,7 @@
 <?php
   session_start();
   //$_SESSION['user']= array("user"=>"m213220","fullname"=>"Jes Lonetti","first"=>"Jess","last"=>"Lonetti","department"=>"Computer Science Department","time"=>time(),"max"=>5);
-  $listofUsers = array('m213990',"m215394","m216750","m213198","m213462","nchamber");
+  $listofUsers = array('m213990',"m215394","m216750","m216198","m213462","nchamber");
   if(!isset($_SESSION['user'])){
     require_once('../../Security/lib_authenticate.php');
     if(!in_array($_SESSION['user']['user'],$listofUsers)){
