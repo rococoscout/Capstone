@@ -30,6 +30,11 @@ class Rule:
         # print(sql)
         return Rule.db.execute(sql)
 
+    def addNewQuestion(self, q):
+        sql = f'INSERT INTO Questions (question, idRules, isExample) VALUES ("{q}", {self.id}, 1);'
+        # print(sql)
+        return Rule.db.execute(sql)
+
     def addAnswer(self, a):
         sql = f'INSERT INTO Answers (answer, idRules) VALUES ("{a}", {self.id});'
         return Rule.db.execute(sql)
@@ -55,7 +60,6 @@ class Rule:
         self.id = Rule.db.fetchNoDict(sql)[0]
 
         # add to questions table
-        [self.addQuestion(q) for q in self.questions]
         # add to answers table
         [self.addAnswer(a) for a in self.answers]
         # add to regexes table
