@@ -40,6 +40,7 @@ def getAnswer(input):
         allRules = Rule.getRules(priority=i)
         if len(allRules) == 0:
             continue
+        matched=False
         
         matchedRules = reg.getRegexAnswer(allRules, input)
         if(matchedRules == None):

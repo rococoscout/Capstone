@@ -60,7 +60,6 @@ class Rule:
         self.id = Rule.db.fetchNoDict(sql)[0]
 
         # add to questions table
-        [self.addNewQuestion(q) for q in self.questions]
         # add to answers table
         [self.addAnswer(a) for a in self.answers]
         # add to regexes table
